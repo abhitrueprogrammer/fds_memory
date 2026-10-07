@@ -24,6 +24,10 @@ predictions.json
 evaluation/
 gold.*.json
 
-# Caches
+# Caches and external repositories
 .cache/
 .pytest_cache/
+repos/
+
+# Root-level loose eval json dumps
+*.eval_*.json

@@ -1,0 +1,132 @@
+Evaluating offline retrieval for sequence: ['django__django-11790', 'django__django-11815', 'django__django-11848']...
+[
+  {
+    "instance_id": "django__django-11790",
+    "created_at": "2019-09-17T14:33:44Z",
+    "gold_files": [
+      "django/contrib/auth/forms.py"
+    ],
+    "B": {
+      "retrieved": [
+        "django/contrib/admin/forms.py",
+        "setup.py",
+        "django/contrib/auth/forms.py",
+        "django/db/backends/oracle/operations.py",
+        "django/contrib/auth/handlers/modwsgi.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0
+    },
+    "C": {
+      "retrieved": [
+        "django/contrib/admin/forms.py",
+        "setup.py",
+        "django/contrib/auth/forms.py",
+        "django/db/backends/oracle/operations.py",
+        "django/contrib/auth/handlers/modwsgi.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0
+    },
+    "D": {
+      "retrieved": [
+        "django/core/cache/backends/memcached.py",
+        "django/contrib/auth/forms.py",
+        "django/contrib/auth/models.py",
+        "django/contrib/contenttypes/fields.py",
+        "django/contrib/gis/gdal/raster/band.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0
+    }
+  },
+  {
+    "instance_id": "django__django-11815",
+    "created_at": "2019-09-24T21:45:36Z",
+    "gold_files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "B": {
+      "retrieved": [
+        "django/contrib/flatpages/models.py",
+        "django/db/models/enums.py",
+        "django/db/migrations/__init__.py",
+        "django/contrib/redirects/models.py",
+        "django/db/migrations/exceptions.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0
+    },
+    "C": {
+      "retrieved": [
+        "django/contrib/flatpages/models.py",
+        "django/db/models/enums.py",
+        "django/db/migrations/__init__.py",
+        "django/contrib/redirects/models.py",
+        "django/db/migrations/exceptions.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0
+    },
+    "D": {
+      "retrieved": [
+        "django/contrib/gis/gdal/field.py",
+        "django/utils/translation/trans_real.py",
+        "django/db/models/fields/__init__.py",
+        "django/contrib/contenttypes/models.py",
+        "django/db/models/base.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0
+    }
+  },
+  {
+    "instance_id": "django__django-11848",
+    "created_at": "2019-09-28T04:28:22Z",
+    "gold_files": [
+      "django/utils/http.py"
+    ],
+    "B": {
+      "retrieved": [
+        "django/utils/datetime_safe.py",
+        "django/contrib/humanize/templatetags/humanize.py",
+        "django/utils/http.py",
+        "django/utils/timesince.py",
+        "django/db/backends/oracle/utils.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0
+    },
+    "C": {
+      "retrieved": [
+        "django/utils/datetime_safe.py",
+        "django/contrib/humanize/templatetags/humanize.py",
+        "django/utils/http.py",
+        "django/utils/timesince.py",
+        "django/db/backends/oracle/utils.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0
+    },
+    "D": {
+      "retrieved": [
+        "django/utils/datetime_safe.py",
+        "django/template/defaultfilters.py",
+        "django/utils/numberformat.py",
+        "django/db/models/expressions.py",
+        "django/utils/dateformat.py"
+      ],
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0
+    }
+  }
+]
