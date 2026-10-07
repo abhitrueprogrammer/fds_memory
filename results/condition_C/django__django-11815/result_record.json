@@ -11,9 +11,9 @@
     "django/db/migrations/exceptions.py"
   ],
   "files_edited": [],
-  "api_calls": 30,
-  "cost": 0.04262198000000001,
-  "latency_seconds": 159.86,
+  "api_calls": 50,
+  "cost": 0.07893857000000003,
+  "latency_seconds": 277.04,
   "exit_status": "LimitsExceeded",
   "memory_items_included": [
     "django/contrib/flatpages/models.py",

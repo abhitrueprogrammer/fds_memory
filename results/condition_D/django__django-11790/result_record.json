@@ -11,9 +11,9 @@
     "django/contrib/gis/gdal/raster/band.py"
   ],
   "files_edited": [],
-  "api_calls": 30,
-  "cost": 0.04264323999999999,
-  "latency_seconds": 324.5,
+  "api_calls": 50,
+  "cost": 0.08097349999999998,
+  "latency_seconds": 172.74,
   "exit_status": "LimitsExceeded",
   "memory_items_included": [
     "django/core/cache/backends/memcached.py",

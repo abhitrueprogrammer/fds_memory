@@ -7,7 +7,10 @@ import subprocess
 import time
 from typing import Any
 from datasets import load_dataset
+from dotenv import load_dotenv
 import unidiff
+
+load_dotenv()
 
 from minisweagent.config import builtin_config_dir, get_config_from_spec
 from minisweagent.run.benchmarks.swebench import process_instance
@@ -20,7 +23,7 @@ from memory_pilot.condition_c import ConditionCMemory
 from memory_pilot.condition_d import ConditionDMemory
 from memory_pilot.interface import BaseMemory
 
-DEFAULT_CONFIG_FILE = builtin_config_dir / "benchmarks" / "swebench.yaml"
+DEFAULT_CONFIG_FILE = Path(__file__).resolve().parent.parent / "swebench.yaml"
 
 
 def get_memory_for_condition(condition: str) -> BaseMemory:
@@ -58,7 +61,7 @@ def run_condition_sequence(
     sequence: list[str],
     repo_dir: Path,
     output_dir: Path,
-    model_name: str = "groq/qwen/qwen3.8-27b",
+    model_name: str = "gemini/gemini-3.5-flash-lite",
     step_limit: int = 50,
 ) -> list[dict[str, Any]]:
 
@@ -244,7 +247,12 @@ def run_condition_sequence(
 
 if __name__ == "__main__":
     import sys
-    cond = sys.argv[1] if len(sys.argv) > 1 else "A"
+    raw_arg = sys.argv[1] if len(sys.argv) > 1 else "A"
+    if raw_arg == "all":
+        conds = ["A", "B", "C", "D"]
+    else:
+        conds = [c.strip() for c in raw_arg.split(",") if c.strip()]
+
     sequence = [
         "django__django-11790",
         "django__django-11815",
@@ -252,6 +260,9 @@ if __name__ == "__main__":
     ]
     repo_dir = Path("repos/django")
     out_dir = Path("results")
-    print(f"Starting sequence for condition {cond}...")
-    results = run_condition_sequence(cond, sequence, repo_dir, out_dir)
-    print("Sequence completed:", json.dumps(results, indent=2))
+    for cond in conds:
+        print(f"\n=======================================================", flush=True)
+        print(f"Starting sequence for condition {cond}...", flush=True)
+        print(f"=======================================================", flush=True)
+        results = run_condition_sequence(cond, sequence, repo_dir, out_dir)
+        print(f"Sequence {cond} completed:", json.dumps(results, indent=2), flush=True)

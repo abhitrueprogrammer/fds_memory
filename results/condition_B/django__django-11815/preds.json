@@ -2,6 +2,6 @@
   "django__django-11815": {
     "model_name_or_path": "gemini/gemini-3.5-flash-lite",
     "instance_id": "django__django-11815",
-    "model_patch": ""
+    "model_patch": "diff --git a/django/db/migrations/serializer.py b/django/db/migrations/serializer.py\nindex 27b5cbd379..ae7223cc90 100755\n--- a/django/db/migrations/serializer.py\n+++ b/django/db/migrations/serializer.py\n@@ -120,6 +120,10 @@ class EnumSerializer(BaseSerializer):\n     def serialize(self):\n         enum_class = self.value.__class__\n         module = enum_class.__module__\n+        if not isinstance(self.value, (enum.IntEnum, enum.IntFlag, enum.Flag)) and self.value.name is not None:\n+            v_string, v_imports = serializer_factory(self.value.name).serialize()\n+            imports = {'import %s' % module, *v_imports}\n+            return \"%s.%s[%s]\" % (module, enum_class.__name__, v_string), imports\n         v_string, v_imports = serializer_factory(self.value.value).serialize()\n         imports = {'import %s' % module, *v_imports}\n         return \"%s.%s(%s)\" % (module, enum_class.__name__, v_string), imports\n"
   }
 }

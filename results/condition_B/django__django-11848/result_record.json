@@ -11,10 +11,10 @@
     "django/db/backends/oracle/utils.py"
   ],
   "files_edited": [],
-  "api_calls": 20,
-  "cost": 0.02114299,
-  "latency_seconds": 245.46,
-  "exit_status": "Submitted",
+  "api_calls": 50,
+  "cost": 0.08682837,
+  "latency_seconds": 289.91,
+  "exit_status": "LimitsExceeded",
   "memory_items_included": [
     "django/utils/datetime_safe.py",
     "django/contrib/humanize/templatetags/humanize.py",

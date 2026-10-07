@@ -5,9 +5,9 @@
   "resolved": false,
   "files_retrieved": [],
   "files_edited": [],
-  "api_calls": 30,
-  "cost": 0.04172596999999999,
-  "latency_seconds": 229.05,
+  "api_calls": 50,
+  "cost": 0.07866521,
+  "latency_seconds": 383.57,
   "exit_status": "LimitsExceeded",
   "memory_items_included": [],
   "metadata": {

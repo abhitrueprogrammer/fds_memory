@@ -11,11 +11,13 @@
       "django/db/backends/oracle/operations.py",
       "django/contrib/auth/handlers/modwsgi.py"
     ],
-    "files_edited": [],
-    "api_calls": 30,
-    "cost": 0.034038250000000006,
-    "latency_seconds": 334.33,
-    "exit_status": "LimitsExceeded",
+    "files_edited": [
+      "django/contrib/auth/forms.py"
+    ],
+    "api_calls": 41,
+    "cost": 0.06607270999999999,
+    "latency_seconds": 329.33,
+    "exit_status": "Submitted",
     "memory_items_included": [
       "django/contrib/admin/forms.py",
       "setup.py",
@@ -47,11 +49,13 @@
       "django/contrib/redirects/models.py",
       "django/db/migrations/exceptions.py"
     ],
-    "files_edited": [],
-    "api_calls": 30,
-    "cost": 0.07172221000000001,
-    "latency_seconds": 331.76,
-    "exit_status": "LimitsExceeded",
+    "files_edited": [
+      "django/db/migrations/serializer.py"
+    ],
+    "api_calls": 31,
+    "cost": 0.07407593000000004,
+    "latency_seconds": 174.25,
+    "exit_status": "Submitted",
     "memory_items_included": [
       "django/contrib/flatpages/models.py",
       "django/db/models/enums.py",
@@ -84,10 +88,10 @@
       "django/db/backends/oracle/utils.py"
     ],
     "files_edited": [],
-    "api_calls": 20,
-    "cost": 0.02114299,
-    "latency_seconds": 245.46,
-    "exit_status": "Submitted",
+    "api_calls": 50,
+    "cost": 0.08682837,
+    "latency_seconds": 289.91,
+    "exit_status": "LimitsExceeded",
     "memory_items_included": [
       "django/utils/datetime_safe.py",
       "django/contrib/humanize/templatetags/humanize.py",

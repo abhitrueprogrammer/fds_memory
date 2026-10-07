@@ -11,9 +11,9 @@
     "django/db/models/base.py"
   ],
   "files_edited": [],
-  "api_calls": 30,
-  "cost": 0.041251920000000004,
-  "latency_seconds": 173.71,
+  "api_calls": 50,
+  "cost": 0.07477393,
+  "latency_seconds": 167.32,
   "exit_status": "LimitsExceeded",
   "memory_items_included": [
     "django/contrib/gis/gdal/field.py",
