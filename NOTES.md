@@ -27,7 +27,34 @@ Total tasks: 50
 - Harness run: `swebench.harness.run_evaluation` scored `preds.json` cleanly, output report to `gemini__gemini-3.5-flash-lite.smoke_test_agent.json`.
 - Time per task: ~5 min 39 s.
 - Cost per task: $0.0615 (30 API calls).
-- Docker disk used: 4.18 GB (preserved on disk per user request, no images deleted).
-- Total free disk: 173 GB.
+## Approved Sequence Plan (Phase 1 Checkpoint Approved)
+- **Repository**: `django/django`
+- **Subset**: 3 tasks in strict chronological order:
+  1. `django__django-11790` (2019-09-17) - Touches `django/contrib/auth/forms.py`
+  2. `django__django-11815` (2019-09-24) - Touches `django/db/migrations/serializer.py`
+  3. `django__django-11848` (2019-09-28) - Touches `django/utils/http.py`
+- **Budget**: 3 tasks × 4 conditions = 12 runs (~300-360 requests, ~$0.72).
+- **Disk / Cache Policy**: All downloaded Docker images (`django-11790`, `django-11815`, `django-11848`) are permanently preserved (no deletion).
+
+## Phase 2: Offline Retrieval Evaluation (Recall@K)
+Evaluated before running any agents on C or D.
+- **Task 1: `django__django-11790`** (Gold: `django/contrib/auth/forms.py`)
+  - B (Snapshot RAG): Recall@1: 0.0, Recall@3: 1.0, Recall@5: 1.0 (Rank 3)
+  - C (Naive Combo): Recall@1: 0.0, Recall@3: 1.0, Recall@5: 1.0 (Rank 3)
+  - D (Structural AST): Recall@1: 0.0, Recall@3: 1.0, Recall@5: 1.0 (Rank 2)
+- **Task 2: `django__django-11815`** (Gold: `django/db/migrations/serializer.py`)
+  - B (Snapshot RAG): Recall@1: 0.0, Recall@3: 0.0, Recall@5: 0.0
+  - C (Naive Combo): Recall@1: 0.0, Recall@3: 0.0, Recall@5: 0.0
+  - D (Structural AST): Recall@1: 0.0, Recall@3: 0.0, Recall@5: 0.0
+- **Task 3: `django__django-11848`** (Gold: `django/utils/http.py`)
+  - B (Snapshot RAG): Recall@1: 0.0, Recall@3: 1.0, Recall@5: 1.0 (Rank 3)
+  - C (Naive Combo): Recall@1: 0.0, Recall@3: 1.0, Recall@5: 1.0 (Rank 3)
+  - D (Structural AST): Recall@1: 0.0, Recall@3: 0.0, Recall@5: 0.0
+- **Sequence Average Recall@5**:
+  - Condition B: 66.7% (2/3)
+  - Condition C: 66.7% (2/3)
+  - Condition D: 33.3% (1/3)
+
+
 
 
