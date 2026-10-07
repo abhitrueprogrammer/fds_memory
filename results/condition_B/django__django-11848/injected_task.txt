@@ -1,0 +1,63 @@
+<repository_context>
+[Repository Snapshot RAG Context]
+Retrieved candidate files from the repository:
+- File: django/utils/datetime_safe.py (relevance score: 0.129)
+  Key symbols/headers:
+  class date(real_date):
+  def strftime(self, fmt):
+  class datetime(real_datetime):
+  def strftime(self, fmt):
+  def combine(cls, date, time):
+  def date(self):
+  class time(real_time):
+  def new_date(d):
+
+- File: django/contrib/humanize/templatetags/humanize.py (relevance score: 0.124)
+  Key symbols/headers:
+  def ordinal(value):
+  def intcomma(value, use_l10n=True):
+  def intword(value):
+  def _check_for_i18n(value, float_formatted, string_formatted):
+  def apnumber(value):
+  def naturalday(value, arg=None):
+  def naturaltime(value):
+  class NaturalTimeFormatter:
+
+- File: django/utils/http.py (relevance score: 0.123)
+  Key symbols/headers:
+  def urlquote(url, safe='/'):
+  def urlquote_plus(url, safe=''):
+  def urlunquote(quoted_url):
+  def urlunquote_plus(quoted_url):
+  def urlencode(query, doseq=False):
+  def http_date(epoch_seconds=None):
+  def parse_http_date(date):
+  def parse_http_date_safe(date):
+
+- File: django/utils/timesince.py (relevance score: 0.100)
+  Key symbols/headers:
+  def timesince(d, now=None, reversed=False, time_strings=None):
+  def timeuntil(d, now=None, time_strings=None):
+
+- File: django/db/backends/oracle/utils.py (relevance score: 0.089)
+  Key symbols/headers:
+  class InsertVar:
+  def __init__(self, field):
+  def bind_parameter(self, cursor):
+  class Oracle_datetime(datetime.datetime):
+  def from_datetime(cls, dt):
+  class BulkInsertMapper:
+
+</repository_context>
+
+django.utils.http.parse_http_date two digit year check is incorrect
+Description
+	 
+		(last modified by Ad Timmering)
+	 
+RFC 850 does not mention this, but in RFC 7231 (and there's something similar in RFC 2822), there's the following quote:
+Recipients of a timestamp value in rfc850-date format, which uses a
+two-digit year, MUST interpret a timestamp that appears to be more
+than 50 years in the future as representing the most recent year in
+the past that had the same last two digits.
+Current logic is hard coded to consider 0-69 to be in 2000-2069, and 70-99 to be 1970-1999, instead of comparing versus the current year.

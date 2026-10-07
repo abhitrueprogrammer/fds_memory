@@ -1,0 +1,66 @@
+<repository_context>
+[Repository Snapshot RAG Context]
+Retrieved candidate files from the repository:
+- File: django/contrib/admin/forms.py (relevance score: 0.181)
+  Key symbols/headers:
+  class AdminAuthenticationForm(AuthenticationForm):
+  def confirm_login_allowed(self, user):
+  class AdminPasswordChangeForm(PasswordChangeForm):
+
+- File: setup.py (relevance score: 0.091)
+  Key symbols/headers:
+  def read(fname):
+
+- File: django/contrib/auth/forms.py (relevance score: 0.091)
+  Key symbols/headers:
+  class ReadOnlyPasswordHashWidget(forms.Widget):
+  def get_context(self, name, value, attrs):
+  class ReadOnlyPasswordHashField(forms.Field):
+  def __init__(self, *args, **kwargs):
+  def bound_data(self, data, initial):
+  def has_changed(self, initial, data):
+  class UsernameField(forms.CharField):
+  def to_python(self, value):
+
+- File: django/db/backends/oracle/operations.py (relevance score: 0.085)
+  Key symbols/headers:
+  class DatabaseOperations(BaseDatabaseOperations):
+  def cache_key_culling_sql(self):
+  def date_extract_sql(self, lookup_type, field_name):
+  def date_trunc_sql(self, lookup_type, field_name):
+  def _prepare_tzname_delta(self, tzname):
+  def _convert_field_to_tz(self, field_name, tzname):
+  def datetime_cast_date_sql(self, field_name, tzname):
+  def datetime_cast_time_sql(self, field_name, tzname):
+
+- File: django/contrib/auth/handlers/modwsgi.py (relevance score: 0.082)
+  Key symbols/headers:
+  def check_password(environ, username, password):
+  def groups_for_user(environ, username):
+
+
+[Git History of Candidate Files]
+History for django/contrib/admin/forms.py:
+  d13a9e44de Fixed #28909 -- Simplified code using tuple/list/set/dict unpacking.
+ebb998976e Fixed #28751 -- Corrected the error message for inactive users in AdminAuthenticationForm.
+c651331b34 Converted usage of ugettext* functions to their gettext* aliases
+History for setup.py:
+  a415ce70be Fixed #30451 -- Added ASGI handler and coroutine-safety.
+7e6b214ed3 Fixed #30116 -- Dropped support for Python 3.5.
+f82be9ebc7 Fixed #29934 -- Added sqlparse as a require dependency.
+History for django/contrib/auth/forms.py:
+  999891bd80 Refs #29379 -- Moved autocomplete attribute to UsernameField.
+42b9a23267 Fixed #30400 -- Improved typography of user facing strings.
+dcb8f00d06 Fixed #29379 -- Added autocomplete attribute to contrib.auth.forms fields.
+
+[Past Tasks History]
+No previous tasks in history yet.
+</repository_context>
+
+AuthenticationForm's username field doesn't set maxlength HTML attribute.
+Description
+	
+AuthenticationForm's username field doesn't render with maxlength HTML attribute anymore.
+Regression introduced in #27515 and 5ceaf14686ce626404afb6a5fbd3d8286410bf13.
+​https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!topic/django-developers/qnfSqro0DlA
+​https://forum.djangoproject.com/t/possible-authenticationform-max-length-regression-in-django-2-1/241

@@ -1,0 +1,110 @@
+[
+  {
+    "condition": "C",
+    "instance_id": "django__django-11790",
+    "position": 1,
+    "resolved": false,
+    "files_retrieved": [
+      "django/contrib/admin/forms.py",
+      "setup.py",
+      "django/contrib/auth/forms.py",
+      "django/db/backends/oracle/operations.py",
+      "django/contrib/auth/handlers/modwsgi.py"
+    ],
+    "files_edited": [],
+    "api_calls": 30,
+    "cost": 0.04743843999999999,
+    "latency_seconds": 324.74,
+    "exit_status": "LimitsExceeded",
+    "memory_items_included": [
+      "django/contrib/admin/forms.py",
+      "setup.py",
+      "django/contrib/auth/forms.py",
+      "django/db/backends/oracle/operations.py",
+      "django/contrib/auth/handlers/modwsgi.py"
+    ],
+    "metadata": {
+      "condition": "C",
+      "items_included": [
+        "django/contrib/admin/forms.py",
+        "setup.py",
+        "django/contrib/auth/forms.py",
+        "django/db/backends/oracle/operations.py",
+        "django/contrib/auth/handlers/modwsgi.py"
+      ],
+      "past_tasks_count": 0
+    }
+  },
+  {
+    "condition": "C",
+    "instance_id": "django__django-11815",
+    "position": 2,
+    "resolved": false,
+    "files_retrieved": [
+      "django/contrib/flatpages/models.py",
+      "django/db/models/enums.py",
+      "django/db/migrations/__init__.py",
+      "django/contrib/redirects/models.py",
+      "django/db/migrations/exceptions.py"
+    ],
+    "files_edited": [],
+    "api_calls": 30,
+    "cost": 0.04262198000000001,
+    "latency_seconds": 159.86,
+    "exit_status": "LimitsExceeded",
+    "memory_items_included": [
+      "django/contrib/flatpages/models.py",
+      "django/db/models/enums.py",
+      "django/db/migrations/__init__.py",
+      "django/contrib/redirects/models.py",
+      "django/db/migrations/exceptions.py"
+    ],
+    "metadata": {
+      "condition": "C",
+      "items_included": [
+        "django/contrib/flatpages/models.py",
+        "django/db/models/enums.py",
+        "django/db/migrations/__init__.py",
+        "django/contrib/redirects/models.py",
+        "django/db/migrations/exceptions.py"
+      ],
+      "past_tasks_count": 1
+    }
+  },
+  {
+    "condition": "C",
+    "instance_id": "django__django-11848",
+    "position": 3,
+    "resolved": false,
+    "files_retrieved": [
+      "django/utils/datetime_safe.py",
+      "django/contrib/humanize/templatetags/humanize.py",
+      "django/utils/http.py",
+      "django/utils/timesince.py",
+      "django/db/backends/oracle/utils.py"
+    ],
+    "files_edited": [],
+    "api_calls": 30,
+    "cost": 0.044956349999999985,
+    "latency_seconds": 165.34,
+    "exit_status": "LimitsExceeded",
+    "memory_items_included": [
+      "django/utils/datetime_safe.py",
+      "django/contrib/humanize/templatetags/humanize.py",
+      "django/utils/http.py",
+      "django/utils/timesince.py",
+      "django/db/backends/oracle/utils.py"
+    ],
+    "metadata": {
+      "condition": "C",
+      "items_included": [
+        "django/utils/datetime_safe.py",
+        "django/contrib/humanize/templatetags/humanize.py",
+        "django/utils/http.py",
+        "django/utils/timesince.py",
+        "django/db/backends/oracle/utils.py"
+      ],
+      "past_tasks_count": 2
+    }
+  }
+]

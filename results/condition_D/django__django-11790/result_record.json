@@ -1,0 +1,38 @@
+{
+  "condition": "D",
+  "instance_id": "django__django-11790",
+  "position": 1,
+  "resolved": false,
+  "files_retrieved": [
+    "django/core/cache/backends/memcached.py",
+    "django/contrib/auth/forms.py",
+    "django/contrib/auth/models.py",
+    "django/contrib/contenttypes/fields.py",
+    "django/contrib/gis/gdal/raster/band.py"
+  ],
+  "files_edited": [],
+  "api_calls": 30,
+  "cost": 0.04264323999999999,
+  "latency_seconds": 324.5,
+  "exit_status": "LimitsExceeded",
+  "memory_items_included": [
+    "django/core/cache/backends/memcached.py",
+    "django/contrib/auth/forms.py",
+    "django/contrib/auth/models.py",
+    "django/contrib/contenttypes/fields.py",
+    "django/contrib/gis/gdal/raster/band.py"
+  ],
+  "metadata": {
+    "condition": "D",
+    "items_included": [
+      "django/core/cache/backends/memcached.py",
+      "django/contrib/auth/forms.py",
+      "django/contrib/auth/models.py",
+      "django/contrib/contenttypes/fields.py",
+      "django/contrib/gis/gdal/raster/band.py"
+    ],
+    "reparsed_files": 804,
+    "cached_files": 0,
+    "episodes_count": 0
+  }
+}

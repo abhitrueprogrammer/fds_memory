@@ -1,0 +1,36 @@
+<repository_context>
+[Structural Symbol & Call Graph]
+Repository structural AST index: 804 reparsed, 0 cached.
+Top relevant files and AST symbols:
+- Module: django/core/cache/backends/memcached.py (score: 170.0)
+  Classes: BaseMemcachedCache, MemcachedCache, PyLibMCCache
+  Functions: __init__, _cache, get_backend_timeout, add, get, set, delete, get_many
+  Calls: ValueError, client_kwargs.update, data.items, getattr, int, isinstance
+- Module: django/contrib/auth/forms.py (score: 150.0)
+  Classes: ReadOnlyPasswordHashWidget, ReadOnlyPasswordHashField, UsernameField, UserCreationForm, Meta
+  Functions: get_context, __init__, bound_data, has_changed, to_python, widget_attrs, __init__, clean_password2
+  Calls: ''.join, EmailMultiAlternatives, ReadOnlyPasswordHashField, UserModel._default_manager.filter, UserModel._meta.get_field, UserModel.get_email_field_name
+- Module: django/contrib/auth/models.py (score: 150.0)
+  Classes: PermissionManager, Permission, Meta, GroupManager, Group
+  Functions: update_last_login, get_by_natural_key, __str__, natural_key, get_by_natural_key, __str__, natural_key, _create_user
+  Calls: ContentType.objects.db_manager, EmptyManager, GroupManager, NotImplementedError, PermissionManager, TypeError
+- Module: django/contrib/contenttypes/fields.py (score: 150.0)
+  Classes: GenericForeignKey, GenericRel, GenericRelation, ReverseGenericManyToOneDescriptor, GenericRelatedObjectManager
+  Functions: __init__, contribute_to_class, get_filter_kwargs_for_object, get_forward_related_filter, __str__, check, _check_field_name, _check_object_id_field
+  Calls: ContentType.objects.db_manager, ContentType.objects.get_for_model, Exception, PathInfo, ReverseGenericManyToOneDescriptor, TypeError
+- Module: django/contrib/gis/gdal/raster/band.py (score: 150.0)
+  Classes: GDALBand, BandList
+  Functions: __init__, _flush, description, width, height, pixel_count, statistics, min
+  Calls: GDALBand, GDALException, ValueError, any, byref, c_double
+
+[Episodic Memory & Staleness Check]
+No prior episodic experience in memory.
+</repository_context>
+
+AuthenticationForm's username field doesn't set maxlength HTML attribute.
+Description
+	
+AuthenticationForm's username field doesn't render with maxlength HTML attribute anymore.
+Regression introduced in #27515 and 5ceaf14686ce626404afb6a5fbd3d8286410bf13.
+​https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!topic/django-developers/qnfSqro0DlA
+​https://forum.djangoproject.com/t/possible-authenticationform-max-length-regression-in-django-2-1/241

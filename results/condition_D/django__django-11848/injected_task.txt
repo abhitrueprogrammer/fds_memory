@@ -1,0 +1,55 @@
+<repository_context>
+[Structural Symbol & Call Graph]
+Repository structural AST index: 0 reparsed, 804 cached.
+Top relevant files and AST symbols:
+- Module: django/utils/datetime_safe.py (score: 345.0)
+  Classes: date, datetime, time
+  Functions: strftime, strftime, combine, date, new_date, new_datetime, _findall, strftime
+  Calls: TypeError, _findall, _illegal_formatting.search, cls, date, datetime
+- Module: django/template/defaultfilters.py (score: 300.0)
+  Classes: (none)
+  Functions: stringfilter, _dec, addslashes, capfirst, escapejs_filter, json_script, floatformat, iriencode
+  Calls: ''.join, '\n'.join, Context, Decimal, Decimal(1).scaleb, Library
+- Module: django/utils/numberformat.py (score: 255.0)
+  Classes: (none)
+  Functions: format
+  Calls: '1'.rjust, '{:e}'.format, '{:f}'.format, '{}e{}'.format, Decimal, abs
+- Module: django/db/models/expressions.py (score: 210.0)
+  Classes: SQLiteNumericMixin, Combinable, BaseExpression, Expression, CombinedExpression
+  Functions: as_sqlite, _combine, __neg__, __add__, __sub__, __mul__, __truediv__, __mod__
+  Calls: "<{}: {}>".format, "{} {} {}".format, "{}({})".format, "{}({}, descending={})".format, "{}({}, {})".format, ''.join
+- Module: django/utils/dateformat.py (score: 195.0)
+  Classes: Formatter, TimeFormat, DateFormat
+  Functions: format, __init__, a, A, B, e, f, g
+  Calls: ''.join, DateFormat, MONTHS_3[self.data.month].title, NotImplementedError, TimeFormat, TypeError
+
+[Episodic Memory & Staleness Check]
+- Episode django__django-11790 | Status: FAILED (weight=-0.50) | ✅ [FRESH - Verified against current repo state]
+  Issue Summary: AuthenticationForm's username field doesn't set maxlength HTML attribute.
+Description
+	
+AuthenticationForm's username fi...
+  Files Edited: []
+  Files Retrieved: ['django/core/cache/backends/memcached.py', 'django/contrib/auth/forms.py', 'django/contrib/auth/models.py', 'django/contrib/contenttypes/fields.py', 'django/contrib/gis/gdal/raster/band.py']
+- Episode django__django-11815 | Status: FAILED (weight=-0.50) | ✅ [FRESH - Verified against current repo state]
+  Issue Summary: Migrations uses value of enum object instead of its name.
+Description
+	 
+		(last modified by oasl)
+	 
+When using Enum ob...
+  Files Edited: []
+  Files Retrieved: ['django/contrib/gis/gdal/field.py', 'django/utils/translation/trans_real.py', 'django/db/models/fields/__init__.py', 'django/contrib/contenttypes/models.py', 'django/db/models/base.py']
+</repository_context>
+
+django.utils.http.parse_http_date two digit year check is incorrect
+Description
+	 
+		(last modified by Ad Timmering)
+	 
+RFC 850 does not mention this, but in RFC 7231 (and there's something similar in RFC 2822), there's the following quote:
+Recipients of a timestamp value in rfc850-date format, which uses a
+two-digit year, MUST interpret a timestamp that appears to be more
+than 50 years in the future as representing the most recent year in
+the past that had the same last two digits.
+Current logic is hard coded to consider 0-69 to be in 2000-2069, and 70-99 to be 1970-1999, instead of comparing versus the current year.

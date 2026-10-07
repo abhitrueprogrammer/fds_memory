@@ -1,0 +1,36 @@
+{
+  "condition": "B",
+  "instance_id": "django__django-11790",
+  "position": 1,
+  "resolved": false,
+  "files_retrieved": [
+    "django/contrib/admin/forms.py",
+    "setup.py",
+    "django/contrib/auth/forms.py",
+    "django/db/backends/oracle/operations.py",
+    "django/contrib/auth/handlers/modwsgi.py"
+  ],
+  "files_edited": [],
+  "api_calls": 30,
+  "cost": 0.034038250000000006,
+  "latency_seconds": 334.33,
+  "exit_status": "LimitsExceeded",
+  "memory_items_included": [
+    "django/contrib/admin/forms.py",
+    "setup.py",
+    "django/contrib/auth/forms.py",
+    "django/db/backends/oracle/operations.py",
+    "django/contrib/auth/handlers/modwsgi.py"
+  ],
+  "metadata": {
+    "condition": "B",
+    "items_included": [
+      "django/contrib/admin/forms.py",
+      "setup.py",
+      "django/contrib/auth/forms.py",
+      "django/db/backends/oracle/operations.py",
+      "django/contrib/auth/handlers/modwsgi.py"
+    ],
+    "top_k": 5
+  }
+}

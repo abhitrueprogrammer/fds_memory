@@ -1,0 +1,8 @@
+{
+  "target_file": "django/contrib/auth/forms.py",
+  "condition_c_flags_stale": false,
+  "condition_d_flags_stale": true,
+  "condition_d_snippet": [
+    "- Episode django__django-11790 | Status: PASSED (weight=0.20) | \u26a0\ufe0f [STALE - Files changed since task: django/contrib/auth/forms.py (modified)]"
+  ]
+}

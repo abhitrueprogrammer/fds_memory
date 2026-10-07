@@ -1,0 +1,38 @@
+{
+  "condition": "D",
+  "instance_id": "django__django-11848",
+  "position": 3,
+  "resolved": false,
+  "files_retrieved": [
+    "django/utils/datetime_safe.py",
+    "django/template/defaultfilters.py",
+    "django/utils/numberformat.py",
+    "django/db/models/expressions.py",
+    "django/utils/dateformat.py"
+  ],
+  "files_edited": [],
+  "api_calls": 30,
+  "cost": 0.04047869,
+  "latency_seconds": 176.97,
+  "exit_status": "LimitsExceeded",
+  "memory_items_included": [
+    "django/utils/datetime_safe.py",
+    "django/template/defaultfilters.py",
+    "django/utils/numberformat.py",
+    "django/db/models/expressions.py",
+    "django/utils/dateformat.py"
+  ],
+  "metadata": {
+    "condition": "D",
+    "items_included": [
+      "django/utils/datetime_safe.py",
+      "django/template/defaultfilters.py",
+      "django/utils/numberformat.py",
+      "django/db/models/expressions.py",
+      "django/utils/dateformat.py"
+    ],
+    "reparsed_files": 0,
+    "cached_files": 804,
+    "episodes_count": 2
+  }
+}

@@ -50,10 +50,43 @@ Evaluated before running any agents on C or D.
   - B (Snapshot RAG): Recall@1: 0.0, Recall@3: 1.0, Recall@5: 1.0 (Rank 3)
   - C (Naive Combo): Recall@1: 0.0, Recall@3: 1.0, Recall@5: 1.0 (Rank 3)
   - D (Structural AST): Recall@1: 0.0, Recall@3: 0.0, Recall@5: 0.0
-- **Sequence Average Recall@5**:
-  - Condition B: 66.7% (2/3)
-  - Condition C: 66.7% (2/3)
-  - Condition D: 33.3% (1/3)
+## Phase 3 & 4: Experimental Runs, Logging & Analysis
+
+### Execution Summary
+- Model: `gemini/gemini-3.5-flash-lite` (temperature=0.0)
+- Sequence: 3 tasks in chronological order: `django-11790` -> `django-11815` -> `django-11848`
+- Total runs: 12 runs (4 conditions × 3 tasks). Single-run evaluation due to daily API quotas.
+- Total cost: ~$0.52 total across all 12 runs.
+- Total Docker disk used: ~12.5 GB (all 3 images preserved locally, 0 internet bandwidth wasted after download).
+
+### Resolve Rates by Condition & Position
+| Condition | Task 1 (`11790`) | Task 2 (`11815`) | Task 3 (`11848`) | Overall Resolve Rate |
+|---|---|---|---|---|
+| **A (No Memory)** | Unresolved (0/1) | Unresolved (0/1) | Unresolved (0/1) | **0/3 (0.0%)** |
+| **B (Snapshot RAG)** | Unresolved (0/1) | Unresolved (0/1) | Unresolved (0/1) | **0/3 (0.0%)** |
+| **C (Naive Combo)** | Unresolved (0/1) | Unresolved (0/1) | Unresolved (0/1) | **0/3 (0.0%)** |
+| **D (Proposed System)** | Unresolved (0/1) | Unresolved (0/1) | Unresolved (0/1) | **0/3 (0.0%)** |
+
+*Note*: On Task 3 under Condition B, the agent successfully reached the submission command (`exit_status: Submitted` in 20 steps), though the resulting patch did not resolve the test suite. All other instances exited with `LimitsExceeded` (capped at 30 steps to protect API quotas).
+
+### Offline Retrieval Recall@5
+- Condition B (Snapshot RAG): **66.7%** (2/3 hits: Rank 3 on Task 1 and Task 3)
+- Condition C (Naive Combo): **66.7%** (2/3 hits: Rank 3 on Task 1 and Task 3)
+- Condition D (Structural AST): **33.3%** (1/3 hits: Rank 2 on Task 1)
+
+### Token, Cost, and Latency Overhead
+| Condition | Total Cost | Avg Cost / Task | Total Latency | Avg Latency / Task | Incremental Cache Stats |
+|---|---|---|---|---|---|
+| **A (Baseline)** | $0.1339 | $0.0446 | 561.8s | 187.3s | N/A |
+| **B (Snapshot RAG)** | $0.1269 | $0.0423 | 911.5s | 303.8s | N/A |
+| **C (Naive Combo)** | $0.1350 | $0.0450 | 649.9s | 216.6s | Past tasks: 0 -> 1 -> 2 |
+| **D (Proposed System)** | $0.1244 | $0.0415 | 675.2s | 225.1s | Task 1: 804 parsed / 0 cached<br>Task 2 & 3: 0 parsed / 804 cached |
+
+### Staleness Check Verification
+- Target file: `django/contrib/auth/forms.py` (modified after Task 1 entered memory)
+- **Condition C (Naive Combo)**: Completely oblivious to file modification (`flags_stale = False`). Continued serving outdated task history.
+- **Condition D (Proposed System)**: Detected SHA-256 hash mismatch (`flags_stale = True`), flagged `⚠️ [STALE - Files changed since task: django/contrib/auth/forms.py (modified)]`, and penalized memory weight from 1.0 to 0.20.
+
 
 
 

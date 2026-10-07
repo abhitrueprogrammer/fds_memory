@@ -1,0 +1,17 @@
+{
+  "condition": "A",
+  "instance_id": "django__django-11848",
+  "position": 3,
+  "resolved": false,
+  "files_retrieved": [],
+  "files_edited": [],
+  "api_calls": 30,
+  "cost": 0.047057079999999994,
+  "latency_seconds": 99.51,
+  "exit_status": "LimitsExceeded",
+  "memory_items_included": [],
+  "metadata": {
+    "condition": "A",
+    "items_included": []
+  }
+}

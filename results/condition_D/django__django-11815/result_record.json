@@ -1,0 +1,38 @@
+{
+  "condition": "D",
+  "instance_id": "django__django-11815",
+  "position": 2,
+  "resolved": false,
+  "files_retrieved": [
+    "django/contrib/gis/gdal/field.py",
+    "django/utils/translation/trans_real.py",
+    "django/db/models/fields/__init__.py",
+    "django/contrib/contenttypes/models.py",
+    "django/db/models/base.py"
+  ],
+  "files_edited": [],
+  "api_calls": 30,
+  "cost": 0.041251920000000004,
+  "latency_seconds": 173.71,
+  "exit_status": "LimitsExceeded",
+  "memory_items_included": [
+    "django/contrib/gis/gdal/field.py",
+    "django/utils/translation/trans_real.py",
+    "django/db/models/fields/__init__.py",
+    "django/contrib/contenttypes/models.py",
+    "django/db/models/base.py"
+  ],
+  "metadata": {
+    "condition": "D",
+    "items_included": [
+      "django/contrib/gis/gdal/field.py",
+      "django/utils/translation/trans_real.py",
+      "django/db/models/fields/__init__.py",
+      "django/contrib/contenttypes/models.py",
+      "django/db/models/base.py"
+    ],
+    "reparsed_files": 0,
+    "cached_files": 804,
+    "episodes_count": 1
+  }
+}
