@@ -58,9 +58,11 @@ def run_condition_sequence(
     sequence: list[str],
     repo_dir: Path,
     output_dir: Path,
-    model_name: str = "gemini/gemini-3.5-flash-lite",
-    step_limit: int = 30,
+    model_name: str = "groq/qwen/qwen3.8-27b",
+    step_limit: int = 50,
 ) -> list[dict[str, Any]]:
+
+
     """Run an entire condition sequence with strict sequential memory updates."""
     memory = get_memory_for_condition(condition)
     memory.reset()
@@ -79,8 +81,10 @@ def run_condition_sequence(
         "agent": {"step_limit": step_limit},
         "model": {
             "model_name": model_name,
+            "cost_tracking": "ignore_errors",
             "model_kwargs": {"temperature": 0.0},
         },
+
     })
     base_config = recursive_merge(*configs)
 
