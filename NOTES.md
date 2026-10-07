@@ -18,3 +18,16 @@ Total tasks: 50
 - `django/django`: 25 tasks (chronological span: 2017-10-27T11:10:04Z to 2020-04-22T11:02:30Z)
 - `sphinx-doc/sphinx`: 25 tasks (chronological span: 2020-05-01T18:29:11Z to 2023-07-24T22:46:12Z)
 
+## Phase 0: Setup and Smoke Test Results
+- Pinned packages: `mini-swe-agent==2.4.6`, `swebench==4.1.0`, Python 3.11.16 in `.venv`.
+- Model: `gemini/gemini-3.5-flash-lite` (temperature=0.0).
+- API Key: Saved in `.env` (gitignored).
+- Smoke task: `django__django-11790`.
+- Agent run: mini-swe-agent executed 30 bash turns inside Docker, generated trajectory and `preds.json`.
+- Harness run: `swebench.harness.run_evaluation` scored `preds.json` cleanly, output report to `gemini__gemini-3.5-flash-lite.smoke_test_agent.json`.
+- Time per task: ~5 min 39 s.
+- Cost per task: $0.0615 (30 API calls).
+- Docker disk used: 4.18 GB (preserved on disk per user request, no images deleted).
+- Total free disk: 173 GB.
+
+
