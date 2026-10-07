@@ -1,0 +1,29 @@
+# Environment variables and secrets
+.env
+*.env
+*.key
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Trajectories, predictions, and benchmark logs
+logs/
+*.log
+*.traj.json
+predictions.json
+evaluation/
+gold.*.json
+
+# Caches
+.cache/
+.pytest_cache/
