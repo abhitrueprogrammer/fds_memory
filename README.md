@@ -6,7 +6,7 @@
 [![Environment](https://img.shields.io/badge/OS-Linux_x86__64_Fedora-red.svg)](https://getfedora.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Authors**: Abhinav Pant, Abhiram Anil, A Anjana Nayar  
+**Authors**: Abhinav Pant, Abhiram Anil, A Anjana Nair  
 
 > 📄 **Academic Research Paper**: The complete, submission-ready academic paper manuscript is available in [`RESEARCH_PAPER.md`](RESEARCH_PAPER.md).
 
@@ -428,7 +428,7 @@ If you use this benchmark methodology, memory architecture, or experimental resu
 ```bibtex
 @misc{pant2026repositorymemory,
   title={Persistent Repository Memory for Autonomous Software Engineering Agents: An Empirical Study on SWE-bench Verified},
-  author={Pant, Abhinav and Anil, Abhiram and Nayar, A Anjana},
+  author={Pant, Abhinav and Anil, Abhiram and Nair, A Anjana},
   year={2026},
   howpublished={\url{https://github.com/abhitruechamp/fds_memory}},
   note={arXiv preprint}
