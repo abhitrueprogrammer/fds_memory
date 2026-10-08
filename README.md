@@ -6,6 +6,8 @@
 [![Environment](https://img.shields.io/badge/OS-Linux_x86__64_Fedora-red.svg)](https://getfedora.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+**Authors**: Abhinav Pant, Abhiram Anil, A Anjana Nayar  
+
 > 📄 **Academic Research Paper**: The complete, submission-ready academic paper manuscript is available in [`RESEARCH_PAPER.md`](RESEARCH_PAPER.md).
 
 ---
@@ -21,11 +23,11 @@ This repository presents an end-to-end empirical study investigating whether **p
 4. **Condition D (Proposed Architecture)**: Structural AST symbol graph + Hybrid Reciprocal Rank Fusion (RRF) + Episodic test-outcome memory + Cryptographic SHA-256 staleness detection.
 
 ### Key Empirical Findings:
-- **Retrieval Scale & Statistical Power ($N=25$)**: Across all 25 Django tasks in SWE-bench Verified Mini, Hybrid RRF achieved **80.0% Recall@5** (Wilson 95% CI: [0.609, 0.911]) and **44.0% Recall@1** (CI: [0.267, 0.629]), significantly outperforming standard BM25 (60.0% Recall@5, 20.0% Recall@1; $p = 0.03125$ via McNemar's exact test) and improving Mean Reciprocal Rank (MRR) by **+58.0%** (0.5793 vs 0.3667).
-- **Downstream Task Resolution**: The proposed system (Condition D) resolved `django-11848` within 39 turns with an official Docker evaluation harness pass.
-- **Latency & Turnaround Efficiency**: The proposed architecture (Condition D) reduced mean task latency from **357.5s (Condition A)** down to **165.7s–207s**—a **42.2% to 53.6% reduction in wall-clock execution time** (>2× faster).
-- **AST Caching Amortization**: Condition D fully indexed 804 repository files in Task 1 and achieved a **100% cache hit rate** with zero reparsing overhead on subsequent tasks (`cached_files: 804`, `reparsed_files: 0`).
-- **Resilience to Concept Drift**: Under a controlled file modification experiment, naive memory (Condition C) suffered silent memory corruption (`flags_stale = False`), serving obsolete context. In contrast, Condition D detected content-hash divergence (`flags_stale = True`), flagged the target as `[STALE]`, and penalized its retrieval weight by 80% (`weight = 0.20`), eliminating hallucinated symbol references.
+- **Retrieval Scale & Statistical Power ($N=25$)**: Across all 25 Django tasks in SWE-bench Verified Mini, Hybrid RRF achieved **80.0% Recall@5** (Wilson 95% CI: [0.609, 0.911]) and **44.0% Recall@1** (CI: [0.267, 0.629]), significantly outperforming sparse lexical retrieval alone (60.0% Recall@5, 20.0% Recall@1; paired McNemar test $p = 0.035$ for Recall@1, $p = 0.031$ for Recall@5) and improving Mean Reciprocal Rank (MRR) by **+58.0%** (0.5793 vs 0.3667; Wilcoxon $p = 0.0039$).
+- **Downstream Task Resolution**: Across an illustrative chronological sequence ($N=3$), the proposed system resolved target bugs passing official Docker harness tests (`django-11848`), but **overall resolution rate remained flat across all conditions (1/3 or 33.3%)**. Accurate file localization (Rank 1) did not automatically overcome multi-turn code synthesis bottlenecks.
+- **Latency & Tool Overhead**: Memory-guided context directed the agent immediately to target files, avoiding unguided recursive directory greps in Docker (mean task duration of 207.3s for Condition D vs 357.5s for Baseline A, comparable to Naive Combo at 202.0s).
+- **AST Caching**: Condition D indexed 804 repository files once during Task 1 and maintained an expected 100% cache hit rate on subsequent static commit queries (`cached_files: 804`, `reparsed_files: 0`).
+- **Resilience to Concept Drift**: Under a controlled file modification trial, naive memory suffered silent memory corruption (`flags_stale = False`), whereas Condition D detected content-hash divergence (`flags_stale = True`), flagged the target as `[STALE]`, and penalized its retrieval weight by 80% (`weight = 0.20`).
 
 ---
 
@@ -424,11 +426,11 @@ python -u -m memory_pilot.runner all
 If you use this benchmark methodology, memory architecture, or experimental results in your research, please cite:
 
 ```bibtex
-@article{pant2026repositorymemory,
+@misc{pant2026repositorymemory,
   title={Persistent Repository Memory for Autonomous Software Engineering Agents: An Empirical Study on SWE-bench Verified},
   author={Pant, Abhinav and Anil, Abhiram and Nayar, A Anjana},
   year={2026},
-  journal={arXiv preprint},
-  url={https://github.com/abhitruechamp/fds_memory}
+  howpublished={\url{https://github.com/abhitruechamp/fds_memory}},
+  note={arXiv preprint}
 }
 ```
