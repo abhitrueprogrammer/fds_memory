@@ -2,26 +2,26 @@
 [Structural Symbol & Call Graph]
 Repository structural AST index: 0 reparsed, 804 cached.
 Top relevant files and AST symbols:
-- Module: django/utils/datetime_safe.py (score: 345.0)
+- Module: django/utils/datetime_safe.py
   Classes: date, datetime, time
   Functions: strftime, strftime, combine, date, new_date, new_datetime, _findall, strftime
   Calls: TypeError, _findall, _illegal_formatting.search, cls, date, datetime
-- Module: django/template/defaultfilters.py (score: 300.0)
+- Module: django/utils/http.py
   Classes: (none)
-  Functions: stringfilter, _dec, addslashes, capfirst, escapejs_filter, json_script, floatformat, iriencode
-  Calls: ''.join, '\n'.join, Context, Decimal, Decimal(1).scaleb, Library
-- Module: django/utils/numberformat.py (score: 255.0)
-  Classes: (none)
-  Functions: format
-  Calls: '1'.rjust, '{:e}'.format, '{:f}'.format, '{}e{}'.format, Decimal, abs
-- Module: django/db/models/expressions.py (score: 210.0)
-  Classes: SQLiteNumericMixin, Combinable, BaseExpression, Expression, CombinedExpression
-  Functions: as_sqlite, _combine, __neg__, __add__, __sub__, __mul__, __truediv__, __mod__
-  Calls: "<{}: {}>".format, "{} {} {}".format, "{}({})".format, "{}({}, descending={})".format, "{}({}, {})".format, ''.join
-- Module: django/utils/dateformat.py (score: 195.0)
+  Functions: urlquote, urlquote_plus, urlunquote, urlunquote_plus, urlencode, http_date, parse_http_date, parse_http_date_safe
+  Calls: '/%2F{}'.format, ETAG_MATCH.match, FIELDS_MATCH.split, MONTHS.index, ParseResult, SplitResult
+- Module: django/views/generic/dates.py
+  Classes: YearMixin, MonthMixin, DayMixin, WeekMixin, DateMixin
+  Functions: get_year_format, get_year, get_next_year, get_previous_year, _get_next_year, _get_current_year, get_month_format, get_month
+  Calls: ', '.join, Http404, ImproperlyConfigured, NotImplementedError, ValueError, _
+- Module: django/utils/dateformat.py
   Classes: Formatter, TimeFormat, DateFormat
   Functions: format, __init__, a, A, B, e, f, g
   Calls: ''.join, DateFormat, MONTHS_3[self.data.month].title, NotImplementedError, TimeFormat, TypeError
+- Module: django/db/backends/base/operations.py
+  Classes: BaseDatabaseOperations
+  Functions: __init__, autoinc_sql, bulk_batch_size, cache_key_culling_sql, unification_cast_sql, date_extract_sql, date_interval_sql, date_trunc_sql
+  Calls: ' '.join, ', '.join, NotImplementedError, NotSupportedError, ValueError, abs
 
 [Episodic Memory & Staleness Check]
 - Episode django__django-11790 | Status: FAILED (weight=-0.50) | ✅ [FRESH - Verified against current repo state]
@@ -30,7 +30,7 @@ Description
 	
 AuthenticationForm's username fi...
   Files Edited: []
-  Files Retrieved: ['django/core/cache/backends/memcached.py', 'django/contrib/auth/forms.py', 'django/contrib/auth/models.py', 'django/contrib/contenttypes/fields.py', 'django/contrib/gis/gdal/raster/band.py']
+  Files Retrieved: ['django/contrib/auth/forms.py', 'django/contrib/auth/models.py', 'django/forms/fields.py', 'django/contrib/auth/base_user.py', 'django/db/backends/oracle/operations.py']
 - Episode django__django-11815 | Status: FAILED (weight=-0.50) | ✅ [FRESH - Verified against current repo state]
   Issue Summary: Migrations uses value of enum object instead of its name.
 Description
@@ -39,7 +39,7 @@ Description
 	 
 When using Enum ob...
   Files Edited: []
-  Files Retrieved: ['django/contrib/gis/gdal/field.py', 'django/utils/translation/trans_real.py', 'django/db/models/fields/__init__.py', 'django/contrib/contenttypes/models.py', 'django/db/models/base.py']
+  Files Retrieved: ['django/db/models/fields/__init__.py', 'django/db/migrations/exceptions.py', 'django/utils/translation/trans_real.py', 'django/forms/fields.py', 'django/templatetags/i18n.py']
 </repository_context>
 
 django.utils.http.parse_http_date two digit year check is incorrect

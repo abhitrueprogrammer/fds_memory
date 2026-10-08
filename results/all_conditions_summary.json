@@ -287,36 +287,40 @@
       "position": 1,
       "resolved": false,
       "files_retrieved": [
-        "django/core/cache/backends/memcached.py",
         "django/contrib/auth/forms.py",
         "django/contrib/auth/models.py",
-        "django/contrib/contenttypes/fields.py",
-        "django/contrib/gis/gdal/raster/band.py"
+        "django/forms/fields.py",
+        "django/contrib/auth/base_user.py",
+        "django/db/backends/oracle/operations.py"
       ],
       "files_edited": [],
       "api_calls": 50,
-      "cost": 0.08097349999999998,
-      "latency_seconds": 172.74,
+      "cost": 0.07316756,
+      "latency_seconds": 175.44,
       "exit_status": "LimitsExceeded",
       "memory_items_included": [
-        "django/core/cache/backends/memcached.py",
         "django/contrib/auth/forms.py",
         "django/contrib/auth/models.py",
-        "django/contrib/contenttypes/fields.py",
-        "django/contrib/gis/gdal/raster/band.py"
+        "django/forms/fields.py",
+        "django/contrib/auth/base_user.py",
+        "django/db/backends/oracle/operations.py"
       ],
       "metadata": {
         "condition": "D",
         "items_included": [
-          "django/core/cache/backends/memcached.py",
           "django/contrib/auth/forms.py",
           "django/contrib/auth/models.py",
-          "django/contrib/contenttypes/fields.py",
-          "django/contrib/gis/gdal/raster/band.py"
+          "django/forms/fields.py",
+          "django/contrib/auth/base_user.py",
+          "django/db/backends/oracle/operations.py"
         ],
         "reparsed_files": 804,
         "cached_files": 0,
-        "episodes_count": 0
+        "episodes_count": 0,
+        "ablation_ast": true,
+        "ablation_episodic": true,
+        "ablation_staleness": true,
+        "ablation_hybrid_rrf": true
       }
     },
     {
@@ -325,36 +329,40 @@
       "position": 2,
       "resolved": false,
       "files_retrieved": [
-        "django/contrib/gis/gdal/field.py",
-        "django/utils/translation/trans_real.py",
         "django/db/models/fields/__init__.py",
-        "django/contrib/contenttypes/models.py",
-        "django/db/models/base.py"
+        "django/db/migrations/exceptions.py",
+        "django/utils/translation/trans_real.py",
+        "django/forms/fields.py",
+        "django/templatetags/i18n.py"
       ],
       "files_edited": [],
       "api_calls": 50,
-      "cost": 0.07477393,
-      "latency_seconds": 167.32,
+      "cost": 0.06150898000000001,
+      "latency_seconds": 173.55,
       "exit_status": "LimitsExceeded",
       "memory_items_included": [
-        "django/contrib/gis/gdal/field.py",
-        "django/utils/translation/trans_real.py",
         "django/db/models/fields/__init__.py",
-        "django/contrib/contenttypes/models.py",
-        "django/db/models/base.py"
+        "django/db/migrations/exceptions.py",
+        "django/utils/translation/trans_real.py",
+        "django/forms/fields.py",
+        "django/templatetags/i18n.py"
       ],
       "metadata": {
         "condition": "D",
         "items_included": [
-          "django/contrib/gis/gdal/field.py",
-          "django/utils/translation/trans_real.py",
           "django/db/models/fields/__init__.py",
-          "django/contrib/contenttypes/models.py",
-          "django/db/models/base.py"
+          "django/db/migrations/exceptions.py",
+          "django/utils/translation/trans_real.py",
+          "django/forms/fields.py",
+          "django/templatetags/i18n.py"
         ],
         "reparsed_files": 0,
         "cached_files": 804,
-        "episodes_count": 1
+        "episodes_count": 1,
+        "ablation_ast": true,
+        "ablation_episodic": true,
+        "ablation_staleness": true,
+        "ablation_hybrid_rrf": true
       }
     },
     {
@@ -364,37 +372,41 @@
       "resolved": true,
       "files_retrieved": [
         "django/utils/datetime_safe.py",
-        "django/template/defaultfilters.py",
-        "django/utils/numberformat.py",
-        "django/db/models/expressions.py",
-        "django/utils/dateformat.py"
+        "django/utils/http.py",
+        "django/views/generic/dates.py",
+        "django/utils/dateformat.py",
+        "django/db/backends/base/operations.py"
       ],
       "files_edited": [
         "django/utils/http.py"
       ],
-      "api_calls": 39,
-      "cost": 0.06678648000000001,
-      "latency_seconds": 157.13,
+      "api_calls": 46,
+      "cost": 0.06914639000000002,
+      "latency_seconds": 272.9,
       "exit_status": "Submitted",
       "memory_items_included": [
         "django/utils/datetime_safe.py",
-        "django/template/defaultfilters.py",
-        "django/utils/numberformat.py",
-        "django/db/models/expressions.py",
-        "django/utils/dateformat.py"
+        "django/utils/http.py",
+        "django/views/generic/dates.py",
+        "django/utils/dateformat.py",
+        "django/db/backends/base/operations.py"
       ],
       "metadata": {
         "condition": "D",
         "items_included": [
           "django/utils/datetime_safe.py",
-          "django/template/defaultfilters.py",
-          "django/utils/numberformat.py",
-          "django/db/models/expressions.py",
-          "django/utils/dateformat.py"
+          "django/utils/http.py",
+          "django/views/generic/dates.py",
+          "django/utils/dateformat.py",
+          "django/db/backends/base/operations.py"
         ],
         "reparsed_files": 0,
         "cached_files": 804,
-        "episodes_count": 2
+        "episodes_count": 2,
+        "ablation_ast": true,
+        "ablation_episodic": true,
+        "ablation_staleness": true,
+        "ablation_hybrid_rrf": true
       }
     }
   ]

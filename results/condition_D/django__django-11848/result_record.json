@@ -5,36 +5,40 @@
   "resolved": true,
   "files_retrieved": [
     "django/utils/datetime_safe.py",
-    "django/template/defaultfilters.py",
-    "django/utils/numberformat.py",
-    "django/db/models/expressions.py",
-    "django/utils/dateformat.py"
+    "django/utils/http.py",
+    "django/views/generic/dates.py",
+    "django/utils/dateformat.py",
+    "django/db/backends/base/operations.py"
   ],
   "files_edited": [
     "django/utils/http.py"
   ],
-  "api_calls": 39,
-  "cost": 0.06678648000000001,
-  "latency_seconds": 157.13,
+  "api_calls": 46,
+  "cost": 0.06914639000000002,
+  "latency_seconds": 272.9,
   "exit_status": "Submitted",
   "memory_items_included": [
     "django/utils/datetime_safe.py",
-    "django/template/defaultfilters.py",
-    "django/utils/numberformat.py",
-    "django/db/models/expressions.py",
-    "django/utils/dateformat.py"
+    "django/utils/http.py",
+    "django/views/generic/dates.py",
+    "django/utils/dateformat.py",
+    "django/db/backends/base/operations.py"
   ],
   "metadata": {
     "condition": "D",
     "items_included": [
       "django/utils/datetime_safe.py",
-      "django/template/defaultfilters.py",
-      "django/utils/numberformat.py",
-      "django/db/models/expressions.py",
-      "django/utils/dateformat.py"
+      "django/utils/http.py",
+      "django/views/generic/dates.py",
+      "django/utils/dateformat.py",
+      "django/db/backends/base/operations.py"
     ],
     "reparsed_files": 0,
     "cached_files": 804,
-    "episodes_count": 2
+    "episodes_count": 2,
+    "ablation_ast": true,
+    "ablation_episodic": true,
+    "ablation_staleness": true,
+    "ablation_hybrid_rrf": true
   }
 }

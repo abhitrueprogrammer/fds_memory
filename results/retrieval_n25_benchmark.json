@@ -1,0 +1,756 @@
+[
+  {
+    "instance_id": "django__django-9296",
+    "gold_files": [
+      "django/core/paginator.py"
+    ],
+    "lex_top5": [
+      "django/contrib/sitemaps/__init__.py",
+      "django/contrib/sitemaps/views.py",
+      "django/core/paginator.py",
+      "django/views/generic/list.py",
+      "django/contrib/admin/templatetags/admin_list.py"
+    ],
+    "ast_top5": [
+      "django/db/utils.py",
+      "django/contrib/postgres/fields/ranges.py",
+      "django/template/defaulttags.py",
+      "django/db/models/query.py",
+      "django/core/paginator.py"
+    ],
+    "hybrid_top5": [
+      "django/core/paginator.py",
+      "django/db/models/query.py",
+      "django/http/response.py",
+      "django/core/files/utils.py",
+      "django/template/utils.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-11790",
+    "gold_files": [
+      "django/contrib/auth/forms.py"
+    ],
+    "lex_top5": [
+      "django/contrib/auth/handlers/modwsgi.py",
+      "django/contrib/admin/forms.py",
+      "setup.py",
+      "django/contrib/auth/forms.py",
+      "django/contrib/auth/base_user.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/admin/helpers.py",
+      "django/forms/fields.py",
+      "django/forms/models.py",
+      "django/contrib/auth/forms.py"
+    ],
+    "hybrid_top5": [
+      "django/contrib/auth/forms.py",
+      "django/contrib/auth/models.py",
+      "django/forms/fields.py",
+      "django/contrib/auth/base_user.py",
+      "django/db/backends/oracle/operations.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-11815",
+    "gold_files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "lex_top5": [
+      "django/contrib/flatpages/models.py",
+      "django/db/migrations/__init__.py",
+      "django/db/models/enums.py",
+      "django/db/migrations/recorder.py",
+      "django/db/migrations/exceptions.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/utils/translation/trans_real.py",
+      "django/forms/fields.py",
+      "django/db/models/base.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/db/migrations/exceptions.py",
+      "django/utils/translation/trans_real.py",
+      "django/forms/fields.py",
+      "django/templatetags/i18n.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": false,
+    "hit_hybrid": false
+  },
+  {
+    "instance_id": "django__django-11848",
+    "gold_files": [
+      "django/utils/http.py"
+    ],
+    "lex_top5": [
+      "django/utils/http.py",
+      "django/utils/dateformat.py",
+      "django/contrib/humanize/templatetags/humanize.py",
+      "django/utils/datetime_safe.py",
+      "django/utils/timesince.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/views/generic/dates.py",
+      "django/db/models/base.py",
+      "django/contrib/admin/checks.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/utils/datetime_safe.py",
+      "django/utils/http.py",
+      "django/views/generic/dates.py",
+      "django/utils/dateformat.py",
+      "django/db/backends/base/operations.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": false,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-11880",
+    "gold_files": [
+      "django/forms/fields.py"
+    ],
+    "lex_top5": [
+      "django/contrib/messages/__init__.py",
+      "django/forms/fields.py",
+      "django/forms/models.py",
+      "django/forms/__init__.py",
+      "django/core/exceptions.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/admin/helpers.py",
+      "django/forms/fields.py",
+      "django/contrib/admin/options.py",
+      "django/forms/models.py"
+    ],
+    "hybrid_top5": [
+      "django/forms/models.py",
+      "django/forms/fields.py",
+      "django/db/models/fields/__init__.py",
+      "django/forms/forms.py",
+      "django/core/exceptions.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-11885",
+    "gold_files": [
+      "django/contrib/admin/utils.py",
+      "django/db/models/deletion.py"
+    ],
+    "lex_top5": [
+      "django/contrib/contenttypes/management/commands/remove_stale_contenttypes.py",
+      "django/db/models/deletion.py",
+      "django/db/models/sql/subqueries.py",
+      "django/contrib/admin/models.py",
+      "django/conf/locale/id/__init__.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/forms/fields.py",
+      "django/contrib/admin/options.py",
+      "django/forms/models.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/deletion.py",
+      "django/db/models/fields/related.py",
+      "django/contrib/auth/models.py",
+      "django/contrib/contenttypes/fields.py",
+      "django/db/models/fields/__init__.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": false,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-11951",
+    "gold_files": [
+      "django/db/models/query.py"
+    ],
+    "lex_top5": [
+      "django/db/backends/__init__.py",
+      "django/db/models/sql/__init__.py",
+      "django/db/backends/sqlite3/operations.py",
+      "django/conf/locale/es_PR/__init__.py",
+      "django/db/backends/oracle/base.py"
+    ],
+    "ast_top5": [
+      "django/core/files/storage.py",
+      "django/core/files/base.py",
+      "django/db/models/sql/subqueries.py",
+      "django/db/models/query.py",
+      "django/db/models/fields/files.py"
+    ],
+    "hybrid_top5": [
+      "django/core/files/base.py",
+      "django/db/models/fields/files.py",
+      "django/db/backends/base/operations.py",
+      "django/db/backends/sqlite3/operations.py",
+      "django/db/backends/oracle/operations.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": true,
+    "hit_hybrid": false
+  },
+  {
+    "instance_id": "django__django-11964",
+    "gold_files": [
+      "django/db/models/enums.py"
+    ],
+    "lex_top5": [
+      "django/db/models/enums.py",
+      "django/core/management/commands/test.py",
+      "django/contrib/staticfiles/testing.py",
+      "django/contrib/gis/db/backends/spatialite/models.py",
+      "django/db/backends/oracle/creation.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/forms/fields.py",
+      "django/db/models/base.py",
+      "django/contrib/admin/checks.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/db/backends/oracle/creation.py",
+      "django/db/models/enums.py",
+      "django/db/models/fields/files.py",
+      "django/contrib/admin/filters.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": false,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-11999",
+    "gold_files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "lex_top5": [
+      "django/contrib/flatpages/models.py",
+      "django/contrib/gis/db/backends/spatialite/models.py",
+      "django/core/cache/backends/dummy.py",
+      "django/contrib/redirects/models.py",
+      "django/contrib/gis/gdal/datasource.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/forms/fields.py",
+      "django/db/models/base.py",
+      "django/contrib/admin/options.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/forms/models.py",
+      "django/contrib/admin/options.py",
+      "django/contrib/contenttypes/models.py",
+      "django/contrib/flatpages/models.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12039",
+    "gold_files": [
+      "django/db/backends/ddl_references.py"
+    ],
+    "lex_top5": [
+      "django/db/backends/__init__.py",
+      "django/db/backends/base/__init__.py",
+      "django/db/backends/ddl_references.py",
+      "django/db/backends/postgresql/schema.py",
+      "django/db/models/indexes.py"
+    ],
+    "ast_top5": [
+      "django/db/models/query.py",
+      "django/db/backends/ddl_references.py",
+      "django/db/migrations/autodetector.py",
+      "django/db/backends/base/schema.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/db/backends/ddl_references.py",
+      "django/db/models/indexes.py",
+      "django/db/backends/postgresql/schema.py",
+      "django/db/backends/base/schema.py",
+      "django/db/models/base.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12050",
+    "gold_files": [
+      "django/db/models/sql/query.py"
+    ],
+    "lex_top5": [
+      "django/contrib/gis/db/backends/postgis/introspection.py",
+      "django/contrib/contenttypes/management/commands/remove_stale_contenttypes.py",
+      "django/contrib/gis/db/models/fields.py",
+      "django/utils/hashable.py",
+      "django/db/migrations/serializer.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/forms/fields.py",
+      "django/contrib/gis/db/models/lookups.py",
+      "django/db/models/sql/query.py",
+      "django/contrib/admin/filters.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/gis/db/models/fields.py",
+      "django/db/models/query.py",
+      "django/db/models/lookups.py",
+      "django/db/models/sql/query.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12143",
+    "gold_files": [
+      "django/contrib/admin/options.py"
+    ],
+    "lex_top5": [
+      "django/contrib/admin/helpers.py",
+      "django/conf/locale/is/formats.py",
+      "django/contrib/admin/templatetags/__init__.py",
+      "django/contrib/admin/migrations/__init__.py",
+      "django/contrib/admin/views/__init__.py"
+    ],
+    "ast_top5": [
+      "django/views/generic/dates.py",
+      "django/db/models/query.py",
+      "django/contrib/admin/options.py",
+      "django/contrib/admin/checks.py",
+      "django/urls/resolvers.py"
+    ],
+    "hybrid_top5": [
+      "django/urls/resolvers.py",
+      "django/contrib/admin/helpers.py",
+      "django/forms/formsets.py",
+      "django/contrib/admin/views/__init__.py",
+      "django/contrib/admin/options.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12155",
+    "gold_files": [
+      "django/contrib/admindocs/utils.py",
+      "django/contrib/admindocs/views.py"
+    ],
+    "lex_top5": [
+      "docs/_ext/djangodocs.py",
+      "django/core/files/base.py",
+      "django/contrib/admindocs/utils.py",
+      "django/template/base.py",
+      "django/db/migrations/writer.py"
+    ],
+    "ast_top5": [
+      "django/db/utils.py",
+      "django/views/generic/dates.py",
+      "django/db/models/query.py",
+      "django/template/defaultfilters.py",
+      "django/db/backends/oracle/creation.py"
+    ],
+    "hybrid_top5": [
+      "django/contrib/admindocs/utils.py",
+      "django/template/defaultfilters.py",
+      "django/template/base.py",
+      "django/db/backends/oracle/creation.py",
+      "django/http/response.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": false,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12193",
+    "gold_files": [
+      "django/forms/widgets.py"
+    ],
+    "lex_top5": [
+      "django/contrib/postgres/forms/array.py",
+      "django/contrib/admin/widgets.py",
+      "django/contrib/gis/forms/widgets.py",
+      "django/forms/widgets.py",
+      "django/forms/boundfield.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/admin/widgets.py",
+      "django/forms/fields.py",
+      "django/contrib/admin/options.py",
+      "django/forms/widgets.py"
+    ],
+    "hybrid_top5": [
+      "django/forms/widgets.py",
+      "django/forms/fields.py",
+      "django/contrib/admin/widgets.py",
+      "django/contrib/postgres/forms/array.py",
+      "django/forms/boundfield.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12209",
+    "gold_files": [
+      "django/db/models/base.py"
+    ],
+    "lex_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/sites/models.py",
+      "django/core/management/commands/loaddata.py",
+      "django/contrib/sites/management.py",
+      "django/db/models/fields/files.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/query.py",
+      "django/forms/fields.py",
+      "django/db/backends/base/schema.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/contrib/contenttypes/fields.py",
+      "django/contrib/contenttypes/models.py",
+      "django/core/management/commands/loaddata.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": false,
+    "hit_hybrid": false
+  },
+  {
+    "instance_id": "django__django-12262",
+    "gold_files": [
+      "django/template/library.py"
+    ],
+    "lex_top5": [
+      "django/templatetags/i18n.py",
+      "django/template/library.py",
+      "django/conf/locale/hi/formats.py",
+      "django/conf/locale/hi/__init__.py",
+      "django/templatetags/tz.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/db/utils.py",
+      "django/template/library.py",
+      "django/db/models/query.py",
+      "django/template/defaultfilters.py"
+    ],
+    "hybrid_top5": [
+      "django/template/library.py",
+      "django/template/base.py",
+      "django/template/loader_tags.py",
+      "django/template/defaultfilters.py",
+      "django/core/management/base.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12273",
+    "gold_files": [
+      "django/db/models/base.py"
+    ],
+    "lex_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/views/generic/detail.py",
+      "django/contrib/sessions/backends/db.py",
+      "django/core/serializers/base.py",
+      "django/db/models/fields/files.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/query.py",
+      "django/forms/fields.py",
+      "django/db/backends/base/schema.py",
+      "django/forms/models.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/sessions/backends/db.py",
+      "django/contrib/contenttypes/fields.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/models/fields/files.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": false,
+    "hit_hybrid": false
+  },
+  {
+    "instance_id": "django__django-12276",
+    "gold_files": [
+      "django/forms/widgets.py"
+    ],
+    "lex_top5": [
+      "django/forms/fields.py",
+      "django/forms/widgets.py",
+      "django/forms/models.py",
+      "django/forms/boundfield.py",
+      "django/forms/__init__.py"
+    ],
+    "ast_top5": [
+      "django/db/models/query.py",
+      "django/contrib/sessions/backends/db.py",
+      "django/forms/widgets.py",
+      "django/forms/models.py",
+      "django/forms/formsets.py"
+    ],
+    "hybrid_top5": [
+      "django/forms/widgets.py",
+      "django/forms/models.py",
+      "django/forms/formsets.py",
+      "django/forms/boundfield.py",
+      "django/contrib/sessions/backends/db.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12304",
+    "gold_files": [
+      "django/db/models/enums.py"
+    ],
+    "lex_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/gis/db/backends/postgis/introspection.py",
+      "django/template/library.py",
+      "django/contrib/sessions/backends/signed_cookies.py",
+      "django/core/management/base.py"
+    ],
+    "ast_top5": [
+      "django/db/models/enums.py",
+      "django/db/backends/base/operations.py",
+      "django/db/models/lookups.py",
+      "django/db/models/fields/related.py",
+      "django/db/backends/oracle/operations.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/enums.py",
+      "django/template/context.py",
+      "django/forms/models.py",
+      "django/forms/boundfield.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12308",
+    "gold_files": [
+      "django/contrib/admin/utils.py"
+    ],
+    "lex_top5": [
+      "django/contrib/postgres/fields/jsonb.py",
+      "django/contrib/admin/templatetags/__init__.py",
+      "django/contrib/postgres/forms/jsonb.py",
+      "django/contrib/admin/migrations/__init__.py",
+      "django/contrib/admin/views/__init__.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/utils/datastructures.py",
+      "django/contrib/admin/utils.py",
+      "django/contrib/admin/widgets.py",
+      "django/forms/fields.py"
+    ],
+    "hybrid_top5": [
+      "django/contrib/postgres/forms/jsonb.py",
+      "django/contrib/postgres/fields/jsonb.py",
+      "django/contrib/admin/options.py",
+      "django/contrib/admin/helpers.py",
+      "django/contrib/admin/utils.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12325",
+    "gold_files": [
+      "django/db/models/base.py",
+      "django/db/models/options.py"
+    ],
+    "lex_top5": [
+      "django/db/models/__init__.py",
+      "django/db/models/fields/reverse_related.py",
+      "django/db/models/deletion.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/models/base.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/forms/fields.py",
+      "django/db/models/base.py",
+      "django/contrib/admin/options.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/base.py",
+      "django/db/models/fields/related.py",
+      "django/db/models/deletion.py",
+      "django/db/models/fields/reverse_related.py",
+      "django/db/models/options.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12406",
+    "gold_files": [
+      "django/db/models/fields/related.py",
+      "django/forms/models.py"
+    ],
+    "lex_top5": [
+      "django/contrib/flatpages/models.py",
+      "django/contrib/admin/options.py",
+      "django/forms/widgets.py",
+      "django/forms/models.py",
+      "django/forms/boundfield.py"
+    ],
+    "ast_top5": [
+      "django/contrib/admin/widgets.py",
+      "django/contrib/admin/options.py",
+      "django/forms/widgets.py",
+      "django/forms/models.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/forms/widgets.py",
+      "django/forms/models.py",
+      "django/contrib/admin/options.py",
+      "django/contrib/admin/widgets.py",
+      "django/contrib/admin/checks.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12708",
+    "gold_files": [
+      "django/db/backends/base/schema.py"
+    ],
+    "lex_top5": [
+      "django/db/migrations/__init__.py",
+      "django/db/backends/base/__init__.py",
+      "django/db/models/options.py",
+      "django/db/backends/base/schema.py",
+      "django/db/backends/sqlite3/schema.py"
+    ],
+    "ast_top5": [
+      "django/db/models/options.py",
+      "django/contrib/admin/options.py",
+      "django/db/migrations/autodetector.py",
+      "django/db/models/base.py",
+      "django/db/backends/base/schema.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/options.py",
+      "django/db/backends/base/schema.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/recorder.py",
+      "django/db/backends/mysql/schema.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12713",
+    "gold_files": [
+      "django/contrib/admin/options.py"
+    ],
+    "lex_top5": [
+      "django/contrib/admin/options.py",
+      "django/contrib/auth/admin.py",
+      "django/forms/boundfield.py",
+      "django/contrib/gis/forms/fields.py",
+      "django/utils/inspect.py"
+    ],
+    "ast_top5": [
+      "django/contrib/admin/widgets.py",
+      "django/db/models/query.py",
+      "django/contrib/admin/options.py",
+      "django/contrib/contenttypes/fields.py",
+      "django/core/cache/backends/base.py"
+    ],
+    "hybrid_top5": [
+      "django/contrib/admin/options.py",
+      "django/contrib/admin/widgets.py",
+      "django/forms/widgets.py",
+      "django/contrib/auth/admin.py",
+      "django/forms/boundfield.py"
+    ],
+    "hit_lex": true,
+    "hit_ast": true,
+    "hit_hybrid": true
+  },
+  {
+    "instance_id": "django__django-12774",
+    "gold_files": [
+      "django/db/models/query.py"
+    ],
+    "lex_top5": [
+      "django/views/generic/detail.py",
+      "django/contrib/gis/views.py",
+      "django/db/models/constraints.py",
+      "django/db/models/indexes.py",
+      "django/contrib/sites/managers.py"
+    ],
+    "ast_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/forms/fields.py",
+      "django/db/models/base.py",
+      "django/contrib/admin/options.py",
+      "django/db/models/fields/related.py"
+    ],
+    "hybrid_top5": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/manager.py",
+      "django/db/models/base.py",
+      "django/db/models/fields/related.py",
+      "django/db/models/options.py"
+    ],
+    "hit_lex": false,
+    "hit_ast": false,
+    "hit_hybrid": false
+  }
+]

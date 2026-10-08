@@ -4,35 +4,39 @@
   "position": 2,
   "resolved": false,
   "files_retrieved": [
-    "django/contrib/gis/gdal/field.py",
-    "django/utils/translation/trans_real.py",
     "django/db/models/fields/__init__.py",
-    "django/contrib/contenttypes/models.py",
-    "django/db/models/base.py"
+    "django/db/migrations/exceptions.py",
+    "django/utils/translation/trans_real.py",
+    "django/forms/fields.py",
+    "django/templatetags/i18n.py"
   ],
   "files_edited": [],
   "api_calls": 50,
-  "cost": 0.07477393,
-  "latency_seconds": 167.32,
+  "cost": 0.06150898000000001,
+  "latency_seconds": 173.55,
   "exit_status": "LimitsExceeded",
   "memory_items_included": [
-    "django/contrib/gis/gdal/field.py",
-    "django/utils/translation/trans_real.py",
     "django/db/models/fields/__init__.py",
-    "django/contrib/contenttypes/models.py",
-    "django/db/models/base.py"
+    "django/db/migrations/exceptions.py",
+    "django/utils/translation/trans_real.py",
+    "django/forms/fields.py",
+    "django/templatetags/i18n.py"
   ],
   "metadata": {
     "condition": "D",
     "items_included": [
-      "django/contrib/gis/gdal/field.py",
-      "django/utils/translation/trans_real.py",
       "django/db/models/fields/__init__.py",
-      "django/contrib/contenttypes/models.py",
-      "django/db/models/base.py"
+      "django/db/migrations/exceptions.py",
+      "django/utils/translation/trans_real.py",
+      "django/forms/fields.py",
+      "django/templatetags/i18n.py"
     ],
     "reparsed_files": 0,
     "cached_files": 804,
-    "episodes_count": 1
+    "episodes_count": 1,
+    "ablation_ast": true,
+    "ablation_episodic": true,
+    "ablation_staleness": true,
+    "ablation_hybrid_rrf": true
   }
 }

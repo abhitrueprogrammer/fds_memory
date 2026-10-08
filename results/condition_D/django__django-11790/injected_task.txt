@@ -2,26 +2,26 @@
 [Structural Symbol & Call Graph]
 Repository structural AST index: 804 reparsed, 0 cached.
 Top relevant files and AST symbols:
-- Module: django/core/cache/backends/memcached.py (score: 170.0)
-  Classes: BaseMemcachedCache, MemcachedCache, PyLibMCCache
-  Functions: __init__, _cache, get_backend_timeout, add, get, set, delete, get_many
-  Calls: ValueError, client_kwargs.update, data.items, getattr, int, isinstance
-- Module: django/contrib/auth/forms.py (score: 150.0)
+- Module: django/contrib/auth/forms.py
   Classes: ReadOnlyPasswordHashWidget, ReadOnlyPasswordHashField, UsernameField, UserCreationForm, Meta
   Functions: get_context, __init__, bound_data, has_changed, to_python, widget_attrs, __init__, clean_password2
   Calls: ''.join, EmailMultiAlternatives, ReadOnlyPasswordHashField, UserModel._default_manager.filter, UserModel._meta.get_field, UserModel.get_email_field_name
-- Module: django/contrib/auth/models.py (score: 150.0)
+- Module: django/contrib/auth/models.py
   Classes: PermissionManager, Permission, Meta, GroupManager, Group
   Functions: update_last_login, get_by_natural_key, __str__, natural_key, get_by_natural_key, __str__, natural_key, _create_user
   Calls: ContentType.objects.db_manager, EmptyManager, GroupManager, NotImplementedError, PermissionManager, TypeError
-- Module: django/contrib/contenttypes/fields.py (score: 150.0)
-  Classes: GenericForeignKey, GenericRel, GenericRelation, ReverseGenericManyToOneDescriptor, GenericRelatedObjectManager
-  Functions: __init__, contribute_to_class, get_filter_kwargs_for_object, get_forward_related_filter, __str__, check, _check_field_name, _check_object_id_field
-  Calls: ContentType.objects.db_manager, ContentType.objects.get_for_model, Exception, PathInfo, ReverseGenericManyToOneDescriptor, TypeError
-- Module: django/contrib/gis/gdal/raster/band.py (score: 150.0)
-  Classes: GDALBand, BandList
-  Functions: __init__, _flush, description, width, height, pixel_count, statistics, min
-  Calls: GDALBand, GDALException, ValueError, any, byref, c_double
+- Module: django/forms/fields.py
+  Classes: Field, CharField, IntegerField, FloatField, DecimalField
+  Functions: __init__, prepare_value, to_python, validate, run_validators, clean, bound_data, widget_attrs
+  Calls: BoundField, BytesIO, CallableChoiceIterator, DateField, Decimal, Decimal(1).scaleb
+- Module: django/contrib/auth/base_user.py
+  Classes: BaseUserManager, AbstractBaseUser, Meta
+  Functions: normalize_email, make_random_password, get_by_natural_key, __str__, save, get_username, clean, natural_key
+  Calls: _, check_password, domain_part.lower, email.strip, email.strip().rsplit, get_random_string
+- Module: django/db/backends/oracle/operations.py
+  Classes: DatabaseOperations
+  Functions: cache_key_culling_sql, date_extract_sql, date_trunc_sql, _prepare_tzname_delta, _convert_field_to_tz, datetime_cast_date_sql, datetime_cast_time_sql, datetime_extract_sql
+  Calls: ' '.join, ' UNION ALL '.join, ', '.join, ','.join, BulkInsertMapper.types.get, DatabaseError
 
 [Episodic Memory & Staleness Check]
 No prior episodic experience in memory.

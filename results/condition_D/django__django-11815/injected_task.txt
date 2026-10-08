@@ -2,26 +2,26 @@
 [Structural Symbol & Call Graph]
 Repository structural AST index: 0 reparsed, 804 cached.
 Top relevant files and AST symbols:
-- Module: django/contrib/gis/gdal/field.py (score: 450.0)
-  Classes: Field, OFTInteger, OFTReal, OFTString, OFTWideString
-  Functions: __init__, __str__, as_double, as_int, as_string, as_datetime, is_set, name
-  Calls: GDALException, OGRFieldTypes.items, byref, c_int, capi.get_feat_field_defn, capi.get_field_as_datetime
-- Module: django/utils/translation/trans_real.py (score: 370.0)
-  Classes: DjangoTranslation
-  Functions: reset_cache, __init__, __repr__, _new_gnu_trans, _init_translation_catalog, _add_installed_apps_translations, _add_local_translations, _add_fallback
-  Calls: AppRegistryNotReady, DjangoTranslation, Local, LookupError, OSError, accept_language_re.split
-- Module: django/db/models/fields/__init__.py (score: 365.0)
+- Module: django/db/models/fields/__init__.py
   Classes: Empty, NOT_PROVIDED, Field, BooleanField, CharField
   Functions: _load_field, _empty, return_None, _description, __init__, __str__, __repr__, check
   Calls: (now + offset).date, (now - offset).date, BigIntegerField, BigIntegerField().db_type, Col, DictWrapper
-- Module: django/contrib/contenttypes/models.py (score: 345.0)
-  Classes: ContentTypeManager, ContentType, Meta
-  Functions: __init__, get_by_natural_key, _get_opts, _get_from_cache, get_for_model, get_for_models, get_for_id, clear_cache
-  Calls: ContentTypeManager, _, apps.get_model, ct.model_class, defaultdict, models.CharField
-- Module: django/db/models/base.py (score: 345.0)
-  Classes: Deferred, ModelBase, ModelStateFieldsCacheDescriptor, ModelState, Model
-  Functions: __repr__, __str__, subclass_exception, _has_contribute_to_class, __new__, add_to_class, _prepare, _base_manager
-  Calls: ", ".join, ', '.join, Collector, DatabaseError, Deferred, FieldError
+- Module: django/db/migrations/exceptions.py
+  Classes: AmbiguityError, BadMigrationError, CircularDependencyError, InconsistentMigrationHistory, InvalidBasesError
+  Functions: __init__, __str__, __repr__
+  Calls: (none)
+- Module: django/utils/translation/trans_real.py
+  Classes: DjangoTranslation
+  Functions: reset_cache, __init__, __repr__, _new_gnu_trans, _init_translation_catalog, _add_installed_apps_translations, _add_local_translations, _add_fallback
+  Calls: AppRegistryNotReady, DjangoTranslation, Local, LookupError, OSError, accept_language_re.split
+- Module: django/forms/fields.py
+  Classes: Field, CharField, IntegerField, FloatField, DecimalField
+  Functions: __init__, prepare_value, to_python, validate, run_validators, clean, bound_data, widget_attrs
+  Calls: BoundField, BytesIO, CallableChoiceIterator, DateField, Decimal, Decimal(1).scaleb
+- Module: django/templatetags/i18n.py
+  Classes: GetAvailableLanguagesNode, GetLanguageInfoNode, GetLanguageInfoListNode, GetCurrentLanguageNode, GetCurrentLanguageBidiNode
+  Functions: __init__, render, __init__, render, __init__, get_language_info, render, __init__
+  Calls: ''.join, BlockTranslateNode, GetAvailableLanguagesNode, GetCurrentLanguageBidiNode, GetCurrentLanguageNode, GetLanguageInfoListNode
 
 [Episodic Memory & Staleness Check]
 - Episode django__django-11790 | Status: FAILED (weight=-0.50) | ✅ [FRESH - Verified against current repo state]
@@ -30,7 +30,7 @@ Description
 	
 AuthenticationForm's username fi...
   Files Edited: []
-  Files Retrieved: ['django/core/cache/backends/memcached.py', 'django/contrib/auth/forms.py', 'django/contrib/auth/models.py', 'django/contrib/contenttypes/fields.py', 'django/contrib/gis/gdal/raster/band.py']
+  Files Retrieved: ['django/contrib/auth/forms.py', 'django/contrib/auth/models.py', 'django/forms/fields.py', 'django/contrib/auth/base_user.py', 'django/db/backends/oracle/operations.py']
 </repository_context>
 
 Migrations uses value of enum object instead of its name.
