@@ -1,6 +1,6 @@
 # Persistent Repository Memory for Autonomous Software Engineering Agents: An Empirical Study on SWE-bench Verified
 
-**Author**: Autonomous Agentic Research Team  
+**Authors**: Abhinav Pant, Abhiram Anil, A Anjana Nayar  
 **Date**: October 2026  
 **Artifact Repository**: `https://github.com/abhitruechamp/fds_memory`  
 **Dataset**: `MariusHobbhahn/swe-bench-verified-mini` (`django/django`)  
@@ -313,7 +313,7 @@ Future research will extend this architecture to multi-repository cross-lingual 
 ```bibtex
 @article{pant2026repositorymemory,
   title={Persistent Repository Memory for Autonomous Software Engineering Agents: An Empirical Study on SWE-bench Verified},
-  author={Pant, Abhinav},
+  author={Pant, Abhinav and Anil, Abhiram and Nayar, A Anjana},
   journal={arXiv preprint},
   year={2026},
   url={https://github.com/abhitruechamp/fds_memory}

@@ -20,6 +20,8 @@ build/
 logs/
 *.log
 *.traj.json
+*.swp
+*.kate-swp
 predictions.json
 evaluation/
 gold.*.json

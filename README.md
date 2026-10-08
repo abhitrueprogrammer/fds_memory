@@ -426,7 +426,7 @@ If you use this benchmark methodology, memory architecture, or experimental resu
 ```bibtex
 @article{pant2026repositorymemory,
   title={Persistent Repository Memory for Autonomous Software Engineering Agents: An Empirical Study on SWE-bench Verified},
-  author={Pant, Abhinav},
+  author={Pant, Abhinav and Anil, Abhiram and Nayar, A Anjana},
   year={2026},
   journal={arXiv preprint},
   url={https://github.com/abhitruechamp/fds_memory}
