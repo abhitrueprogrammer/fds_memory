@@ -14,7 +14,7 @@
 | **A (No Memory)** | ❌ LimitsExceeded (50 steps) | ❌ LimitsExceeded (50 steps) | **✅ RESOLVED (39 steps)** | **1/3 (33.3%)** | 46.3 | 357.5s | $0.0692 |
 | **B (Snapshot RAG)** | ⚠️ Submitted (41 steps) | ⚠️ Submitted (31 steps) | ❌ LimitsExceeded (50 steps) | **0/3 (0.0%)** | 40.7 | 264.5s | $0.0757 |
 | **C (Naive Combo)** | ❌ LimitsExceeded (50 steps) | ❌ LimitsExceeded (50 steps) | **✅ RESOLVED (41 steps)** | **1/3 (33.3%)** | 47.0 | 202.0s | $0.0762 |
-| **D (Proposed System)** | ❌ LimitsExceeded (50 steps) | ❌ LimitsExceeded (50 steps) | **✅ RESOLVED (39 steps)** | **1/3 (33.3%)** | 46.3 | **165.7s** | $0.0742 |
+| **D (Proposed System)** | ❌ LimitsExceeded (50 steps) | ❌ LimitsExceeded (50 steps) | **✅ RESOLVED (46 steps)** | **1/3 (33.3%)** | 48.7 | 207.3s | $0.0679 |
 
 ---
 
@@ -36,10 +36,10 @@
 
 ### Task 3: `django__django-11848` (HTTP date 2-digit year century logic)
 - **Gold Target File**: `django/utils/http.py`
-- **Condition A**: **RESOLVED**. Agent located `django/utils/http.py`, modified `parse_http_date` to dynamically calculate the 50-year century window, verified diff, and submitted in 39 steps. Official SWE-bench Docker harness passed all assertions!
-- **Condition B**: Agent searched related date files (`datetime_safe.py`, `timesince.py`), hit turn 50 without submitting (`LimitsExceeded`).
-- **Condition C**: **RESOLVED**. Agent submitted in 41 steps. Official harness passed!
-- **Condition D**: **RESOLVED**. Agent submitted in **39 steps** with the lowest latency of any condition (**157.1s**). Official harness passed!
+- **Condition A**: **RESOLVED**. Agent located `django/utils/http.py`, modified `parse_http_date` to dynamically calculate the 50-year century window, verified diff, and submitted in 39 steps (293.0s). Official SWE-bench Docker harness passed all assertions!
+- **Condition B**: Agent searched related date files (`datetime_safe.py`, `timesince.py`), hit turn 50 without submitting (`LimitsExceeded`, 289.9s).
+- **Condition C**: **RESOLVED**. Agent submitted in 41 steps (153.5s). Official harness passed!
+- **Condition D**: **RESOLVED**. Agent leveraged AST symbol context for `parse_http_date`, dynamically computed sliding window, and submitted in 46 steps (272.9s). Official harness passed!
 
 ---
 
@@ -50,13 +50,13 @@ xychart-beta
     title "Mean Latency per Condition (Seconds - Lower is Better)"
     x-axis ["A (No Memory)", "B (Snapshot RAG)", "C (Naive Combo)", "D (Proposed System)"]
     y-axis "Latency (seconds)" 0 --> 400
-    bar [357.5, 264.5, 202.0, 165.7]
+    bar [357.5, 264.5, 202.0, 207.3]
 ```
 
 ### Key Efficiency Findings:
-1. **53.6% Latency Reduction**: Condition D reduced average execution time from **357.5s (Condition A)** down to **165.7s**, a more than **2× speedup**.
-2. **AST Symbol Caching**: In Condition D, AST parsing of all 804 repository files happened once during Task 1. Tasks 2 and 3 reused the in-memory AST cache (`cached_files: 804`, `reparsed_files: 0`), completely eliminating code indexing lag during multi-task agent sessions.
-3. **Turn Pacing Impact**: In the previous 30-step run, all 12 tasks timed out with 0% resolution. By increasing the step limit to 50 and adding the execution pacing prompt, the agent achieved positive resolutions (**33.3%** in A, C, and D) and triggered early submissions in B.
+1. **Observed Latency Reduction**: In our single-trial runs, Condition D averaged **207.3s** compared to **357.5s (Condition A)** (comparable to Naive Combo at 202.0s), with exploratory search commands decreasing from 29 to 22 across tasks.
+2. **AST Symbol Caching**: In Condition D, AST parsing of all 804 repository files happened once during Task 1. Tasks 2 and 3 reused the in-memory AST cache (`cached_files: 804`, `reparsed_files: 0`), backed by an SHA-256 integrity scan across repository files taking $\approx 243\text{ ms}$.
+3. **Turn Pacing Impact**: By increasing the step limit to 50 and adding the execution pacing prompt, the agent achieved positive resolutions (**33.3%** in A, C, and D) and triggered early submissions in B. All resolving conditions resolved the identical task (`django-11848`).
 
 ---
 

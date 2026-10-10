@@ -23,11 +23,11 @@ This repository presents an end-to-end empirical study investigating whether **p
 4. **Condition D (Proposed Architecture)**: Structural AST symbol graph + Hybrid Reciprocal Rank Fusion (RRF) + Episodic test-outcome memory + Cryptographic SHA-256 staleness detection.
 
 ### Key Empirical Findings:
-- **Retrieval Scale & Statistical Power ($N=25$)**: Across all 25 Django tasks in SWE-bench Verified Mini, Hybrid RRF achieved **80.0% Recall@5** (Wilson 95% CI: [0.609, 0.911]) and **44.0% Recall@1** (CI: [0.267, 0.629]), significantly outperforming sparse lexical retrieval alone (60.0% Recall@5, 20.0% Recall@1; paired McNemar test $p = 0.035$ for Recall@1, $p = 0.031$ for Recall@5) and improving Mean Reciprocal Rank (MRR) by **+58.0%** (0.5793 vs 0.3667; Wilcoxon $p = 0.0039$).
-- **Downstream Task Resolution**: Across an illustrative chronological sequence ($N=3$), the proposed system resolved target bugs passing official Docker harness tests (`django-11848`), but **overall resolution rate remained flat across all conditions (1/3 or 33.3%)**. Accurate file localization (Rank 1) did not automatically overcome multi-turn code synthesis bottlenecks.
-- **Latency & Tool Overhead**: Memory-guided context directed the agent immediately to target files, avoiding unguided recursive directory greps in Docker (mean task duration of 207.3s for Condition D vs 357.5s for Baseline A, comparable to Naive Combo at 202.0s).
-- **AST Caching**: Condition D indexed 804 repository files once during Task 1 and maintained an expected 100% cache hit rate on subsequent static commit queries (`cached_files: 804`, `reparsed_files: 0`).
-- **Resilience to Concept Drift**: Under a controlled file modification trial, naive memory suffered silent memory corruption (`flags_stale = False`), whereas Condition D detected content-hash divergence (`flags_stale = True`), flagged the target as `[STALE]`, and penalized its retrieval weight by 80% (`weight = 0.20`).
+- **Significant Localization Gains ($N=25$)**: Combining Tree-sitter AST symbol graphs with sparse lexical retrieval via Reciprocal Rank Fusion ($k=60$) improves Mean Reciprocal Rank (MRR) by **+58.0%** (0.5793 vs 0.3667; paired Wilcoxon signed-rank test $W = 13.5$, two-sided $p = 0.0077$, one-sided $p = 0.0039$). Across all 25 Django tasks, Hybrid RRF achieves **80.0% Recall@5** (Wilson 95% CI: [0.609, 0.911]) and **44.0% Recall@1** (CI: [0.267, 0.629]) compared to 60.0% and 20.0% for lexical retrieval alone (directional McNemar $p = 0.035$ for R@1, $p = 0.031$ for R@5; two-sided exact $p = 0.070$ and $p = 0.063$).
+- **Downstream Task Resolution**: Across an illustrative chronological sequence ($N=3$), the proposed system resolved target bugs passing official Docker harness tests (`django-11848`), but **overall resolution rate remained flat across all resolving conditions (1/3 or 33.3%, all resolving the identical task)**. Accurate file localization (Rank 1) did not automatically overcome multi-turn code synthesis bottlenecks.
+- **Latency & Tool Overhead**: Memory-guided context reduced exploratory search commands from 29 in Baseline A to 22 in Condition D across tasks, with observed mean duration of 207.3s for Condition D vs 357.5s for Baseline A (comparable to Naive Combo at 202.0s), while mean turns remained comparable (48.7 in D vs 46.3 in A).
+- **AST Caching & Hashing Overhead**: Condition D indexed 804 repository files once during Task 1 and maintained an expected 100% cache hit rate on subsequent static commit queries (`cached_files: 804`, `reparsed_files: 0`), backed by an SHA-256 integrity scan across repository files taking $\approx 243\text{ ms}$.
+- **Resilience to Concept Drift**: Under a file modification verification trial, naive string memory suffered silent memory corruption (`flags_stale = False`), whereas Condition D detected content-hash divergence (`flags_stale = True`), flagged the target as `[STALE]`, and attenuated its retrieval weight by 80% (`weight = 0.20`).
 
 ---
 
@@ -194,7 +194,7 @@ In initial baseline trials capped at 30 steps, all 12 tasks timed out due to pas
 | **A (No Memory)** | ❌ LimitsExceeded (50) | ❌ LimitsExceeded (50) | **✅ RESOLVED (39)** | **1/3 (33.3%)** | 46.3 | 357.5s | $0.0692 |
 | **B (Snapshot RAG)** | ⚠️ Submitted (41) | ⚠️ Submitted (31) | ❌ LimitsExceeded (50) | **0/3 (0.0%)** | 40.7 | 264.5s | $0.0757 |
 | **C (Naive Combo)** | ❌ LimitsExceeded (50) | ❌ LimitsExceeded (50) | **✅ RESOLVED (41)** | **1/3 (33.3%)** | 47.0 | 202.0s | $0.0762 |
-| **D (Proposed System)** | ❌ LimitsExceeded (50) | ❌ LimitsExceeded (50) | **✅ RESOLVED (39)** | **1/3 (33.3%)** | 46.3 | **165.7s** | $0.0742 |
+| **D (Proposed System)** | ❌ LimitsExceeded (50) | ❌ LimitsExceeded (50) | **✅ RESOLVED (46)** | **1/3 (33.3%)** | 48.7 | 207.3s | $0.0679 |
 
 ---
 
@@ -219,7 +219,7 @@ In initial baseline trials capped at 30 steps, all 12 tasks timed out due to pas
 - **Condition A (Resolved)**: Agent located `django/utils/http.py`, modified `parse_http_date`, verified diff, and submitted in 39 steps (293.0s). Official test suite (`tests/utils_tests/test_http.py`) passed all 12 test assertions.
 - **Condition B**: Agent got distracted by related date files (`datetime_safe.py`, `timesince.py`), hitting 50 turns (`LimitsExceeded`, 289.9s).
 - **Condition C (Resolved)**: Agent modified `django/utils/http.py` and submitted in 41 steps (153.5s). Harness passed.
-- **Condition D (Resolved)**: Agent leveraged AST symbol context for `parse_http_date`, implemented the dynamic sliding window, verified diff, and submitted in **39 steps** with the **lowest latency in the benchmark (157.1s)**. Harness passed.
+- **Condition D (Resolved)**: Agent leveraged AST symbol context for `parse_http_date`, implemented the dynamic sliding window, verified diff, and submitted in 46 steps (272.9s). Harness passed.
 
 The patch generated by Condition D for `django-11848`:
 ```diff

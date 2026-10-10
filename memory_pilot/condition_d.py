@@ -131,7 +131,12 @@ class ConditionDMemory(BaseMemory):
         )
 
     def update_structural_index(self, repo_dir: Path) -> dict[str, int]:
-        """Incrementally update AST symbols for repository files."""
+        """Incrementally update AST symbols for repository files.
+        
+        Performs an O(Total_Repo_Bytes) = O(M) disk read and SHA-256 computation
+        across repository files to detect modifications, followed by O(1) in-memory
+        cache hit lookups for unchanged files. Only files with modified hashes are reparsed.
+        """
         py_files = get_repo_python_files(repo_dir)
         reparsed = 0
         cached = 0
@@ -192,9 +197,10 @@ class ConditionDMemory(BaseMemory):
         symbols = [w for w in raw_tokens if len(w) >= 3 and w.lower() not in stopwords]
         symbols_lower = {s.lower() for s in symbols}
 
+        # Subtoken splitting: CamelCase, snake_case (underscores act as delimiters), and uppercase acronyms
         q_subtokens = set()
         for s in symbols:
-            parts = re.findall(r"[A-Z][a-z0-9]*|[a-z0-9]+", s)
+            parts = re.findall(r"[A-Z]+(?=[A-Z][a-z0-9]|\b)|[A-Z][a-z0-9]*|[a-z0-9]+", s)
             q_subtokens.update([p.lower() for p in parts if len(p) >= 3])
 
         ast_scores: dict[str, float] = {}
@@ -211,7 +217,7 @@ class ConditionDMemory(BaseMemory):
                 elif c.lower() in symbols_lower:
                     score += 40.0
                 else:
-                    c_parts = [p.lower() for p in re.findall(r"[A-Z][a-z0-9]*|[a-z0-9]+", c) if len(p) >= 3]
+                    c_parts = [p.lower() for p in re.findall(r"[A-Z]+(?=[A-Z][a-z0-9]|\b)|[A-Z][a-z0-9]*|[a-z0-9]+", c) if len(p) >= 3]
                     matching_parts = q_subtokens.intersection(c_parts)
                     score += len(matching_parts) * 25.0
 
