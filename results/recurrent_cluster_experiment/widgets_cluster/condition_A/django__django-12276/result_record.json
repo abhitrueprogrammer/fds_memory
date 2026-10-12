@@ -1,0 +1,19 @@
+{
+  "condition": "A",
+  "instance_id": "django__django-12276",
+  "position": 2,
+  "resolved": true,
+  "files_retrieved": [],
+  "files_edited": [
+    "django/forms/widgets.py"
+  ],
+  "api_calls": 44,
+  "cost": 0.05733911999999999,
+  "latency_seconds": 361.56,
+  "exit_status": "Submitted",
+  "memory_items_included": [],
+  "metadata": {
+    "condition": "A",
+    "items_included": []
+  }
+}

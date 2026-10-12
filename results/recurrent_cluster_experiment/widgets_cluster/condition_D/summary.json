@@ -1,0 +1,88 @@
+[
+  {
+    "condition": "D",
+    "instance_id": "django__django-12193",
+    "position": 1,
+    "resolved": false,
+    "files_retrieved": [
+      "django/forms/widgets.py",
+      "django/forms/fields.py",
+      "django/contrib/admin/widgets.py",
+      "django/contrib/postgres/forms/array.py",
+      "django/forms/boundfield.py"
+    ],
+    "files_edited": [],
+    "api_calls": 37,
+    "cost": 0.037961199999999994,
+    "latency_seconds": 246.42,
+    "exit_status": "Submitted",
+    "memory_items_included": [
+      "django/forms/widgets.py",
+      "django/forms/fields.py",
+      "django/contrib/admin/widgets.py",
+      "django/contrib/postgres/forms/array.py",
+      "django/forms/boundfield.py"
+    ],
+    "metadata": {
+      "condition": "D",
+      "items_included": [
+        "django/forms/widgets.py",
+        "django/forms/fields.py",
+        "django/contrib/admin/widgets.py",
+        "django/contrib/postgres/forms/array.py",
+        "django/forms/boundfield.py"
+      ],
+      "reparsed_files": 804,
+      "cached_files": 0,
+      "episodes_count": 0,
+      "ablation_ast": true,
+      "ablation_episodic": true,
+      "ablation_staleness": true,
+      "ablation_hybrid_rrf": true
+    }
+  },
+  {
+    "condition": "D",
+    "instance_id": "django__django-12276",
+    "position": 2,
+    "resolved": true,
+    "files_retrieved": [
+      "django/forms/widgets.py",
+      "django/forms/models.py",
+      "django/forms/boundfield.py",
+      "django/forms/formsets.py",
+      "django/contrib/sessions/backends/db.py"
+    ],
+    "files_edited": [
+      "django/forms/widgets.py"
+    ],
+    "api_calls": 41,
+    "cost": 0.04594594999999999,
+    "latency_seconds": 283.63,
+    "exit_status": "Submitted",
+    "memory_items_included": [
+      "django/forms/widgets.py",
+      "django/forms/models.py",
+      "django/forms/boundfield.py",
+      "django/forms/formsets.py",
+      "django/contrib/sessions/backends/db.py"
+    ],
+    "metadata": {
+      "condition": "D",
+      "items_included": [
+        "django/forms/widgets.py",
+        "django/forms/models.py",
+        "django/forms/boundfield.py",
+        "django/forms/formsets.py",
+        "django/contrib/sessions/backends/db.py"
+      ],
+      "reparsed_files": 0,
+      "cached_files": 804,
+      "episodes_count": 1,
+      "ablation_ast": true,
+      "ablation_episodic": true,
+      "ablation_staleness": true,
+      "ablation_hybrid_rrf": true
+    }
+  }
+]

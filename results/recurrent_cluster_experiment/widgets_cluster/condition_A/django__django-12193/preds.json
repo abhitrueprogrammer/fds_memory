@@ -1,0 +1,7 @@
+{
+  "django__django-12193": {
+    "model_name_or_path": "gemini/gemini-3.5-flash-lite",
+    "instance_id": "django__django-12193",
+    "model_patch": "diff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 6fe220bea7..46f494e702 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -524,7 +524,7 @@ class CheckboxInput(Input):\n         if self.check_test(value):\n             if attrs is None:\n                 attrs = {}\n-            attrs['checked'] = True\n+            attrs = {**attrs, 'checked': True}\n         return super().get_context(name, value, attrs)\n \n     def value_from_datadict(self, data, files, name):\n"
+  }
+}

@@ -1,0 +1,36 @@
+<repository_context>
+[Structural Symbol & Call Graph]
+Repository structural AST index: 804 reparsed, 0 cached.
+Top relevant files and AST symbols:
+- Module: django/forms/widgets.py
+  Classes: MediaOrderConflictWarning, Media, MediaDefiningClass, Widget, Input
+  Functions: __init__, __repr__, __str__, _css, _js, render, render_js, render_css
+  Calls: ', '.join, '\n'.join, '{}_{}'.format, CheckboxInput, CheckboxInput().value_from_datadict, DateInput
+- Module: django/forms/fields.py
+  Classes: Field, CharField, IntegerField, FloatField, DecimalField
+  Functions: __init__, prepare_value, to_python, validate, run_validators, clean, bound_data, widget_attrs
+  Calls: BoundField, BytesIO, CallableChoiceIterator, DateField, Decimal, Decimal(1).scaleb
+- Module: django/contrib/admin/widgets.py
+  Classes: FilteredSelectMultiple, AdminDateWidget, Media, AdminTimeWidget, Media
+  Functions: media, __init__, get_context, __init__, __init__, __init__, get_context, url_params_from_lookup_dict
+  Calls: '&'.join, '&amp;'.join, ','.join, SELECT2_TRANSLATIONS.get, SELECT2_TRANSLATIONS.update, Truncator
+- Module: django/contrib/postgres/forms/array.py
+  Classes: SimpleArrayField, SplitArrayWidget, SplitArrayField
+  Functions: __init__, clean, prepare_value, to_python, validate, run_validators, has_changed, __init__
+  Calls: ArrayMaxLengthValidator, ArrayMinLengthValidator, SplitArrayWidget, ValidationError, _, all
+- Module: django/forms/boundfield.py
+  Classes: BoundField, BoundWidget
+  Functions: __init__, __str__, subwidgets, __bool__, __iter__, __len__, __getitem__, errors
+  Calls: ' '.join, BoundWidget, TextInput, Textarea, TypeError, _
+
+[Episodic Memory & Staleness Check]
+No prior episodic experience in memory.
+</repository_context>
+
+SplitArrayField with BooleanField always has widgets checked after the first True value.
+Description
+	 
+		(last modified by Peter Andersen)
+	 
+When providing a SplitArrayField BooleanField with preexisting data, the final_attrs dict is updated to include 'checked': True after the for loop has reached the first True value in the initial data array. Once this occurs every widget initialized after that defaults to checked even though the backing data may be False. This is caused by the CheckboxInput widget's get_context() modifying the attrs dict passed into it. This is the only widget that modifies the attrs dict passed into its get_context().
+CheckboxInput setting attrs['checked'] to True: ​https://github.com/django/django/blob/master/django/forms/widgets.py#L527

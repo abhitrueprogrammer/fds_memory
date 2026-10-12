@@ -1,0 +1,42 @@
+<repository_context>
+[Structural Symbol & Call Graph]
+Repository structural AST index: 0 reparsed, 804 cached.
+Top relevant files and AST symbols:
+- Module: django/forms/widgets.py
+  Classes: MediaOrderConflictWarning, Media, MediaDefiningClass, Widget, Input
+  Functions: __init__, __repr__, __str__, _css, _js, render, render_js, render_css
+  Calls: ', '.join, '\n'.join, '{}_{}'.format, CheckboxInput, CheckboxInput().value_from_datadict, DateInput
+- Module: django/forms/models.py
+  Classes: ModelFormOptions, ModelFormMetaclass, BaseModelForm, ModelForm, BaseModelFormSet
+  Functions: construct_instance, model_to_dict, apply_limit_choices_to_to_formfield, fields_for_model, __init__, __new__, __init__, _get_validation_exclusions
+  Calls: ', '.join, Field.__init__, Field.validate, FieldError, ImproperlyConfigured, InlineForeignKeyField
+- Module: django/forms/boundfield.py
+  Classes: BoundField, BoundWidget
+  Functions: __init__, __str__, subwidgets, __bool__, __iter__, __len__, __getitem__, errors
+  Calls: ' '.join, BoundWidget, TextInput, Textarea, TypeError, _
+- Module: django/forms/formsets.py
+  Classes: ManagementForm, BaseFormSet
+  Functions: __init__, __init__, __str__, __iter__, __getitem__, __len__, __bool__, management_form
+  Calls: ' '.join, AttributeError, BooleanField, IntegerField, ManagementForm, ValidationError
+- Module: django/contrib/sessions/backends/db.py
+  Classes: SessionStore
+  Functions: __init__, get_model_class, model, _get_session_from_db, load, exists, create, create_model_instance
+  Calls: cls.get_model_class, cls.get_model_class().objects.filter, isinstance, logger.warning, logging.getLogger, obj.save
+
+[Episodic Memory & Staleness Check]
+- Episode django__django-12193 | Status: FAILED (weight=-0.50) | ✅ [FRESH - Verified against current repo state]
+  Issue Summary: SplitArrayField with BooleanField always has widgets checked after the first True value.
+Description
+	 
+		(last modified...
+  Files Edited: []
+  Files Retrieved: ['django/forms/widgets.py', 'django/forms/fields.py', 'django/contrib/admin/widgets.py', 'django/contrib/postgres/forms/array.py', 'django/forms/boundfield.py']
+</repository_context>
+
+FileInput shouldn't display required attribute when initial data exists.
+Description
+	 
+		(last modified by thenewguy)
+	 
+I think that ClearableFileInput.use_required_attribute() (​https://github.com/django/django/blob/e703b93a656b78b9b444bb3a9980e305ed002a70/django/forms/widgets.py#L454) should be moved to FileInput.use_required_attribute() so that required is not output on the html input element that represents FileInput when a file is already set (e.g. already saved on a model instance that is being edited).
+Maybe I am overlooking a use case where this is not desirable? I can not think of one.
