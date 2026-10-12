@@ -1,0 +1,61 @@
+<repository_context>
+[Structural Symbol & Call Graph]
+Repository structural AST index: 0 reparsed, 804 cached.
+Top relevant files and AST symbols:
+- Module: django/db/models/fields/__init__.py
+  Classes: Empty, NOT_PROVIDED, Field, BooleanField, CharField
+  Functions: _load_field, _empty, return_None, _description, __init__, __str__, __repr__, check
+  Calls: (now + offset).date, (now - offset).date, BigIntegerField, BigIntegerField().db_type, Col, DictWrapper
+- Module: django/contrib/sessions/backends/db.py
+  Classes: SessionStore
+  Functions: __init__, get_model_class, model, _get_session_from_db, load, exists, create, create_model_instance
+  Calls: cls.get_model_class, cls.get_model_class().objects.filter, isinstance, logger.warning, logging.getLogger, obj.save
+- Module: django/contrib/contenttypes/fields.py
+  Classes: GenericForeignKey, GenericRel, GenericRelation, ReverseGenericManyToOneDescriptor, GenericRelatedObjectManager
+  Functions: __init__, contribute_to_class, get_filter_kwargs_for_object, get_forward_related_filter, __str__, check, _check_field_name, _check_object_id_field
+  Calls: ContentType.objects.db_manager, ContentType.objects.get_for_model, Exception, PathInfo, ReverseGenericManyToOneDescriptor, TypeError
+- Module: django/db/models/fields/related_descriptors.py
+  Classes: ForeignKeyDeferredAttribute, ForwardManyToOneDescriptor, ForwardOneToOneDescriptor, ReverseOneToOneDescriptor, ReverseManyToOneDescriptor
+  Functions: __set__, __init__, RelatedObjectDoesNotExist, is_cached, get_queryset, get_prefetch_queryset, get_object, __get__
+  Calls: Q, TypeError, ValueError, ancestor_link.get_cached_value, ancestor_link.is_cached, any
+- Module: django/db/models/fields/files.py
+  Classes: FieldFile, FileDescriptor, FileField, ImageFileDescriptor, ImageFieldFile
+  Functions: __init__, __eq__, __hash__, _require_file, _get_file, _set_file, _del_file, path
+  Calls: ValueError, _, callable, checks.Error, datetime.datetime.now, datetime.datetime.now().strftime
+
+[Episodic Memory & Staleness Check]
+- Episode django__django-12209 | Status: FAILED (weight=-0.50) | ✅ [FRESH - Verified against current repo state]
+  Issue Summary: Change in behaviour when saving a model instance with an explcit pk value if the pk field has a default
+Description
+	 
+	...
+  Files Edited: []
+  Files Retrieved: ['django/db/models/fields/__init__.py', 'django/db/models/fields/related_descriptors.py', 'django/contrib/contenttypes/fields.py', 'django/contrib/contenttypes/models.py', 'django/core/management/commands/loaddata.py']
+</repository_context>
+
+Resetting primary key for a child model doesn't work.
+Description
+	
+In the attached example code setting the primary key to None does not work (so that the existing object is overwritten on save()).
+The most important code fragments of the bug example:
+from django.db import models
+class Item(models.Model):
+	# uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+	uid = models.AutoField(primary_key=True, editable=False)
+	f = models.BooleanField(default=False)
+	def reset(self):
+		self.uid = None
+		self.f = False
+class Derived(Item):
+	pass
+class SaveTestCase(TestCase):
+	def setUp(self):
+		self.derived = Derived.objects.create(f=True) # create the first object
+		item = Item.objects.get(pk=self.derived.pk)
+		obj1 = item.derived
+		obj1.reset()
+		obj1.save() # the first object is overwritten
+	def test_f_true(self):
+		obj = Item.objects.get(pk=self.derived.pk)
+		self.assertTrue(obj.f)
+Django 2.1.2

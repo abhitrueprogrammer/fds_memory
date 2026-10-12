@@ -1,0 +1,42 @@
+{
+  "condition": "D",
+  "instance_id": "django__django-12273",
+  "position": 2,
+  "resolved": false,
+  "files_retrieved": [
+    "django/db/models/fields/__init__.py",
+    "django/contrib/sessions/backends/db.py",
+    "django/contrib/contenttypes/fields.py",
+    "django/db/models/fields/related_descriptors.py",
+    "django/db/models/fields/files.py"
+  ],
+  "files_edited": [],
+  "api_calls": 50,
+  "cost": 0.0988064,
+  "latency_seconds": 319.88,
+  "exit_status": "LimitsExceeded",
+  "memory_items_included": [
+    "django/db/models/fields/__init__.py",
+    "django/contrib/sessions/backends/db.py",
+    "django/contrib/contenttypes/fields.py",
+    "django/db/models/fields/related_descriptors.py",
+    "django/db/models/fields/files.py"
+  ],
+  "metadata": {
+    "condition": "D",
+    "items_included": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/sessions/backends/db.py",
+      "django/contrib/contenttypes/fields.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/models/fields/files.py"
+    ],
+    "reparsed_files": 0,
+    "cached_files": 804,
+    "episodes_count": 1,
+    "ablation_ast": true,
+    "ablation_episodic": true,
+    "ablation_staleness": true,
+    "ablation_hybrid_rrf": true
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "sequence": [
+    "django__django-12209",
+    "django__django-12273"
+  ],
+  "shared_target": "django/db/models/base.py",
+  "condition_A": {
+    "results": [
+      {
+        "condition": "A",
+        "instance_id": "django__django-12209",
+        "position": 1,
+        "resolved": false,
+        "files_retrieved": [],
+        "files_edited": [],
+        "api_calls": 50,
+        "cost": 0.07401036,
+        "latency_seconds": 275.78,
+        "exit_status": "LimitsExceeded",
+        "memory_items_included": [],
+        "metadata": {
+          "condition": "A",
+          "items_included": []
+        }
+      },
+      {
+        "condition": "A",
+        "instance_id": "django__django-12273",
+        "position": 2,
+        "resolved": false,
+        "files_retrieved": [],
+        "files_edited": [],
+        "api_calls": 50,
+        "cost": 0.10923268,
+        "latency_seconds": 218.45,
+        "exit_status": "LimitsExceeded",
+        "memory_items_included": [],
+        "metadata": {
+          "condition": "A",
+          "items_included": []
+        }
+      }
+    ],
+    "trajectory_search_stats": {
+      "django__django-12209": {
+        "grep_commands": 13,
+        "find_commands": 0,
+        "total_search_commands": 13,
+        "read_commands": 7,
+        "total_commands": 50
+      },
+      "django__django-12273": {
+        "grep_commands": 14,
+        "find_commands": 1,
+        "total_search_commands": 15,
+        "read_commands": 19,
+        "total_commands": 50
+      }
+    }
+  },
+  "condition_D": {
+    "results": [
+      {
+        "condition": "D",
+        "instance_id": "django__django-12209",
+        "position": 1,
+        "resolved": false,
+        "files_retrieved": [
+          "django/db/models/fields/__init__.py",
+          "django/db/models/fields/related_descriptors.py",
+          "django/contrib/contenttypes/fields.py",
+          "django/contrib/contenttypes/models.py",
+          "django/core/management/commands/loaddata.py"
+        ],
+        "files_edited": [],
+        "api_calls": 50,
+        "cost": 0.12999131,
+        "latency_seconds": 242.77,
+        "exit_status": "LimitsExceeded",
+        "memory_items_included": [
+          "django/db/models/fields/__init__.py",
+          "django/db/models/fields/related_descriptors.py",
+          "django/contrib/contenttypes/fields.py",
+          "django/contrib/contenttypes/models.py",
+          "django/core/management/commands/loaddata.py"
+        ],
+        "metadata": {
+          "condition": "D",
+          "items_included": [
+            "django/db/models/fields/__init__.py",
+            "django/db/models/fields/related_descriptors.py",
+            "django/contrib/contenttypes/fields.py",
+            "django/contrib/contenttypes/models.py",
+            "django/core/management/commands/loaddata.py"
+          ],
+          "reparsed_files": 804,
+          "cached_files": 0,
+          "episodes_count": 0,
+          "ablation_ast": true,
+          "ablation_episodic": true,
+          "ablation_staleness": true,
+          "ablation_hybrid_rrf": true
+        }
+      },
+      {
+        "condition": "D",
+        "instance_id": "django__django-12273",
+        "position": 2,
+        "resolved": false,
+        "files_retrieved": [
+          "django/db/models/fields/__init__.py",
+          "django/contrib/sessions/backends/db.py",
+          "django/contrib/contenttypes/fields.py",
+          "django/db/models/fields/related_descriptors.py",
+          "django/db/models/fields/files.py"
+        ],
+        "files_edited": [],
+        "api_calls": 50,
+        "cost": 0.0988064,
+        "latency_seconds": 319.88,
+        "exit_status": "LimitsExceeded",
+        "memory_items_included": [
+          "django/db/models/fields/__init__.py",
+          "django/contrib/sessions/backends/db.py",
+          "django/contrib/contenttypes/fields.py",
+          "django/db/models/fields/related_descriptors.py",
+          "django/db/models/fields/files.py"
+        ],
+        "metadata": {
+          "condition": "D",
+          "items_included": [
+            "django/db/models/fields/__init__.py",
+            "django/contrib/sessions/backends/db.py",
+            "django/contrib/contenttypes/fields.py",
+            "django/db/models/fields/related_descriptors.py",
+            "django/db/models/fields/files.py"
+          ],
+          "reparsed_files": 0,
+          "cached_files": 804,
+          "episodes_count": 1,
+          "ablation_ast": true,
+          "ablation_episodic": true,
+          "ablation_staleness": true,
+          "ablation_hybrid_rrf": true
+        }
+      }
+    ],
+    "trajectory_search_stats": {
+      "django__django-12209": {
+        "grep_commands": 10,
+        "find_commands": 0,
+        "total_search_commands": 10,
+        "read_commands": 25,
+        "total_commands": 50
+      },
+      "django__django-12273": {
+        "grep_commands": 5,
+        "find_commands": 0,
+        "total_search_commands": 5,
+        "read_commands": 20,
+        "total_commands": 50
+      }
+    }
+  }
+}

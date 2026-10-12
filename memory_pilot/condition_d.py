@@ -249,6 +249,45 @@ class ConditionDMemory(BaseMemory):
         ranked = sorted(ast_scores.items(), key=lambda x: x[1], reverse=True)[:50]
         return {r[0]: rank for rank, r in enumerate(ranked)}
 
+    def _get_episodic_ranking(
+        self, query: str, repo_dir: Path
+    ) -> tuple[dict[str, int], dict[str, float]]:
+        """Rank repository files based on relevant prior episodic experience and test outcomes.
+        
+        Calculates similarity between the current query and prior episode problem statements,
+        weighted by whether the prior episode passed the evaluation harness and whether
+        referenced files remain cryptographically fresh on disk.
+        """
+        if not self.episodes:
+            return {}, {}
+
+        query_words = set(re.findall(r"[A-Za-z0-9_]{3,}", query.lower()))
+        episodic_file_scores: dict[str, float] = {}
+
+        for ep in self.episodes:
+            is_stale, _ = self.check_staleness(ep, repo_dir) if self.use_staleness else (False, [])
+            effective_weight = ep.weight if not (is_stale and self.use_staleness) else ep.weight * 0.20
+
+            ep_words = set(re.findall(r"[A-Za-z0-9_]{3,}", ep.problem_statement.lower()))
+            overlap = len(query_words.intersection(ep_words))
+            if overlap == 0:
+                continue
+
+            sim_score = overlap / max(len(query_words.union(ep_words)), 1)
+
+            # Files edited in passing episodes get primary reinforcement
+            for f in ep.files_edited:
+                episodic_file_scores[f] = episodic_file_scores.get(f, 0.0) + (sim_score * effective_weight * 3.0)
+
+            # Files retrieved get secondary reinforcement
+            for f in ep.files_retrieved:
+                episodic_file_scores[f] = episodic_file_scores.get(f, 0.0) + (sim_score * effective_weight * 1.0)
+
+        positive_scores = {f: s for f, s in episodic_file_scores.items() if s > 0}
+        ranked = sorted(positive_scores.items(), key=lambda x: x[1], reverse=True)
+        epi_ranks = {r[0]: rank for rank, r in enumerate(ranked)}
+        return epi_ranks, positive_scores
+
     def get_memory_context(
         self,
         task: dict[str, Any],
@@ -261,15 +300,25 @@ class ConditionDMemory(BaseMemory):
         query = task.get("problem_statement", "")
 
         # 2. Determine file ranks based on ablation configuration
+        epi_ranks, epi_scores = self._get_episodic_ranking(query, repo_dir) if self.use_episodic else ({}, {})
+
         if self.use_hybrid_rrf and self.use_ast:
             lex_ranks = self._get_lexical_ranking(query, repo_dir)
             ast_ranks = self._get_ast_ranking(query)
-            all_cands = set(list(lex_ranks.keys())[:25]) | set(list(ast_ranks.keys())[:25])
+            all_cands = (
+                set(list(lex_ranks.keys())[:25])
+                | set(list(ast_ranks.keys())[:25])
+                | set(list(epi_ranks.keys())[:10])
+            )
             fused_scores = {}
             for c in all_cands:
                 r_lex = lex_ranks.get(c, 100)
                 r_ast = ast_ranks.get(c, 100)
-                fused_scores[c] = (1.0 / (60.0 + r_lex)) + (1.0 / (60.0 + r_ast))
+                r_epi = epi_ranks.get(c, 100)
+                score = (1.0 / (60.0 + r_lex)) + (1.0 / (60.0 + r_ast))
+                if c in epi_ranks and epi_scores.get(c, 0) > 0:
+                    score += (1.0 / (60.0 + r_epi))
+                fused_scores[c] = score
             retrieved_files = [x[0] for x in sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)[: self.top_files_k]]
         elif self.use_ast:
             ast_ranks = self._get_ast_ranking(query)

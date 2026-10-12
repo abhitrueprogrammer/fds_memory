@@ -1,0 +1,36 @@
+[
+  {
+    "condition": "A",
+    "instance_id": "django__django-12209",
+    "position": 1,
+    "resolved": false,
+    "files_retrieved": [],
+    "files_edited": [],
+    "api_calls": 50,
+    "cost": 0.07401036,
+    "latency_seconds": 275.78,
+    "exit_status": "LimitsExceeded",
+    "memory_items_included": [],
+    "metadata": {
+      "condition": "A",
+      "items_included": []
+    }
+  },
+  {
+    "condition": "A",
+    "instance_id": "django__django-12273",
+    "position": 2,
+    "resolved": false,
+    "files_retrieved": [],
+    "files_edited": [],
+    "api_calls": 50,
+    "cost": 0.10923268,
+    "latency_seconds": 218.45,
+    "exit_status": "LimitsExceeded",
+    "memory_items_included": [],
+    "metadata": {
+      "condition": "A",
+      "items_included": []
+    }
+  }
+]

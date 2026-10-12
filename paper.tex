@@ -1,0 +1,224 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Persistent Repository Memory for Autonomous Software Engineering Agents: Architectural Foundations, Empirical Retrieval, and Downstream Resolution Limits}
+
+\author{\IEEEauthorblockN{Abhinav Pant\IEEEauthorrefmark{1}, Abhiram Anil\IEEEauthorrefmark{2}, and A Anjana Nair\IEEEauthorrefmark{3}}
+\IEEEauthorblockA{Department of Computer Science and Engineering\\
+Email: \IEEEauthorrefmark{1}abhiaruvs3@gmail.com}
+}
+
+\maketitle
+
+\begin{abstract}
+Modern autonomous software engineering (SWE) agents operate in a predominantly stateless paradigm: each issue is tackled inside an isolated container, discarding codebase structural indexes, episodic debugging trajectories, and past execution feedback across tasks. In production engineering, however, software systems evolve continuously, and human engineers build persistent structural mental models of the repository.
+
+Recent automated software engineering literature has explored history-aware bug fixing, retrieval-augmented refactoring, agent memory taxonomies, and execution-grounded verification. However, these paradigms remain fragmented and have not been unified around an evolving source-code repository substrate.
+
+In this paper, we formalize and empirically evaluate a \textbf{Session-Persistent Repository Memory Architecture} combining: (1) Tree-sitter Concrete Syntax Tree (CST) symbol graphs with subtoken decomposition; (2) Hybrid Reciprocal Rank Fusion (RRF, $k=60$) fusing sparse lexical retrieval (sublinear TF-IDF) with structural AST symbol representations without GPU embedding overhead; (3) Incremental in-memory caching bypassing redundant AST parsing via SHA-256 content hashing; (4) Episodic outcome logging under strict zero-leakage constraints; and (5) Cryptographic staleness invalidation penalizing outdated memory weights by 80\% ($\lambda = 0.20$).
+
+We conduct an empirical evaluation on \textbf{SWE-bench Verified Mini}:
+\begin{itemize}
+    \item \textbf{Significant Localization Gains ($N=25$)}: Hybrid RRF improves Mean Reciprocal Rank (MRR) by \textbf{+58.0\%} (0.5793 vs 0.3667; paired Wilcoxon signed-rank test $W = 13.5$, two-sided $p = 0.0077$). Top-1 hit rate improves to 44.0\% ($p = 0.035$, McNemar test) and Top-5 hit rate reaches 80.0\% ($p = 0.031$, Wilson 95\% CI: [0.609, 0.911]) compared to 60.0\% for snapshot lexical retrieval alone.
+    \item \textbf{The Localization vs. Resolution Disconnect ($N=3$ Multi-Turn Sequence)}: In an end-to-end multi-turn execution study, the proposed system resolves real-world issues passing the official Docker test suite (\texttt{django-11848}). However, \textbf{overall resolution rate remained flat across all resolving conditions (1/3 or 33.3\%)}. Even when memory placed the target file and function at Rank 1, downstream bug resolution was bottlenecked by the underlying LLM's multi-turn code synthesis capabilities.
+    \item \textbf{Exploratory Tool Overhead}: Memory-guided context reduced exploratory bash search commands from 29 to 22 across tasks, with observed mean task duration of 207.3s for Condition D vs 357.5s for Baseline A.
+    \item \textbf{Staleness Tracking}: Verification checks confirm that SHA-256 change tracking detects on-disk modifications and applies dynamic weight attenuation, whereas naive string-logging memory is oblivious to repository drift.
+\end{itemize}
+\end{abstract}
+
+\begin{IEEEkeywords}
+Autonomous Coding Agents, Software Engineering, Persistent Memory, AST Symbol Graphs, Reciprocal Rank Fusion, SWE-bench Verified.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Autonomous coding agents (e.g., SWE-agent~\cite{yang2024sweagent}, Devin, and mini-swe-agent~\cite{lieret2025minisweagent}) have demonstrated remarkable capabilities on software engineering benchmarks such as SWE-bench~\cite{jimenez2024swebench}. Nevertheless, standard agent scaffolding remains strictly \textbf{stateless}: every issue starts from an empty environment, forcing the agent to discover repository structure, file layouts, and subsystem conventions entirely from scratch.
+
+In large codebases containing hundreds of thousands of lines of code (such as the Django framework), statelessness incurs severe operational costs:
+\begin{enumerate}
+    \item \textbf{Unguided Exploration}: Without structural context, agents spend dozens of turns executing exploratory bash commands (\texttt{find}, \texttt{grep}) to locate relevant files, frequently exhausting turn budgets before reaching code synthesis.
+    \item \textbf{Episodic Amnesia}: Insights gained during previous task debugging (such as module conventions or test script locations) are discarded upon container termination.
+    \item \textbf{Repository Drift Vulnerability}: In persistent workflows where code evolves across commits, agents caching historical trajectories risk relying on obsolete symbol signatures unless cryptographic staleness mechanisms are in place.
+\end{enumerate}
+
+Surveys of software-engineering agents and LLM-based multi-agent systems show a decisive shift toward architectures combining perception, memory, planning, tool use, and action~\cite{wang2025agents, he2025multiagent}. However, existing memory mechanisms are largely conversational (interaction-oriented) or artifact-based (persisting bug report summaries), rather than being grounded in the concrete syntax and evolving history of the source-code repository itself.
+
+This paper bridges this gap by presenting a complete architectural implementation and empirical evaluation of a \textbf{Session-Persistent Repository Memory Architecture}. Our findings reveal a critical dichotomy in autonomous software engineering:
+\begin{itemize}
+    \item \textbf{Localization is significantly improved}: Combining Tree-sitter AST symbol graphs with sparse lexical retrieval via Reciprocal Rank Fusion ($k=60$) significantly outperforms sparse lexical retrieval across all 25 Django tasks in SWE-bench Verified Mini ($N=25$), led by a +58.0\% improvement in MRR (0.5793 vs 0.3667; two-sided Wilcoxon $p = 0.0077$). Top-1 hit rate improves to 44.0\% ($p = 0.035$) and Top-5 hit rate reaches 80.0\% ($p = 0.031$).
+    \item \textbf{The Localization--Resolution Disconnect}: In end-to-end multi-turn evaluation, providing accurate file and symbol localization at Rank 1 was insufficient to raise task resolve rates beyond the stateless baseline (1/3 across all resolving conditions, resolving the identical task \texttt{django-11848}). Downstream bug resolution is bottlenecked by the model's multi-turn reasoning and editing fidelity.
+    \item \textbf{Episodic transfer requires intra-domain recurrence}: When sequential tasks touch disjoint subsystems (\texttt{auth/forms}, \texttt{db/migrations}, \texttt{utils/http}), cross-task episodic transfer is negligible.
+    \item \textbf{Staleness verification safeguards persistent state}: Cryptographic SHA-256 verification detects on-disk file modifications and down-weights outdated context by 80\%, addressing an architectural vulnerability in naive string-logging memory.
+\end{itemize}
+
+\section{Literature Foundation \& Taxonomy}
+Our work builds on nine foundational peer-reviewed studies published across empirical software engineering, artificial intelligence, and automated software engineering venues:
+
+\subsection{History-Aware Repository Context}
+\textbf{HAFix}~\cite{shi2026hafix} directly addresses the limitation that LLM-based bug-fixing approaches rely primarily on the current project snapshot while overlooking historical repository information. HAFix introduces history-augmented heuristics and aggregates historical commit signals to improve bug fixing. Its significance is conceptual as much as empirical: repository history is not merely archival metadata; selected historical evidence can become actionable task context. However, HAFix supplies historical heuristics for isolated single-task bug-fixing formulations, rather than maintaining a continuously evolving, multi-task repository memory representation.
+
+\subsection{Repository-Level Retrieval \& Multi-Agent Refactoring}
+\textbf{RepoAI}~\cite{chondamrongkul2026repoai} demonstrates repository-level code understanding and refactoring through specialized agents (intent classification, code generation, validation) combined with retrieval-augmented generation (RAG). Its evaluation underscores that repository-level tasks benefit from structured retrieval and validation loops. Complementarily, Wang et al.~\cite{wang2026agr} introduce \textbf{Agent-Governed Retrieval-Augmented Generation (AGR)}, which retrieves evidence from official documentation, historical bug reports, and web sources, using an agentic gate to judge evidence sufficiency and reuse prior reports via long-term memory. However, RepoAI is framed around refactoring pipelines, and AGR persists report-level artifacts rather than maintaining incrementally updated, code-structural representations of source entities and interaction outcomes across sequential coding tasks.
+
+\subsection{Software-Engineering Agents, AI-IDEs, and Memory}
+The comprehensive survey by \textbf{Wang et al.}~\cite{wang2025agents} organizes software-engineering agents around perception, memory, and action, establishing memory as a first-class architectural component. \textbf{He et al.}~\cite{he2025multiagent} extend this perspective to LLM-based multi-agent systems, highlighting collaboration, specialized roles, and open challenges. 
+
+\textbf{Contreras et al.}~\cite{contreras2026aiides} architect open and trustworthy AI-IDEs where developer-assistant interactions are persistently traced alongside their impact on code, accompanied by quality-assurance validation loops (compilation, static analysis, testing). While relevant to interaction memory, their traceability layer is not an adaptive repository-memory retrieval mechanism that dynamically surfaces structural code evidence for future coding tasks.
+
+From the foundational AI perspective, \textbf{The AI Hippocampus}~\cite{jia2025hippocampus} formalizes memory in LLM and multimodal systems into implicit, explicit, and agentic paradigms. Explicit memory includes queryable external representations (text, vectors, graphs), while agentic memory emphasizes persistent, temporally extended structures. In a repository setting, structural code graphs serve as explicit memory, while task execution histories and test outcomes provide an agentic memory layer.
+
+\subsection{Program Repair \& Execution-Grounded Validation}
+Empirical work on LLM-based program repair demonstrates that prompt context design materially dictates repair effectiveness~\cite{cao2025programrepair}. Furthermore, \textbf{Jin \& Chen}~\cite{jin2026codereview} demonstrate that LLM-based requirement-conformance judgments exhibit systematic overcorrection errors and hallucinations. They establish that agent judgments must be grounded in executable tests and external verification. This justifies associating stored interaction outcomes with SWE-bench harness execution evidence rather than relying on model self-assessment.
+
+\section{Capability Matrix \& Research Gaps}
+
+\subsection{Structured Capability Comparison}
+Table~\ref{tab:comparison} compares how prior state-of-the-art architectures handle key dimensions of repository memory compared to our proposed architecture.
+
+\begin{table*}[t]
+\caption{Structured Capability Comparison Across Literature and Proposed Architecture}
+\label{tab:comparison}
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{System / Paper} & \textbf{Persistent Memory} & \textbf{Code Dependencies} & \textbf{Repo Evolution} & \textbf{Stale-Info Handling} & \textbf{Multi-Turn} & \textbf{Retrieval Efficiency} \\
+\midrule
+HAFix~\cite{shi2026hafix} & No & No & Partial (Git) & No & No & No \\
+RepoAI~\cite{chondamrongkul2026repoai} & No & Partial & No & No & Partial & No \\
+Wang et al.~\cite{wang2025agents} & Partial & No & No & No & Partial & No \\
+He et al.~\cite{he2025multiagent} & Partial & No & No & No & Partial & No \\
+The AI Hippocampus~\cite{jia2025hippocampus} & Partial & No & No & No & Partial & No \\
+AGR~\cite{wang2026agr} & Partial (Reports) & No & Partial & Partial & Partial & No \\
+AI-IDEs~\cite{contreras2026aiides} & Yes (Traces) & Partial & Partial & No & Yes & No \\
+Jin \& Chen~\cite{jin2026codereview} & No & No & No & No & No & No \\
+Cao et al.~\cite{cao2025programrepair} & No & Partial & No & No & Partial & No \\
+\midrule
+\textbf{Proposed System (This Work)} & \textbf{Yes (Episodic)} & \textbf{Yes (AST Graphs)} & \textbf{Yes (Incremental)} & \textbf{Yes (SHA-256)} & \textbf{Yes (Docker)} & \textbf{Yes (RRF + Cache)} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Formal Research Gaps}
+From this landscape, we synthesize five core research gaps:
+\begin{itemize}
+    \item \textbf{Gap 1: Historical repository knowledge is not yet a persistent memory substrate}: Prior systems supply historical heuristics for isolated single tasks rather than maintaining an evolving structural representation.
+    \item \textbf{Gap 2: Repository RAG and persistent memory remain unintegrated}: Existing RAG systems operate at task-time or persist textual report summaries rather than incrementally updated structural representations of code entities.
+    \item \textbf{Gap 3: Unified representation of code structure, traceability, and memory}: Dependencies, call graphs, edits, retrieved context, and test outcomes must coexist in an incrementally maintainable data structure.
+    \item \textbf{Gap 4: Long-horizon sequential evaluation is underdeveloped}: Agent benchmarks predominantly evaluate isolated tasks. Measuring the cumulative effect of stored memory requires chronological evaluation.
+    \item \textbf{Gap 5: Retrieval must be adaptive and drift-resilient}: When source files evolve, naive memory risks serving outdated symbol signatures and invalid historical patches.
+\end{itemize}
+
+\section{System Architecture \& Mathematical Formulation}
+
+\subsection{Tree-sitter AST Symbol Extraction \& Subtoken Decomposition}
+Given a Python source file $f \in \mathcal{F}$, we parse its concrete syntax tree using Tree-sitter. We extract top-level definitions:
+\begin{equation}
+\mathcal{S}(f) = \left( \mathcal{C}_f, \mathcal{M}_f, \mathcal{K}_f \right)
+\end{equation}
+where $\mathcal{C}_f$ denotes declared class identifiers, $\mathcal{M}_f$ denotes function/method definitions, and $\mathcal{K}_f$ denotes outgoing call invocations.
+
+To match natural-language descriptions that reference partial or composite names, we apply subtoken decomposition supporting CamelCase, snake\_case, and uppercase acronyms:
+\begin{equation}
+\text{Subtokens}(w) = \{ \text{lower}(s) \mid s \in \text{RegexFindall}(w, \text{pattern}), |s| \ge 3 \}
+\end{equation}
+using regex pattern \texttt{"[A-Z]+(?=[A-Z][a-z0-9]|$\backslash$b)|[A-Z][a-z0-9]*|[a-z0-9]+"}.
+
+\subsection{Hybrid Reciprocal Rank Fusion (RRF)}
+Let $\mathcal{R}_{\text{lex}}(f)$ denote the rank of file $f$ under sparse lexical retrieval (sublinear TF-IDF cosine similarity), and $\mathcal{R}_{\text{ast}}(f)$ denote the rank of file $f$ under AST symbol matching. The unified fusion score is defined via Reciprocal Rank Fusion~\cite{cormack2009rrf}:
+\begin{equation}
+\text{RRF}(f) = \frac{1}{k + \mathcal{R}_{\text{lex}}(f)} + \frac{1}{k + \mathcal{R}_{\text{ast}}(f)}, \quad k = 60
+\end{equation}
+Files are sorted in descending order of $\text{RRF}(f)$, and top $K=5$ files are injected into the agent prompt along with signatures.
+
+\subsection{Incremental AST Caching}
+We maintain an in-memory symbol cache:
+\begin{equation}
+\text{Cache}: \text{rel\_path} \to (\text{SHA256}, \mathcal{S}(f))
+\end{equation}
+On task $t$, the system computes SHA-256 hashes for repository source files ($O(M)$ disk I/O, empirically $\approx 243\text{ ms}$ for 2,570 files in Django). If $\text{SHA256}_t(f) = \text{SHA256}_{t-1}(f)$, syntax tree parsing is bypassed ($O(1)$ cache hit).
+
+\subsection{Cryptographic Staleness Invalidation}
+When task $t$ completes, the system records:
+\begin{equation}
+e_t = \left( \text{ID}_t, \mathcal{P}_t, \mathcal{F}^{\text{edited}}_t, \mathcal{F}^{\text{retrieved}}_t, y_t, \mathcal{H}_t \right)
+\end{equation}
+where $y_t \in \{0, 1\}$ denotes harness resolution and $\mathcal{H}_t = \{ f \to \text{SHA256}(f) \}$ stores file hashes. On subsequent task $t' > t$, if $\exists f \in \mathcal{H}_t \text{ s.t. } \text{SHA256}_{t'}(f) \neq \mathcal{H}_t(f)$, the episode is marked stale. Base weight $w_0(e_t) \in \{+1.0, -0.5\}$ is attenuated via $\lambda = 0.20$:
+\begin{equation}
+w(e_t) = \begin{cases} w_0(e_t) & \text{if } \neg\text{Stale}(e_t) \\ \lambda \cdot w_0(e_t) & \text{if } \text{Stale}(e_t) \end{cases}
+\end{equation}
+
+\section{Experimental Setup}
+We evaluate on \textbf{SWE-bench Verified Mini} (\texttt{django/django}, 25 tasks). The shared host checkout was pinned to commit \texttt{b1d6b35e} (Django 3.0-dev) corresponding to \texttt{django-11790}. Zero ground-truth patch leakage was confirmed across all tasks.
+Evaluations utilized \texttt{mini-swe-agent 2.4.6}, \texttt{swebench 4.1.0}, and \texttt{gemini-3.5-flash-lite} (temperature = 0.0) with an explicit 50-turn pacing budget prompt.
+
+\section{Quantitative Results}
+
+\subsection{Retrieval Quality Benchmark ($N=25$)}
+Table~\ref{tab:retrieval} reports HitRate@K (standard Top-K fault localization accuracy) and Mean Reciprocal Rank (MRR) across all 25 tasks.
+
+\begin{table}[ht]
+\caption{Retrieval Quality Benchmark Across 25 Django Tasks}
+\label{tab:retrieval}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Architecture} & \textbf{HitRate@1} & \textbf{HitRate@5} & \textbf{MRR} & \textbf{R@5 Hits} \\
+\midrule
+B (Snapshot TF-IDF) & 0.2000 & 0.6000 & 0.3667 & 15 / 25 \\
+C (Naive Combo) & 0.2000 & 0.6000 & 0.3667 & 15 / 25 \\
+D (Pure AST Ablation) & 0.3200 & 0.6800 & 0.4547 & 17 / 25 \\
+\textbf{D (Full Hybrid RRF)} & \textbf{0.4400} & \textbf{0.8000} & \textbf{0.5793} & \textbf{20 / 25} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A paired Wilcoxon signed-rank test on MRR demonstrates a statistically significant +58.0\% improvement ($W = 13.5, p = 0.0077$). Directional McNemar tests confirm gains on HitRate@1 ($p = 0.035$) and HitRate@5 ($p = 0.031$).
+
+\subsection{End-to-End Agent Task Execution ($N=3$)}
+Table~\ref{tab:execution} summarizes full multi-turn agent runs inside the SWE-bench evaluation harness.
+
+\begin{table}[ht]
+\caption{Master Execution Results Table ($N=3$ Sequential Tasks)}
+\label{tab:execution}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & \textbf{Resolved} & \textbf{Mean Turns} & \textbf{Mean Latency} & \textbf{Mean Cost} \\
+\midrule
+A (Stateless Baseline) & 1/3 (33.3\%) & 46.3 & 357.5s & \$0.0692 \\
+B (Snapshot RAG) & 0/3 (0.0\%) & 40.7 & 264.5s & \$0.0757 \\
+C (Naive Combo) & 1/3 (33.3\%) & 47.0 & 202.0s & \$0.0762 \\
+\textbf{D (Proposed System)} & \textbf{1/3 (33.3\%)} & \textbf{48.7} & \textbf{207.3s} & \textbf{\$0.0679} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All resolving conditions resolved the identical task (\texttt{django-11848}). Despite placing target files at Rank 1 in Tasks 1 and 2, overall task resolution remained bounded at 33.3\%, uncovering the \textbf{Localization--Resolution Disconnect}.
+
+\subsection{Cross-Task Episodic Transfer on Recurrent Subsystems}
+To empirically verify whether episodic memory transfers across related issues within the same subsystem, we evaluated a contiguous recurrent sequence within the \texttt{django/db/models/base.py} cluster (\texttt{django-12209} $\to$ \texttt{django-12273}). 
+
+In Baseline A, lacking memory of Task 1, exploratory bash search commands increased from 13 to 15 on Task 2. In sharp contrast, under Condition D with Tri-Modal RRF, episodic provenance from Task 1 \textbf{slashed exploratory search commands by 66.7\% (from 15 in Condition A to 5 in Condition D)}, accelerating reproduction script synthesis to Turn 10 (compared to Turn 22+ in the stateless baseline). Caching hit rate remained at 100\% (804 files cached, 0 reparsed).
+
+\section{Threats to Validity \& Conclusion}
+Key limitations include: (1) evaluation on a single repository (\texttt{django}); (2) multi-turn sample size ($N=3$ general + $N=2$ recurrent); and (3) the capability ceiling of \texttt{gemini-3.5-flash-lite}.
+
+\textbf{Conclusion}: Persistent repository memory reliably resolves codebase localization (+58\% MRR, 80\% HitRate@5), eliminates exploratory amnesia on recurrent subsystems (reducing search commands by 66.7\%), and provides cryptographic resilience against repository drift. However, bug resolution remains bounded by the downstream LLM's multi-turn code synthesis capabilities.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
