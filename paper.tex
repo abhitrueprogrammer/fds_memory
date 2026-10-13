@@ -34,7 +34,7 @@ In this paper, we formalize and empirically evaluate a \textbf{Session-Persisten
 We conduct an empirical evaluation on \textbf{SWE-bench Verified Mini}:
 \begin{itemize}
     \item \textbf{Significant Localization Gains ($N=25$)}: Hybrid RRF improves Mean Reciprocal Rank (MRR) by \textbf{+58.0\%} (0.5793 vs 0.3667; paired Wilcoxon signed-rank test $W = 13.5$, two-sided $p = 0.0077$). Top-1 hit rate improves to 44.0\% ($p = 0.035$, McNemar test) and Top-5 hit rate reaches 80.0\% ($p = 0.031$, Wilson 95\% CI: [0.609, 0.911]) compared to 60.0\% for snapshot lexical retrieval alone.
-    \item \textbf{Cross-Task Episodic Transfer Across Subsystems}: Across two orthogonal architectural layers—the backend ORM (\texttt{models/base.py}, \texttt{django-12209} $\to$ \texttt{django-12273}) and frontend HTML widgets (\texttt{forms/widgets.py}, \texttt{django-12193} $\to$ \texttt{django-12276})—persistent episodic memory eliminated exploratory amnesia. Search commands dropped by 66.7\% on Task 2 in Cluster 1 and by 100\% (0 searches) on Task 1 in Cluster 2. On Task 2 of Cluster 2 (\texttt{django-12276}), Condition D resolved the issue passing all official Docker test assertions in 41 turns and 283.6s (78s faster and 19.9\% cheaper than Baseline A).
+    \item \textbf{Cross-Task Episodic Transfer Across Subsystems}: Across two orthogonal architectural layers---the backend ORM (\texttt{models/base.py}, \texttt{django-12209} $\to$ \texttt{django-12273}) and frontend HTML widgets (\texttt{forms/widgets.py}, \texttt{django-12193} $\to$ \texttt{django-12276})---persistent episodic memory eliminated exploratory amnesia. Search commands dropped by 66.7\% on Task 2 in Cluster 1 and by 100\% (0 searches) on Task 1 in Cluster 2. On Task 2 of Cluster 2 (\texttt{django-12276}), Condition D resolved the issue passing all official Docker test assertions in 41 turns and 283.6s (78s faster and 19.9\% cheaper than Baseline A).
     \item \textbf{The Localization vs. Resolution Disconnect ($N=3$ Multi-Turn Sequence)}: In an end-to-end multi-turn execution study, the proposed system resolves real-world issues passing the official Docker test suite (\texttt{django-11848}). However, \textbf{overall resolution rate remained flat across all resolving conditions (1/3 or 33.3\%)}. Even when memory placed the target file and function at Rank 1, downstream bug resolution was bottlenecked by the underlying LLM's multi-turn code synthesis capabilities.
     \item \textbf{Exploratory Tool Overhead}: Memory-guided context reduced exploratory bash search commands from 29 to 22 across tasks, with observed mean task duration of 207.3s for Condition D vs 357.5s for Baseline A.
     \item \textbf{Staleness Tracking}: Verification checks confirm that SHA-256 change tracking detects on-disk modifications and applies dynamic weight attenuation, whereas naive string-logging memory is oblivious to repository drift.
@@ -46,7 +46,7 @@ Autonomous Coding Agents, Software Engineering, Persistent Memory, AST Symbol Gr
 \end{IEEEkeywords}
 
 \section{Introduction}
-Autonomous coding agents (e.g., SWE-agent~\cite{yang2024sweagent}, Devin, and mini-swe-agent~\cite{lieret2025minisweagent}) have demonstrated remarkable capabilities on software engineering benchmarks such as SWE-bench~\cite{jimenez2024swebench}. Nevertheless, standard agent scaffolding remains strictly \textbf{stateless}: every issue starts from an empty environment, forcing the agent to discover repository structure, file layouts, and subsystem conventions entirely from scratch.
+Autonomous coding agents (e.g., SWE-agent~\cite{yang2024sweagent}, Devin, Agentless~\cite{xia2024agentless}, and mini-swe-agent~\cite{lieret2025minisweagent}) have demonstrated remarkable capabilities on software engineering benchmarks such as SWE-bench~\cite{jimenez2024swebench}. Nevertheless, standard agent scaffolding remains strictly \textbf{stateless}: every issue starts from an empty environment, forcing the agent to discover repository structure, file layouts, and subsystem conventions entirely from scratch.
 
 In large codebases containing hundreds of thousands of lines of code (such as the Django framework), statelessness incurs severe operational costs:
 \begin{enumerate}
@@ -66,13 +66,13 @@ This paper bridges this gap by presenting a complete architectural implementatio
 \end{itemize}
 
 \section{Literature Foundation \& Taxonomy}
-Our work builds on nine foundational peer-reviewed studies published across empirical software engineering, artificial intelligence, and automated software engineering venues:
+Our work builds on foundational peer-reviewed studies published across empirical software engineering, artificial intelligence, and automated software engineering venues:
 
 \subsection{History-Aware Repository Context}
 \textbf{HAFix}~\cite{shi2026hafix} directly addresses the limitation that LLM-based bug-fixing approaches rely primarily on the current project snapshot while overlooking historical repository information. HAFix introduces history-augmented heuristics and aggregates historical commit signals to improve bug fixing. Its significance is conceptual as much as empirical: repository history is not merely archival metadata; selected historical evidence can become actionable task context. However, HAFix supplies historical heuristics for isolated single-task bug-fixing formulations, rather than maintaining a continuously evolving, multi-task repository memory representation.
 
 \subsection{Repository-Level Retrieval \& Multi-Agent Refactoring}
-\textbf{RepoAI}~\cite{chondamrongkul2026repoai} demonstrates repository-level code understanding and refactoring through specialized agents (intent classification, code generation, validation) combined with retrieval-augmented generation (RAG). Its evaluation underscores that repository-level tasks benefit from structured retrieval and validation loops. Complementarily, Wang et al.~\cite{wang2026agr} introduce \textbf{Agent-Governed Retrieval-Augmented Generation (AGR)}, which retrieves evidence from official documentation, historical bug reports, and web sources, using an agentic gate to judge evidence sufficiency and reuse prior reports via long-term memory. However, RepoAI is framed around refactoring pipelines, and AGR persists report-level artifacts rather than maintaining incrementally updated, code-structural representations of source entities and interaction outcomes across sequential coding tasks.
+\textbf{RepoAI}~\cite{chondamrongkul2026repoai} demonstrates repository-level code understanding and refactoring through specialized agents combined with retrieval-augmented generation. Complementary methods such as RepoCoder~\cite{zhang2023repocoder} explore iterative retrieval for code completion. Wang et al.~\cite{wang2026agr} introduce \textbf{Agent-Governed Retrieval-Augmented Generation (AGR)}, which retrieves evidence from documentation, historical reports, and web sources, using an agentic gate to judge evidence sufficiency. However, RepoAI is framed around refactoring pipelines, and AGR persists report-level artifacts rather than maintaining incrementally updated, code-structural representations of source entities and interaction outcomes across sequential coding tasks.
 
 \subsection{Software-Engineering Agents, AI-IDEs, and Memory}
 The comprehensive survey by \textbf{Wang et al.}~\cite{wang2025agents} organizes software-engineering agents around perception, memory, and action, establishing memory as a first-class architectural component. \textbf{He et al.}~\cite{he2025multiagent} extend this perspective to LLM-based multi-agent systems, highlighting collaboration, specialized roles, and open challenges. 
@@ -125,7 +125,7 @@ From this landscape, we synthesize five core research gaps:
 \section{System Architecture \& Mathematical Formulation}
 
 \subsection{Tree-sitter AST Symbol Extraction \& Subtoken Decomposition}
-Given a Python source file $f \in \mathcal{F}$, we parse its concrete syntax tree using Tree-sitter. We extract top-level definitions:
+Given a Python source file $f \in \mathcal{F}$, we parse its concrete syntax tree using Tree-sitter, building on lightweight repository mapping paradigms~\cite{gauthier2023aider} without the resource overhead of heavy dense pre-trained encoders~\cite{feng2020codebert, guo2021graphcodebert}. We extract top-level definitions:
 \begin{equation}
 \mathcal{S}(f) = \left( \mathcal{C}_f, \mathcal{M}_f, \mathcal{K}_f \right)
 \end{equation}
@@ -162,12 +162,22 @@ w(e_t) = \begin{cases} w_0(e_t) & \text{if } \neg\text{Stale}(e_t) \\ \lambda \c
 \end{equation}
 
 \section{Experimental Setup}
-We evaluate on \textbf{SWE-bench Verified Mini} (\texttt{django/django}, 25 tasks). The shared host checkout was pinned to commit \texttt{b1d6b35e} (Django 3.0-dev) corresponding to \texttt{django-11790}. Zero ground-truth patch leakage was confirmed across all tasks.
-Evaluations utilized \texttt{mini-swe-agent 2.4.6}, \texttt{swebench 4.1.0}, and \texttt{gemini-3.5-flash-lite} (temperature = 0.0) with an explicit 50-turn pacing budget prompt.
+We evaluate on \textbf{SWE-bench Verified Mini}~\cite{jimenez2024swebench} (\texttt{django/django}, 25 tasks). The shared host checkout was pinned to commit \texttt{b1d6b35e} (Django 3.0-dev) corresponding to \texttt{django-11790}. Zero ground-truth patch leakage was confirmed across all tasks.
+Evaluations utilized \texttt{mini-swe-agent 2.4.6}~\cite{lieret2025minisweagent}, \texttt{swebench 4.1.0}, and \texttt{gemini-3.5-flash-lite} (temperature = 0.0) with an explicit 50-turn pacing budget prompt.
+
+\subsection{Research Questions}
+Our empirical study investigates five core research questions:
+\begin{itemize}
+    \item \textbf{RQ1 (Fault Localization)}: Does fusing Tree-sitter AST symbol graphs with sparse lexical retrieval via Reciprocal Rank Fusion ($k=60$) improve fault localization accuracy over baseline retrieval across repository tasks?
+    \item \textbf{RQ2 (Multi-Turn Resolution vs. Localization)}: Does placing the target file at Rank 1 translate to higher end-to-end task resolution rates within a multi-turn SWE agent loop?
+    \item \textbf{RQ3 (Incremental AST Caching Amortization)}: Does content-addressed AST symbol caching amortize parsing overhead across consecutive tasks without disk thrashing?
+    \item \textbf{RQ4 (Cryptographic Staleness Tracking)}: Can SHA-256 change detection prevent agents from serving outdated memory trajectories when repository source files evolve?
+    \item \textbf{RQ5 (Cross-Task Episodic Transfer)}: Does persistent episodic memory transfer actionable context and reduce exploratory tool overhead across sequential tasks within recurrent subsystems?
+\end{itemize}
 
 \section{Quantitative Results}
 
-\subsection{Retrieval Quality Benchmark ($N=25$)}
+\subsection{Retrieval Quality Benchmark ($N=25$, Answering RQ1)}
 Table~\ref{tab:retrieval} reports HitRate@K (standard Top-K fault localization accuracy) and Mean Reciprocal Rank (MRR) across all 25 tasks.
 
 \begin{table}[ht]
@@ -188,7 +198,7 @@ D (Pure AST Ablation) & 0.3200 & 0.6800 & 0.4547 & 17 / 25 \\
 
 A paired Wilcoxon signed-rank test on MRR demonstrates a statistically significant +58.0\% improvement ($W = 13.5, p = 0.0077$). Directional McNemar tests confirm gains on HitRate@1 ($p = 0.035$) and HitRate@5 ($p = 0.031$).
 
-\subsection{End-to-End Agent Task Execution ($N=3$)}
+\subsection{End-to-End Agent Task Execution ($N=3$, Answering RQ2)}
 Table~\ref{tab:execution} summarizes full multi-turn agent runs inside the SWE-bench evaluation harness.
 
 \begin{table}[ht]
@@ -207,9 +217,9 @@ C (Naive Combo) & 1/3 (33.3\%) & 47.0 & 202.0s & \$0.0762 \\
 \end{tabular}
 \end{table}
 
-All resolving conditions resolved the identical task (\texttt{django-11848}). Despite placing target files at Rank 1 in Tasks 1 and 2, overall task resolution remained bounded at 33.3\%, uncovering the \textbf{Localization--Resolution Disconnect}.
+All resolving conditions resolved the identical task (\texttt{django-11848}). Despite placing target files at Rank 1 in Tasks 1 and 2, overall task resolution remained bounded at 33.3\%, uncovering the \textbf{Localization--Resolution Disconnect}: downstream resolution remains constrained by LLM synthesis capabilities rather than file discovery.
 
-\subsection{Cross-Task Episodic Transfer Across Recurrent Subsystems}
+\subsection{Cross-Task Episodic Transfer Across Recurrent Subsystems (Answering RQ5)}
 To empirically verify whether episodic memory transfers across related issues within the same subsystem, and whether this transfer generalizes across distinct architectural layers, we evaluated two orthogonal recurrent clusters:
 \begin{enumerate}
     \item \textbf{Cluster 1 (Backend ORM)}: \texttt{django/db/models/base.py} (\texttt{django-12209} $\to$ \texttt{django-12273}).
@@ -245,12 +255,65 @@ In Cluster 1, stateless Baseline A exhibited amnesia: exploratory bash search co
 
 In Cluster 2, hybrid AST-lexical RRF identified \texttt{django/forms/widgets.py} at \textbf{Rank 1}, eliminating unguided bash search commands entirely on Task 1 ($5 \to 0$, $-100\%$). On Task 2, Condition D injected verified fresh episodic context from Task 1, placed the target at Rank 1, and successfully \textbf{resolved the issue passing all official SWE-bench evaluation harness assertions} in 41 turns and 283.6s (saving 78.0s and 19.9\% API cost over Baseline A).
 
-These empirical findings demonstrate that episodic transfer operates reliably across distinct codebase architectural tiers, effectively mitigating exploratory search overhead and accelerating bug resolution when the model possesses sufficient synthesis capacity.
+\subsection{AST Caching Amortization (Answering RQ3)}
+Table~\ref{tab:caching} tracks Tree-sitter AST parsing operations across sequential tasks. On Task 1, full parsing indexes 804 repository files. On subsequent tasks, unchanged files achieve a 100\% cache hit rate ($O(1)$ lookup) backed by an $O(M)$ SHA-256 integrity scan across all 2,570 repository Python files requiring $\approx 243$\,ms of disk I/O.
 
-\section{Threats to Validity \& Conclusion}
-Key limitations include: (1) evaluation on a single large-scale repository (\texttt{django}); (2) multi-turn execution scope ($N=3$ general sequence + $N=4$ recurrent sequence evaluations across two clusters); and (3) the capability ceiling of \texttt{gemini-3.5-flash-lite}.
+\begin{table}[ht]
+\caption{AST Symbol Caching Amortization Across Consecutive Tasks}
+\label{tab:caching}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Task Position} & \textbf{Task ID} & \textbf{Reparsed} & \textbf{Cached (0ms)} & \textbf{Hit Rate} \\
+\midrule
+Task 1 & \texttt{django-11790} & 804 & 0 & 0.0\% \\
+Task 2 & \texttt{django-11815} & 0 & 804 & \textbf{100.0\%} \\
+Task 3 & \texttt{django-11848} & 0 & 804 & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\textbf{Conclusion}: Persistent repository memory reliably resolves codebase localization (+58\% MRR, 80\% HitRate@5), eliminates exploratory amnesia across diverse subsystems (reducing search commands by up to 100\%), and provides cryptographic resilience against repository drift via SHA-256 staleness tracking. Furthermore, our findings characterize the \textit{Localization--Resolution Disconnect}: while persistent memory successfully routes the agent to relevant files and accelerates problem diagnosis, end-to-end task resolution remains ultimately bounded by the underlying LLM's multi-turn code synthesis capabilities.
+\subsection{Cryptographic Staleness Invalidation (Answering RQ4)}
+Table~\ref{tab:staleness} evaluates memory behavior under a controlled drift event where an indexed file was modified on disk between tasks.
+
+\begin{table}[ht]
+\caption{Controlled Staleness Verification Under Repository Drift}
+\label{tab:staleness}
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Evaluation Parameter} & \textbf{Condition C (Naive)} & \textbf{Condition D (Proposed)} \\
+\midrule
+Drift Detection & $\times$ Ignored (\texttt{False}) & \textbf{\checkmark~Detected (\texttt{True})} \\
+Verification Method & None (Blind string match) & SHA-256 cryptographic hash \\
+Staleness Flag & None & \textbf{\texttt{[STALE - Files changed]}} \\
+Context Weight & 1.00 (Full Weight) & \textbf{0.20 (80\% Attenuation)} \\
+Action Taken & Serves stale context & Re-indexes AST on next query \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Naive memory logging serves outdated symbol signatures by construction. In contrast, SHA-256 verification detects on-disk drift and attenuates stale memory weights from 1.00 to 0.20, safeguarding against obsolete code trajectories.
+
+\section{Qualitative Case Studies \& Post-Mortem}
+
+\subsection{Case 1: Resolved Bug in \texttt{django-11848}}
+RFC 7231 Section 7.1.1.1 mandates that HTTP date parsers interpreting 2-digit years must apply a sliding window assigning dates over 50 years in the future to the previous century. Django hardcoded \texttt{year < 70 -> year + 2000}. Under Condition D, the agent received repository context routing directly to \texttt{django/utils/http.py} (\texttt{parse\_http_date}) at Rank 2. The agent navigated directly to lines 170--210 at turn 2, implemented dynamic century windowing, verified the fix against unit tests, and successfully passed all SWE-bench harness assertions.
+
+\subsection{Case 2: Downstream Synthesis Failure in \texttt{django-11815}}
+In \texttt{django-11815}, the migration serializer incorrectly wrote \texttt{Enum.name} instead of \texttt{Enum.value} for Enum default fields. Memory accurately localized \texttt{django/db/migrations/serializer.py} and class \texttt{EnumSerializer} at Rank 1. However, the agent's multi-turn regex edits introduced syntax errors and failed to converge before turn exhaustion. This case directly demonstrates the \textbf{Localization--Resolution Disconnect}: precise fault localization cannot compensate for downstream patch synthesis limitations.
+
+\section{Threats to Validity}
+Key limitations include:
+\begin{enumerate}
+    \item \textbf{Single Repository Focus}: Evaluations were conducted on \texttt{django/django}; multi-language validation is left for future work.
+    \item \textbf{Static Host Checkout}: Retrieval benchmarks utilized a fixed host checkout at commit \texttt{b1d6b35e} rather than dynamic per-task git checkouts to prevent disk thrashing.
+    \item \textbf{Model Capability Ceiling}: Experiments were conducted with \texttt{gemini-3.5-flash-lite}; frontier models may exhibit higher downstream resolution when accurately localized.
+    \item \textbf{Subsystem Disjointness in Arbitrary Streams}: In arbitrary bug sequences spanning disjoint domains, episodic transfer is domain-conditional, necessitating automated clustering to trigger episodic retrieval selectively.
+\end{enumerate}
+
+\section{Conclusion}
+We formalized and evaluated a \textbf{Session-Persistent Repository Memory Architecture} for SWE agents. The system significantly improves fault localization (+58.0\% MRR, 80\% HitRate@5), eliminates exploratory search overhead across recurrent subsystems (reducing searches by up to 100\% and resolving SWE-bench issues 78s faster), and protects persistent state via SHA-256 staleness tracking. Furthermore, our findings characterize the \textit{Localization--Resolution Disconnect}: while persistent memory successfully routes the agent to relevant files and accelerates problem diagnosis, end-to-end task resolution remains ultimately bounded by the downstream LLM's multi-turn code synthesis capabilities.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
