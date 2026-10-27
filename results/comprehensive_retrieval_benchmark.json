@@ -2,35 +2,35 @@
   "total_tasks": 25,
   "aggregated_metrics": {
     "B_Snapshot_BM25": {
-      "recall@1": 0.2,
+      "recall@1": 0.28,
       "recall@1_ci95": [
-        0.0886,
-        0.3913
+        0.1428,
+        0.4758
       ],
-      "recall@3": 0.52,
-      "recall@5": 0.6,
+      "recall@3": 0.56,
+      "recall@5": 0.64,
       "recall@5_ci95": [
-        0.4074,
-        0.766
+        0.4452,
+        0.7975
       ],
-      "mrr": 0.3667,
-      "raw_hits_r5": 15,
+      "mrr": 0.44,
+      "raw_hits_r5": 16,
       "total_tasks": 25
     },
     "C_Naive_Combo": {
-      "recall@1": 0.2,
+      "recall@1": 0.28,
       "recall@1_ci95": [
-        0.0886,
-        0.3913
+        0.1428,
+        0.4758
       ],
-      "recall@3": 0.52,
-      "recall@5": 0.6,
+      "recall@3": 0.56,
+      "recall@5": 0.64,
       "recall@5_ci95": [
-        0.4074,
-        0.766
+        0.4452,
+        0.7975
       ],
-      "mrr": 0.3667,
-      "raw_hits_r5": 15,
+      "mrr": 0.44,
+      "raw_hits_r5": 16,
       "total_tasks": 25
     },
     "D_Ablation_Pure_AST": {
@@ -39,30 +39,30 @@
         0.172,
         0.5159
       ],
-      "recall@3": 0.56,
+      "recall@3": 0.52,
       "recall@5": 0.68,
       "recall@5_ci95": [
         0.4841,
         0.828
       ],
-      "mrr": 0.4547,
+      "mrr": 0.4447,
       "raw_hits_r5": 17,
       "total_tasks": 25
     },
     "D_Full_Hybrid_RRF": {
-      "recall@1": 0.44,
+      "recall@1": 0.2,
       "recall@1_ci95": [
-        0.2667,
-        0.6293
+        0.0886,
+        0.3913
       ],
-      "recall@3": 0.68,
-      "recall@5": 0.8,
+      "recall@3": 0.2,
+      "recall@5": 0.36,
       "recall@5_ci95": [
-        0.6087,
-        0.9114
+        0.2025,
+        0.5548
       ],
-      "mrr": 0.5793,
-      "raw_hits_r5": 20,
+      "mrr": 0.238,
+      "raw_hits_r5": 9,
       "total_tasks": 25
     }
   },
@@ -104,8 +104,8 @@
           "retrieved": [
             "django/core/paginator.py",
             "django/db/models/query.py",
-            "django/template/defaulttags.py",
             "django/contrib/postgres/fields/ranges.py",
+            "django/template/defaulttags.py",
             "django/db/utils.py"
           ],
           "recall@1": 1.0,
@@ -138,28 +138,28 @@
         "B_Snapshot_BM25": {
           "retrieved": [
             "django/contrib/admin/forms.py",
-            "setup.py",
             "django/contrib/auth/forms.py",
+            "setup.py",
             "django/db/backends/oracle/operations.py",
             "django/contrib/auth/handlers/modwsgi.py"
           ],
           "recall@1": 0.0,
           "recall@3": 1.0,
           "recall@5": 1.0,
-          "reciprocal_rank": 0.3333
+          "reciprocal_rank": 0.5
         },
         "C_Naive_Combo": {
           "retrieved": [
             "django/contrib/admin/forms.py",
-            "setup.py",
             "django/contrib/auth/forms.py",
+            "setup.py",
             "django/db/backends/oracle/operations.py",
             "django/contrib/auth/handlers/modwsgi.py"
           ],
           "recall@1": 0.0,
           "recall@3": 1.0,
           "recall@5": 1.0,
-          "reciprocal_rank": 0.3333
+          "reciprocal_rank": 0.5
         },
         "D_Ablation_Pure_AST": {
           "retrieved": [
@@ -177,10 +177,10 @@
         "D_Full_Hybrid_RRF": {
           "retrieved": [
             "django/contrib/auth/forms.py",
-            "django/contrib/auth/models.py",
-            "django/forms/fields.py",
-            "django/contrib/auth/base_user.py",
-            "django/db/backends/oracle/operations.py"
+            "django/core/paginator.py",
+            "django/db/models/query.py",
+            "django/http/response.py",
+            "django/core/files/utils.py"
           ],
           "recall@1": 1.0,
           "recall@3": 1.0,
@@ -237,11 +237,11 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
+            "django/db/models/query.py",
+            "django/contrib/auth/forms.py",
+            "django/http/response.py",
             "django/db/models/fields/__init__.py",
-            "django/db/migrations/exceptions.py",
-            "django/utils/translation/trans_real.py",
-            "django/forms/fields.py",
-            "django/templatetags/i18n.py"
+            "django/core/paginator.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
@@ -259,29 +259,29 @@
       "variants": {
         "B_Snapshot_BM25": {
           "retrieved": [
+            "django/utils/http.py",
             "django/utils/datetime_safe.py",
             "django/contrib/humanize/templatetags/humanize.py",
-            "django/utils/http.py",
             "django/utils/timesince.py",
             "django/db/backends/oracle/utils.py"
           ],
-          "recall@1": 0.0,
+          "recall@1": 1.0,
           "recall@3": 1.0,
           "recall@5": 1.0,
-          "reciprocal_rank": 0.3333
+          "reciprocal_rank": 1.0
         },
         "C_Naive_Combo": {
           "retrieved": [
+            "django/utils/http.py",
             "django/utils/datetime_safe.py",
             "django/contrib/humanize/templatetags/humanize.py",
-            "django/utils/http.py",
             "django/utils/timesince.py",
             "django/db/backends/oracle/utils.py"
           ],
-          "recall@1": 0.0,
+          "recall@1": 1.0,
           "recall@3": 1.0,
           "recall@5": 1.0,
-          "reciprocal_rank": 0.3333
+          "reciprocal_rank": 1.0
         },
         "D_Ablation_Pure_AST": {
           "retrieved": [
@@ -298,16 +298,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/utils/datetime_safe.py",
+            "django/db/models/fields/__init__.py",
+            "django/http/response.py",
+            "django/db/models/query.py",
             "django/utils/http.py",
-            "django/views/generic/dates.py",
-            "django/utils/dateformat.py",
-            "django/db/backends/base/operations.py"
+            "django/utils/datetime_safe.py"
           ],
           "recall@1": 0.0,
-          "recall@3": 1.0,
+          "recall@3": 0.0,
           "recall@5": 1.0,
-          "reciprocal_rank": 0.5
+          "reciprocal_rank": 0.25
         }
       }
     },
@@ -359,16 +359,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/forms/models.py",
-            "django/forms/fields.py",
             "django/db/models/fields/__init__.py",
-            "django/forms/forms.py",
-            "django/core/exceptions.py"
+            "django/contrib/auth/forms.py",
+            "django/db/models/query.py",
+            "django/forms/models.py",
+            "django/forms/fields.py"
           ],
           "recall@1": 0.0,
-          "recall@3": 1.0,
+          "recall@3": 0.0,
           "recall@5": 1.0,
-          "reciprocal_rank": 0.5
+          "reciprocal_rank": 0.2
         }
       }
     },
@@ -421,16 +421,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/db/models/deletion.py",
-            "django/db/models/fields/related.py",
-            "django/contrib/auth/models.py",
-            "django/contrib/contenttypes/fields.py",
-            "django/db/models/fields/__init__.py"
+            "django/db/models/fields/__init__.py",
+            "django/db/models/query.py",
+            "django/forms/fields.py",
+            "django/forms/models.py",
+            "django/contrib/auth/forms.py"
           ],
-          "recall@1": 0.5,
-          "recall@3": 0.5,
-          "recall@5": 0.5,
-          "reciprocal_rank": 1.0
+          "recall@1": 0.0,
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -482,16 +482,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
+            "django/db/models/query.py",
+            "django/db/models/fields/__init__.py",
             "django/core/files/base.py",
             "django/db/models/fields/files.py",
-            "django/db/backends/base/operations.py",
-            "django/db/backends/sqlite3/operations.py",
-            "django/db/backends/oracle/operations.py"
+            "django/db/backends/base/operations.py"
           ],
-          "recall@1": 0.0,
-          "recall@3": 0.0,
-          "recall@5": 0.0,
-          "reciprocal_rank": 0.0
+          "recall@1": 1.0,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "reciprocal_rank": 1.0
         }
       }
     },
@@ -532,8 +532,8 @@
           "retrieved": [
             "django/db/models/fields/__init__.py",
             "django/contrib/admin/checks.py",
-            "django/forms/fields.py",
             "django/db/models/base.py",
+            "django/forms/fields.py",
             "django/db/models/fields/related.py"
           ],
           "recall@1": 0.0,
@@ -544,15 +544,15 @@
         "D_Full_Hybrid_RRF": {
           "retrieved": [
             "django/db/models/fields/__init__.py",
-            "django/db/backends/oracle/creation.py",
-            "django/db/models/enums.py",
             "django/db/models/fields/files.py",
-            "django/contrib/admin/filters.py"
+            "django/forms/models.py",
+            "django/db/models/query.py",
+            "django/forms/fields.py"
           ],
           "recall@1": 0.0,
-          "recall@3": 1.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 0.3333
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -606,9 +606,9 @@
           "retrieved": [
             "django/db/models/fields/__init__.py",
             "django/forms/models.py",
-            "django/contrib/admin/options.py",
-            "django/contrib/contenttypes/models.py",
-            "django/contrib/flatpages/models.py"
+            "django/forms/fields.py",
+            "django/db/models/query.py",
+            "django/db/models/fields/files.py"
           ],
           "recall@1": 1.0,
           "recall@3": 1.0,
@@ -653,28 +653,28 @@
         "D_Ablation_Pure_AST": {
           "retrieved": [
             "django/db/migrations/autodetector.py",
-            "django/db/backends/ddl_references.py",
             "django/db/backends/base/schema.py",
             "django/db/models/query.py",
+            "django/db/backends/ddl_references.py",
             "django/db/models/fields/related.py"
           ],
           "recall@1": 0.0,
-          "recall@3": 1.0,
+          "recall@3": 0.0,
           "recall@5": 1.0,
-          "reciprocal_rank": 0.5
+          "reciprocal_rank": 0.25
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
+            "django/db/backends/base/operations.py",
+            "django/db/models/query.py",
+            "django/db/models/fields/__init__.py",
             "django/db/backends/ddl_references.py",
-            "django/db/models/indexes.py",
-            "django/db/backends/postgresql/schema.py",
-            "django/db/backends/base/schema.py",
-            "django/db/models/base.py"
+            "django/db/backends/postgresql/schema.py"
           ],
-          "recall@1": 1.0,
-          "recall@3": 1.0,
+          "recall@1": 0.0,
+          "recall@3": 0.0,
           "recall@5": 1.0,
-          "reciprocal_rank": 1.0
+          "reciprocal_rank": 0.25
         }
       }
     },
@@ -727,15 +727,15 @@
         "D_Full_Hybrid_RRF": {
           "retrieved": [
             "django/db/models/fields/__init__.py",
-            "django/contrib/gis/db/models/fields.py",
             "django/db/models/query.py",
-            "django/db/models/lookups.py",
-            "django/db/models/sql/query.py"
+            "django/forms/fields.py",
+            "django/db/backends/base/operations.py",
+            "django/contrib/gis/db/models/fields.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 0.2
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -749,8 +749,8 @@
         "B_Snapshot_BM25": {
           "retrieved": [
             "django/conf/locale/es/formats.py",
-            "django/conf/locale/ca/formats.py",
             "django/conf/locale/lt/formats.py",
+            "django/conf/locale/ca/formats.py",
             "django/conf/locale/gl/formats.py",
             "django/conf/locale/es_AR/formats.py"
           ],
@@ -762,8 +762,8 @@
         "C_Naive_Combo": {
           "retrieved": [
             "django/conf/locale/es/formats.py",
-            "django/conf/locale/ca/formats.py",
             "django/conf/locale/lt/formats.py",
+            "django/conf/locale/ca/formats.py",
             "django/conf/locale/gl/formats.py",
             "django/conf/locale/es_AR/formats.py"
           ],
@@ -787,16 +787,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/urls/resolvers.py",
-            "django/contrib/admin/helpers.py",
-            "django/forms/formsets.py",
-            "django/contrib/admin/options.py",
-            "django/contrib/admin/views/__init__.py"
+            "django/db/models/query.py",
+            "django/forms/models.py",
+            "django/http/response.py",
+            "django/db/models/fields/__init__.py",
+            "django/core/paginator.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 0.25
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -811,8 +811,8 @@
         "B_Snapshot_BM25": {
           "retrieved": [
             "django/contrib/admindocs/utils.py",
-            "django/template/base.py",
             "docs/_ext/djangodocs.py",
+            "django/template/base.py",
             "django/core/files/base.py",
             "django/db/migrations/writer.py"
           ],
@@ -824,8 +824,8 @@
         "C_Naive_Combo": {
           "retrieved": [
             "django/contrib/admindocs/utils.py",
-            "django/template/base.py",
             "docs/_ext/djangodocs.py",
+            "django/template/base.py",
             "django/core/files/base.py",
             "django/db/migrations/writer.py"
           ],
@@ -849,16 +849,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/contrib/admindocs/utils.py",
-            "django/template/defaultfilters.py",
-            "django/template/base.py",
-            "django/db/backends/oracle/creation.py",
-            "django/http/response.py"
+            "django/http/response.py",
+            "django/db/models/query.py",
+            "django/core/files/base.py",
+            "django/db/models/fields/__init__.py",
+            "django/template/utils.py"
           ],
-          "recall@1": 0.5,
-          "recall@3": 0.5,
-          "recall@5": 0.5,
-          "reciprocal_rank": 1.0
+          "recall@1": 0.0,
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -910,16 +910,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/forms/widgets.py",
             "django/forms/fields.py",
-            "django/contrib/admin/widgets.py",
-            "django/contrib/postgres/forms/array.py",
-            "django/forms/boundfield.py"
+            "django/contrib/auth/forms.py",
+            "django/forms/models.py",
+            "django/contrib/gis/db/models/fields.py",
+            "django/db/models/fields/__init__.py"
           ],
-          "recall@1": 1.0,
-          "recall@3": 1.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 1.0
+          "recall@1": 0.0,
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -972,10 +972,10 @@
         "D_Full_Hybrid_RRF": {
           "retrieved": [
             "django/db/models/fields/__init__.py",
-            "django/db/models/fields/related_descriptors.py",
-            "django/contrib/contenttypes/fields.py",
-            "django/contrib/contenttypes/models.py",
-            "django/core/management/commands/loaddata.py"
+            "django/db/models/fields/files.py",
+            "django/db/models/query.py",
+            "django/forms/fields.py",
+            "django/db/backends/base/operations.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
@@ -1022,8 +1022,8 @@
             "django/db/models/query.py",
             "django/template/library.py",
             "django/template/defaultfilters.py",
-            "django/db/utils.py",
-            "django/db/models/fields/__init__.py"
+            "django/db/models/fields/__init__.py",
+            "django/db/utils.py"
           ],
           "recall@1": 0.0,
           "recall@3": 1.0,
@@ -1032,16 +1032,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/template/library.py",
-            "django/template/base.py",
-            "django/template/loader_tags.py",
-            "django/template/defaultfilters.py",
-            "django/core/management/base.py"
+            "django/db/models/query.py",
+            "django/db/models/fields/__init__.py",
+            "django/db/backends/base/operations.py",
+            "django/template/utils.py",
+            "django/forms/fields.py"
           ],
-          "recall@1": 1.0,
-          "recall@3": 1.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 1.0
+          "recall@1": 0.0,
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -1094,10 +1094,10 @@
         "D_Full_Hybrid_RRF": {
           "retrieved": [
             "django/db/models/fields/__init__.py",
-            "django/contrib/sessions/backends/db.py",
-            "django/contrib/contenttypes/fields.py",
-            "django/db/models/fields/related_descriptors.py",
-            "django/db/models/fields/files.py"
+            "django/db/models/fields/files.py",
+            "django/db/models/query.py",
+            "django/forms/fields.py",
+            "django/forms/models.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
@@ -1154,16 +1154,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/forms/widgets.py",
             "django/forms/models.py",
-            "django/forms/formsets.py",
-            "django/forms/boundfield.py",
-            "django/contrib/sessions/backends/db.py"
+            "django/forms/fields.py",
+            "django/db/models/query.py",
+            "django/db/models/fields/files.py",
+            "django/contrib/auth/forms.py"
           ],
-          "recall@1": 1.0,
-          "recall@3": 1.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 1.0
+          "recall@1": 0.0,
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -1176,29 +1176,29 @@
       "variants": {
         "B_Snapshot_BM25": {
           "retrieved": [
+            "django/db/models/enums.py",
             "django/contrib/sessions/backends/signed_cookies.py",
             "django/template/library.py",
             "django/contrib/gis/db/backends/postgis/introspection.py",
-            "django/core/management/base.py",
-            "django/db/models/fields/__init__.py"
+            "django/core/management/base.py"
           ],
-          "recall@1": 0.0,
-          "recall@3": 0.0,
-          "recall@5": 0.0,
-          "reciprocal_rank": 0.0
+          "recall@1": 1.0,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "reciprocal_rank": 1.0
         },
         "C_Naive_Combo": {
           "retrieved": [
+            "django/db/models/enums.py",
             "django/contrib/sessions/backends/signed_cookies.py",
             "django/template/library.py",
             "django/contrib/gis/db/backends/postgis/introspection.py",
-            "django/core/management/base.py",
-            "django/db/models/fields/__init__.py"
+            "django/core/management/base.py"
           ],
-          "recall@1": 0.0,
-          "recall@3": 0.0,
-          "recall@5": 0.0,
-          "reciprocal_rank": 0.0
+          "recall@1": 1.0,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "reciprocal_rank": 1.0
         },
         "D_Ablation_Pure_AST": {
           "retrieved": [
@@ -1216,15 +1216,15 @@
         "D_Full_Hybrid_RRF": {
           "retrieved": [
             "django/db/models/fields/__init__.py",
-            "django/db/models/enums.py",
-            "django/template/context.py",
             "django/forms/models.py",
-            "django/forms/boundfield.py"
+            "django/template/utils.py",
+            "django/db/backends/base/operations.py",
+            "django/db/models/query.py"
           ],
           "recall@1": 0.0,
-          "recall@3": 1.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 0.5
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -1276,16 +1276,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/contrib/postgres/forms/jsonb.py",
-            "django/contrib/postgres/fields/jsonb.py",
-            "django/contrib/admin/options.py",
-            "django/contrib/admin/helpers.py",
-            "django/contrib/admin/utils.py"
+            "django/db/models/fields/__init__.py",
+            "django/forms/fields.py",
+            "django/db/models/query.py",
+            "django/db/backends/base/operations.py",
+            "django/forms/models.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 0.2
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -1338,16 +1338,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/db/models/base.py",
-            "django/db/models/fields/related.py",
-            "django/db/models/deletion.py",
-            "django/db/models/fields/reverse_related.py",
-            "django/db/models/options.py"
+            "django/db/models/fields/__init__.py",
+            "django/forms/fields.py",
+            "django/db/models/query.py",
+            "django/forms/models.py",
+            "django/db/models/fields/files.py"
           ],
-          "recall@1": 0.5,
-          "recall@3": 0.5,
-          "recall@5": 1.0,
-          "reciprocal_rank": 1.0
+          "recall@1": 0.0,
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -1400,16 +1400,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/forms/widgets.py",
             "django/forms/models.py",
-            "django/contrib/admin/options.py",
-            "django/contrib/admin/widgets.py",
-            "django/contrib/admin/checks.py"
+            "django/db/models/fields/__init__.py",
+            "django/forms/fields.py",
+            "django/contrib/auth/forms.py",
+            "django/db/models/fields/files.py"
           ],
-          "recall@1": 0.0,
+          "recall@1": 0.5,
           "recall@3": 0.5,
           "recall@5": 0.5,
-          "reciprocal_rank": 0.5
+          "reciprocal_rank": 1.0
         }
       }
     },
@@ -1461,16 +1461,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/db/models/options.py",
-            "django/db/backends/base/schema.py",
-            "django/db/migrations/operations/models.py",
-            "django/db/migrations/recorder.py",
-            "django/db/backends/mysql/schema.py"
+            "django/db/backends/postgresql/schema.py",
+            "django/forms/models.py",
+            "django/db/models/query.py",
+            "django/db/models/fields/__init__.py",
+            "django/db/backends/base/operations.py"
           ],
           "recall@1": 0.0,
-          "recall@3": 1.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 0.5
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -1522,16 +1522,16 @@
         },
         "D_Full_Hybrid_RRF": {
           "retrieved": [
-            "django/contrib/admin/options.py",
-            "django/contrib/admin/widgets.py",
-            "django/forms/widgets.py",
-            "django/contrib/auth/admin.py",
-            "django/forms/boundfield.py"
+            "django/forms/models.py",
+            "django/forms/fields.py",
+            "django/contrib/auth/forms.py",
+            "django/db/models/query.py",
+            "django/db/backends/base/operations.py"
           ],
-          "recall@1": 1.0,
-          "recall@3": 1.0,
-          "recall@5": 1.0,
-          "reciprocal_rank": 1.0
+          "recall@1": 0.0,
+          "recall@3": 0.0,
+          "recall@5": 0.0,
+          "reciprocal_rank": 0.0
         }
       }
     },
@@ -1548,7 +1548,7 @@
             "django/views/generic/detail.py",
             "django/contrib/sites/managers.py",
             "django/contrib/gis/views.py",
-            "django/db/models/manager.py"
+            "django/db/models/fields/proxy.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
@@ -1561,7 +1561,7 @@
             "django/views/generic/detail.py",
             "django/contrib/sites/managers.py",
             "django/contrib/gis/views.py",
-            "django/db/models/manager.py"
+            "django/db/models/fields/proxy.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
@@ -1573,8 +1573,8 @@
             "django/db/models/fields/__init__.py",
             "django/contrib/admin/options.py",
             "django/db/models/fields/related.py",
-            "django/db/models/base.py",
-            "django/forms/fields.py"
+            "django/forms/fields.py",
+            "django/db/models/base.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
@@ -1584,15 +1584,15 @@
         "D_Full_Hybrid_RRF": {
           "retrieved": [
             "django/db/models/fields/__init__.py",
-            "django/db/models/manager.py",
-            "django/db/models/base.py",
-            "django/db/models/fields/related.py",
-            "django/db/models/options.py"
+            "django/contrib/gis/db/models/fields.py",
+            "django/forms/fields.py",
+            "django/db/models/query.py",
+            "django/forms/models.py"
           ],
           "recall@1": 0.0,
           "recall@3": 0.0,
-          "recall@5": 0.0,
-          "reciprocal_rank": 0.0
+          "recall@5": 1.0,
+          "reciprocal_rank": 0.25
         }
       }
     }

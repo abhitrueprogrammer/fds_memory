@@ -1,0 +1,84 @@
+{
+  "drift_scenarios": {
+    "scenario_1_signature_drift": {
+      "scenario": "signature_drift",
+      "condition_c_detected_drift": false,
+      "condition_d_detected_drift": true,
+      "condition_d_reparsed_ast": true,
+      "condition_d_new_symbols_present": true
+    },
+    "scenario_2_file_rename": {
+      "scenario": "file_rename_or_deletion",
+      "condition_c_hallucinates_deleted_path": false,
+      "condition_d_flags_missing_file": true,
+      "condition_d_retrieved": [
+        "django/utils/http.py",
+        "django/db/backends/mysql/validation.py",
+        "django/utils/dateparse.py",
+        "django/db/backends/base/validation.py",
+        "django/db/backends/oracle/validation.py"
+      ]
+    },
+    "scenario_3_deleted_symbol": {
+      "scenario": "deleted_symbol",
+      "ast_purged_deleted_function": true,
+      "ast_indexed_new_symbol": true
+    },
+    "scenario_4_conflicting_memories": {
+      "scenario": "conflicting_memories",
+      "drifted_episode_penalized_stale": true,
+      "fresh_episode_retained_full_weight": true
+    }
+  },
+  "lambda_sensitivity_analysis": {
+    "0.0": {
+      "lambda": 0.0,
+      "mrr": 0.6667,
+      "hit_at_1_rate": 0.6667,
+      "hit_at_5_rate": 0.6667,
+      "interpretation": "Hard eviction (zero credit for stale files)"
+    },
+    "0.1": {
+      "lambda": 0.1,
+      "mrr": 1.0,
+      "hit_at_1_rate": 1.0,
+      "hit_at_5_rate": 1.0,
+      "interpretation": "Moderate attenuation"
+    },
+    "0.2": {
+      "lambda": 0.2,
+      "mrr": 1.0,
+      "hit_at_1_rate": 1.0,
+      "hit_at_5_rate": 1.0,
+      "interpretation": "Default moderate penalty (balances fresh symbols vs historical hints)"
+    },
+    "0.3": {
+      "lambda": 0.3,
+      "mrr": 1.0,
+      "hit_at_1_rate": 1.0,
+      "hit_at_5_rate": 1.0,
+      "interpretation": "Moderate attenuation"
+    },
+    "0.5": {
+      "lambda": 0.5,
+      "mrr": 1.0,
+      "hit_at_1_rate": 1.0,
+      "hit_at_5_rate": 1.0,
+      "interpretation": "Moderate attenuation"
+    },
+    "0.8": {
+      "lambda": 0.8,
+      "mrr": 1.0,
+      "hit_at_1_rate": 1.0,
+      "hit_at_5_rate": 1.0,
+      "interpretation": "Weak penalty (stale memories risk contaminating active context)"
+    },
+    "1.0": {
+      "lambda": 1.0,
+      "mrr": 1.0,
+      "hit_at_1_rate": 1.0,
+      "hit_at_5_rate": 1.0,
+      "interpretation": "Weak penalty (stale memories risk contaminating active context)"
+    }
+  }
+}

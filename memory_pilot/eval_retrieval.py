@@ -52,9 +52,9 @@ def wilson_ci(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     return round(float(center - margin), 4), round(float(center + margin), 4)
 
 
-def run_comprehensive_retrieval_benchmark(repo_dir: Path) -> dict:
+def run_comprehensive_retrieval_benchmark(repo_dir: Path, repo_name: str = "django/django") -> dict:
     ds = load_dataset("MariusHobbhahn/swe-bench-verified-mini", split="test")
-    django_tasks = [x for x in ds if x["repo"] == "django/django"]
+    django_tasks = [x for x in ds if x["repo"] == repo_name]
     django_tasks.sort(key=lambda x: x["created_at"])
 
     # Instantiate conditions and ablation variants

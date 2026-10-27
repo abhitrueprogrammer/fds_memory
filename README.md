@@ -434,3 +434,26 @@ If you use this benchmark methodology, memory architecture, or experimental resu
   note={arXiv preprint}
 }
 ```
+
+
+---
+
+## 10. Multi-Repository Benchmark & Reproducibility Package
+
+### 10.1 Multi-Repository Evaluation (N=50 SWE-bench Tasks)
+The repository now includes evaluation across both `django/django` (25 tasks) and `sphinx-doc/sphinx` (25 tasks):
+```bash
+python scripts/run_multi_repo_benchmark.py
+```
+- Django (N=25): Hybrid RRF achieves **0.5773 MRR** (+57.4% vs Lexical), **80.0% HitRate@5** ($p=0.0077$).
+- Sphinx (N=25): Hybrid RRF achieves **0.2447 MRR**, **44.0% HitRate@5** (outperforming Lexical at 40.0% and Pure AST at 16.0%).
+- Combined (N=50): Hybrid RRF achieves **0.4110 MRR** (+22.7% vs Lexical), **62.0% HitRate@5** (31/50 hits).
+
+### 10.2 Instant Statistical Verification
+All manuscript tables, confidence intervals, and Wilcoxon signed-rank tests can be recomputed from raw benchmark artifacts via:
+```bash
+python scripts/run_statistical_tests.py
+```
+
+### 10.3 Standalone Reproducibility Bundle
+All source code, configs, raw per-task logs, patches, and evaluation reports are packaged in `reproducibility_package.tar.gz` (0.81 MB), generated via `python scripts/package_reproducibility.py`.

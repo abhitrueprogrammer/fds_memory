@@ -1,0 +1,3714 @@
+{
+  "django": {
+    "repo": "django/django",
+    "total_tasks": 25,
+    "aggregated_metrics": {
+      "B_Snapshot_BM25": {
+        "recall@1": 0.2,
+        "recall@1_ci95": [
+          0.0886,
+          0.3913
+        ],
+        "recall@3": 0.52,
+        "recall@5": 0.6,
+        "recall@5_ci95": [
+          0.4074,
+          0.766
+        ],
+        "mrr": 0.3667,
+        "raw_hits_r1": 5,
+        "raw_hits_r5": 15,
+        "mrrs_raw": [
+          1.0,
+          0.3333333333333333,
+          0.0,
+          0.3333333333333333,
+          0.25,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.5,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.5,
+          0.5,
+          0.25,
+          1.0,
+          0.0
+        ],
+        "total_tasks": 25
+      },
+      "C_Naive_Combo": {
+        "recall@1": 0.2,
+        "recall@1_ci95": [
+          0.0886,
+          0.3913
+        ],
+        "recall@3": 0.52,
+        "recall@5": 0.6,
+        "recall@5_ci95": [
+          0.4074,
+          0.766
+        ],
+        "mrr": 0.3667,
+        "raw_hits_r1": 5,
+        "raw_hits_r5": 15,
+        "mrrs_raw": [
+          1.0,
+          0.3333333333333333,
+          0.0,
+          0.3333333333333333,
+          0.25,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.5,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.5,
+          0.5,
+          0.25,
+          1.0,
+          0.0
+        ],
+        "total_tasks": 25
+      },
+      "D_Ablation_Pure_AST": {
+        "recall@1": 0.32,
+        "recall@1_ci95": [
+          0.172,
+          0.5159
+        ],
+        "recall@3": 0.52,
+        "recall@5": 0.68,
+        "recall@5_ci95": [
+          0.4841,
+          0.828
+        ],
+        "mrr": 0.4447,
+        "raw_hits_r1": 8,
+        "raw_hits_r5": 17,
+        "mrrs_raw": [
+          1.0,
+          0.3333333333333333,
+          0.0,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.25,
+          0.25,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          1.0,
+          0.2,
+          0.25,
+          0.5,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "total_tasks": 25
+      },
+      "D_Full_Hybrid_RRF": {
+        "recall@1": 0.44,
+        "recall@1_ci95": [
+          0.2667,
+          0.6293
+        ],
+        "recall@3": 0.68,
+        "recall@5": 0.8,
+        "recall@5_ci95": [
+          0.6087,
+          0.9114
+        ],
+        "mrr": 0.5773,
+        "raw_hits_r1": 11,
+        "raw_hits_r5": 20,
+        "mrrs_raw": [
+          1.0,
+          1.0,
+          0.0,
+          0.5,
+          0.5,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          1.0,
+          1.0,
+          0.2,
+          0.2,
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.5,
+          0.2,
+          1.0,
+          0.5,
+          0.5,
+          1.0,
+          0.0
+        ],
+        "total_tasks": 25
+      }
+    },
+    "per_task_results": [
+      {
+        "instance_id": "django__django-9296",
+        "created_at": "2017-10-27T11:10:04Z",
+        "gold_files": [
+          "django/core/paginator.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/core/paginator.py",
+              "django/contrib/admin/templatetags/admin_list.py",
+              "django/views/generic/list.py",
+              "django/contrib/sitemaps/views.py",
+              "django/contrib/sitemaps/__init__.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/core/paginator.py",
+              "django/contrib/admin/templatetags/admin_list.py",
+              "django/views/generic/list.py",
+              "django/contrib/sitemaps/views.py",
+              "django/contrib/sitemaps/__init__.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/core/paginator.py",
+              "django/db/models/query.py",
+              "django/template/defaulttags.py",
+              "django/contrib/postgres/fields/ranges.py",
+              "django/db/utils.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/core/paginator.py",
+              "django/db/models/query.py",
+              "django/http/response.py",
+              "django/core/files/utils.py",
+              "django/template/utils.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-11790",
+        "created_at": "2019-09-17T14:33:44Z",
+        "gold_files": [
+          "django/contrib/auth/forms.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/admin/forms.py",
+              "setup.py",
+              "django/contrib/auth/forms.py",
+              "django/db/backends/oracle/operations.py",
+              "django/contrib/auth/handlers/modwsgi.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/admin/forms.py",
+              "setup.py",
+              "django/contrib/auth/forms.py",
+              "django/db/backends/oracle/operations.py",
+              "django/contrib/auth/handlers/modwsgi.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/forms/fields.py",
+              "django/contrib/auth/forms.py",
+              "django/forms/models.py",
+              "django/contrib/admin/helpers.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/contrib/auth/forms.py",
+              "django/contrib/auth/models.py",
+              "django/forms/fields.py",
+              "django/contrib/auth/base_user.py",
+              "django/contrib/admin/forms.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-11815",
+        "created_at": "2019-09-24T21:45:36Z",
+        "gold_files": [
+          "django/db/migrations/serializer.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/flatpages/models.py",
+              "django/db/models/enums.py",
+              "django/db/migrations/__init__.py",
+              "django/contrib/redirects/models.py",
+              "django/db/migrations/exceptions.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/flatpages/models.py",
+              "django/db/models/enums.py",
+              "django/db/migrations/__init__.py",
+              "django/contrib/redirects/models.py",
+              "django/db/migrations/exceptions.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/forms/fields.py",
+              "django/db/models/base.py",
+              "django/db/models/fields/related.py",
+              "django/utils/translation/trans_real.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/migrations/exceptions.py",
+              "django/utils/translation/trans_real.py",
+              "django/forms/fields.py",
+              "django/templatetags/i18n.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-11848",
+        "created_at": "2019-09-28T04:28:22Z",
+        "gold_files": [
+          "django/utils/http.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/utils/datetime_safe.py",
+              "django/contrib/humanize/templatetags/humanize.py",
+              "django/utils/http.py",
+              "django/utils/timesince.py",
+              "django/db/backends/oracle/utils.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/utils/datetime_safe.py",
+              "django/contrib/humanize/templatetags/humanize.py",
+              "django/utils/http.py",
+              "django/utils/timesince.py",
+              "django/db/backends/oracle/utils.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/contrib/admin/checks.py",
+              "django/db/models/fields/__init__.py",
+              "django/views/generic/dates.py",
+              "django/db/models/base.py",
+              "django/db/models/fields/related.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/utils/datetime_safe.py",
+              "django/utils/http.py",
+              "django/views/generic/dates.py",
+              "django/utils/dateformat.py",
+              "django/db/backends/base/operations.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-11880",
+        "created_at": "2019-10-07T19:10:59Z",
+        "gold_files": [
+          "django/forms/fields.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/forms/__init__.py",
+              "django/forms/models.py",
+              "django/core/exceptions.py",
+              "django/forms/fields.py",
+              "django/contrib/messages/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/forms/__init__.py",
+              "django/forms/models.py",
+              "django/core/exceptions.py",
+              "django/forms/fields.py",
+              "django/contrib/messages/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/forms/fields.py",
+              "django/forms/models.py",
+              "django/contrib/admin/helpers.py",
+              "django/contrib/admin/options.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/forms/models.py",
+              "django/forms/fields.py",
+              "django/db/models/fields/__init__.py",
+              "django/forms/forms.py",
+              "django/core/exceptions.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-11885",
+        "created_at": "2019-10-08T15:22:07Z",
+        "gold_files": [
+          "django/contrib/admin/utils.py",
+          "django/db/models/deletion.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/conf/locale/id/__init__.py",
+              "django/db/models/deletion.py",
+              "django/db/models/sql/subqueries.py",
+              "django/contrib/contenttypes/management/commands/remove_stale_contenttypes.py",
+              "django/db/migrations/recorder.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.5
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/conf/locale/id/__init__.py",
+              "django/db/models/deletion.py",
+              "django/db/models/sql/subqueries.py",
+              "django/contrib/contenttypes/management/commands/remove_stale_contenttypes.py",
+              "django/db/migrations/recorder.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.5
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/models/fields/related.py",
+              "django/forms/fields.py",
+              "django/contrib/admin/options.py",
+              "django/forms/models.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/deletion.py",
+              "django/db/models/fields/related.py",
+              "django/contrib/auth/models.py",
+              "django/contrib/contenttypes/fields.py",
+              "django/db/models/fields/__init__.py"
+            ],
+            "recall@1": 0.5,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-11951",
+        "created_at": "2019-10-21T09:35:46Z",
+        "gold_files": [
+          "django/db/models/query.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/db/models/sql/__init__.py",
+              "django/conf/locale/es_PR/__init__.py",
+              "django/db/backends/oracle/base.py",
+              "django/db/backends/__init__.py",
+              "django/db/backends/sqlite3/operations.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/db/models/sql/__init__.py",
+              "django/conf/locale/es_PR/__init__.py",
+              "django/db/backends/oracle/base.py",
+              "django/db/backends/__init__.py",
+              "django/db/backends/sqlite3/operations.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/query.py",
+              "django/db/models/fields/files.py",
+              "django/core/files/storage.py",
+              "django/core/files/base.py",
+              "django/db/models/sql/subqueries.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/core/files/base.py",
+              "django/db/models/fields/files.py",
+              "django/db/backends/base/operations.py",
+              "django/db/backends/sqlite3/operations.py",
+              "django/db/backends/oracle/operations.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-11964",
+        "created_at": "2019-10-23T14:16:45Z",
+        "gold_files": [
+          "django/db/models/enums.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/db/models/enums.py",
+              "django/contrib/staticfiles/testing.py",
+              "django/contrib/flatpages/models.py",
+              "django/core/management/commands/test.py",
+              "django/contrib/redirects/models.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/db/models/enums.py",
+              "django/contrib/staticfiles/testing.py",
+              "django/contrib/flatpages/models.py",
+              "django/core/management/commands/test.py",
+              "django/contrib/redirects/models.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/contrib/admin/checks.py",
+              "django/forms/fields.py",
+              "django/db/models/base.py",
+              "django/db/models/fields/related.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/backends/oracle/creation.py",
+              "django/db/models/enums.py",
+              "django/db/models/fields/files.py",
+              "django/contrib/admin/filters.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-11999",
+        "created_at": "2019-10-31T10:39:18Z",
+        "gold_files": [
+          "django/db/models/fields/__init__.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/flatpages/models.py",
+              "django/contrib/redirects/models.py",
+              "django/contrib/gis/db/backends/postgis/models.py",
+              "django/contrib/gis/db/backends/spatialite/models.py",
+              "django/core/cache/backends/dummy.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/flatpages/models.py",
+              "django/contrib/redirects/models.py",
+              "django/contrib/gis/db/backends/postgis/models.py",
+              "django/contrib/gis/db/backends/spatialite/models.py",
+              "django/core/cache/backends/dummy.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/contrib/admin/options.py",
+              "django/forms/fields.py",
+              "django/db/models/fields/related.py",
+              "django/db/models/base.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/forms/models.py",
+              "django/contrib/admin/options.py",
+              "django/contrib/contenttypes/models.py",
+              "django/contrib/flatpages/models.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12039",
+        "created_at": "2019-11-06T21:14:34Z",
+        "gold_files": [
+          "django/db/backends/ddl_references.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/db/models/indexes.py",
+              "django/db/backends/ddl_references.py",
+              "django/db/backends/postgresql/schema.py",
+              "django/db/backends/__init__.py",
+              "django/db/backends/base/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/db/models/indexes.py",
+              "django/db/backends/ddl_references.py",
+              "django/db/backends/postgresql/schema.py",
+              "django/db/backends/__init__.py",
+              "django/db/backends/base/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/migrations/autodetector.py",
+              "django/db/backends/base/schema.py",
+              "django/db/models/query.py",
+              "django/db/backends/ddl_references.py",
+              "django/db/models/fields/related.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/backends/ddl_references.py",
+              "django/db/backends/postgresql/schema.py",
+              "django/db/models/indexes.py",
+              "django/db/backends/base/schema.py",
+              "django/db/models/base.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12050",
+        "created_at": "2019-11-10T08:53:45Z",
+        "gold_files": [
+          "django/db/models/sql/query.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/utils/hashable.py",
+              "django/contrib/contenttypes/management/commands/remove_stale_contenttypes.py",
+              "django/contrib/gis/db/backends/postgis/introspection.py",
+              "django/contrib/gis/db/models/fields.py",
+              "django/db/migrations/serializer.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/utils/hashable.py",
+              "django/contrib/contenttypes/management/commands/remove_stale_contenttypes.py",
+              "django/contrib/gis/db/backends/postgis/introspection.py",
+              "django/contrib/gis/db/models/fields.py",
+              "django/db/migrations/serializer.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/contrib/gis/db/models/lookups.py",
+              "django/forms/fields.py",
+              "django/db/models/sql/query.py",
+              "django/contrib/admin/filters.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/contrib/gis/db/models/fields.py",
+              "django/db/models/query.py",
+              "django/db/models/lookups.py",
+              "django/db/models/sql/query.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.2
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12143",
+        "created_at": "2019-11-25T14:38:30Z",
+        "gold_files": [
+          "django/contrib/admin/options.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/conf/locale/es/formats.py",
+              "django/conf/locale/ca/formats.py",
+              "django/conf/locale/lt/formats.py",
+              "django/conf/locale/gl/formats.py",
+              "django/conf/locale/es_AR/formats.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/conf/locale/es/formats.py",
+              "django/conf/locale/ca/formats.py",
+              "django/conf/locale/lt/formats.py",
+              "django/conf/locale/gl/formats.py",
+              "django/conf/locale/es_AR/formats.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/contrib/admin/options.py",
+              "django/urls/resolvers.py",
+              "django/db/models/query.py",
+              "django/views/generic/dates.py",
+              "django/contrib/admin/checks.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/urls/resolvers.py",
+              "django/contrib/admin/helpers.py",
+              "django/forms/formsets.py",
+              "django/contrib/admin/views/__init__.py",
+              "django/contrib/admin/options.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.2
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12155",
+        "created_at": "2019-11-28T16:24:23Z",
+        "gold_files": [
+          "django/contrib/admindocs/utils.py",
+          "django/contrib/admindocs/views.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/admindocs/utils.py",
+              "django/template/base.py",
+              "docs/_ext/djangodocs.py",
+              "django/core/files/base.py",
+              "django/db/migrations/writer.py"
+            ],
+            "recall@1": 0.5,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/admindocs/utils.py",
+              "django/template/base.py",
+              "docs/_ext/djangodocs.py",
+              "django/core/files/base.py",
+              "django/db/migrations/writer.py"
+            ],
+            "recall@1": 0.5,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/backends/oracle/creation.py",
+              "django/db/utils.py",
+              "django/db/models/query.py",
+              "django/views/generic/dates.py",
+              "django/template/defaultfilters.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/contrib/admindocs/utils.py",
+              "django/template/defaultfilters.py",
+              "django/template/base.py",
+              "django/db/backends/oracle/creation.py",
+              "django/http/response.py"
+            ],
+            "recall@1": 0.5,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12193",
+        "created_at": "2019-12-08T01:38:25Z",
+        "gold_files": [
+          "django/forms/widgets.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/postgres/forms/array.py",
+              "django/forms/widgets.py",
+              "django/forms/boundfield.py",
+              "django/contrib/gis/forms/widgets.py",
+              "django/contrib/admin/widgets.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/postgres/forms/array.py",
+              "django/forms/widgets.py",
+              "django/forms/boundfield.py",
+              "django/contrib/gis/forms/widgets.py",
+              "django/contrib/admin/widgets.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/contrib/admin/options.py",
+              "django/forms/widgets.py",
+              "django/forms/fields.py",
+              "django/contrib/admin/widgets.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/forms/widgets.py",
+              "django/forms/fields.py",
+              "django/contrib/admin/widgets.py",
+              "django/contrib/postgres/forms/array.py",
+              "django/forms/boundfield.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12209",
+        "created_at": "2019-12-12T04:11:05Z",
+        "gold_files": [
+          "django/db/models/base.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/sites/management.py",
+              "django/db/models/fields/__init__.py",
+              "django/core/management/commands/loaddata.py",
+              "django/db/models/fields/files.py",
+              "django/core/management/commands/testserver.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/sites/management.py",
+              "django/db/models/fields/__init__.py",
+              "django/core/management/commands/loaddata.py",
+              "django/db/models/fields/files.py",
+              "django/core/management/commands/testserver.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/models/query.py",
+              "django/forms/fields.py",
+              "django/db/models/fields/related.py",
+              "django/db/backends/base/schema.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/models/fields/related_descriptors.py",
+              "django/contrib/contenttypes/fields.py",
+              "django/contrib/contenttypes/models.py",
+              "django/core/management/commands/loaddata.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12262",
+        "created_at": "2019-12-30T13:13:59Z",
+        "gold_files": [
+          "django/template/library.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/conf/locale/hi/__init__.py",
+              "django/template/library.py",
+              "django/conf/locale/hi/formats.py",
+              "django/templatetags/i18n.py",
+              "django/templatetags/tz.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/conf/locale/hi/__init__.py",
+              "django/template/library.py",
+              "django/conf/locale/hi/formats.py",
+              "django/templatetags/i18n.py",
+              "django/templatetags/tz.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/query.py",
+              "django/template/library.py",
+              "django/template/defaultfilters.py",
+              "django/db/models/fields/__init__.py",
+              "django/db/utils.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/template/library.py",
+              "django/template/base.py",
+              "django/template/loader_tags.py",
+              "django/template/defaultfilters.py",
+              "django/core/management/base.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12273",
+        "created_at": "2020-01-03T18:47:56Z",
+        "gold_files": [
+          "django/db/models/base.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/models/fields/files.py",
+              "django/core/serializers/base.py",
+              "django/contrib/sessions/backends/db.py",
+              "django/views/generic/detail.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/models/fields/files.py",
+              "django/core/serializers/base.py",
+              "django/contrib/sessions/backends/db.py",
+              "django/views/generic/detail.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/forms/fields.py",
+              "django/forms/models.py",
+              "django/db/models/query.py",
+              "django/db/backends/base/schema.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/contrib/sessions/backends/db.py",
+              "django/contrib/contenttypes/fields.py",
+              "django/db/models/fields/related_descriptors.py",
+              "django/db/models/fields/files.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12276",
+        "created_at": "2020-01-05T08:04:40Z",
+        "gold_files": [
+          "django/forms/widgets.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/forms/widgets.py",
+              "django/forms/fields.py",
+              "django/forms/__init__.py",
+              "django/forms/models.py",
+              "django/forms/boundfield.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/forms/widgets.py",
+              "django/forms/fields.py",
+              "django/forms/__init__.py",
+              "django/forms/models.py",
+              "django/forms/boundfield.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/forms/widgets.py",
+              "django/db/models/query.py",
+              "django/forms/models.py",
+              "django/contrib/sessions/backends/db.py",
+              "django/forms/formsets.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/forms/widgets.py",
+              "django/forms/models.py",
+              "django/forms/formsets.py",
+              "django/forms/boundfield.py",
+              "django/contrib/sessions/backends/db.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12304",
+        "created_at": "2020-01-09T15:43:51Z",
+        "gold_files": [
+          "django/db/models/enums.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/sessions/backends/signed_cookies.py",
+              "django/template/library.py",
+              "django/contrib/gis/db/backends/postgis/introspection.py",
+              "django/core/management/base.py",
+              "django/db/models/fields/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/sessions/backends/signed_cookies.py",
+              "django/template/library.py",
+              "django/contrib/gis/db/backends/postgis/introspection.py",
+              "django/core/management/base.py",
+              "django/db/models/fields/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/enums.py",
+              "django/db/backends/base/operations.py",
+              "django/db/backends/oracle/operations.py",
+              "django/db/models/fields/related.py",
+              "django/db/models/lookups.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/models/enums.py",
+              "django/template/context.py",
+              "django/forms/models.py",
+              "django/forms/boundfield.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12308",
+        "created_at": "2020-01-12T04:21:15Z",
+        "gold_files": [
+          "django/contrib/admin/utils.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/postgres/forms/jsonb.py",
+              "django/contrib/admin/views/__init__.py",
+              "django/contrib/admin/migrations/__init__.py",
+              "django/contrib/admin/templatetags/__init__.py",
+              "django/contrib/postgres/fields/jsonb.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/postgres/forms/jsonb.py",
+              "django/contrib/admin/views/__init__.py",
+              "django/contrib/admin/migrations/__init__.py",
+              "django/contrib/admin/templatetags/__init__.py",
+              "django/contrib/postgres/fields/jsonb.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/forms/fields.py",
+              "django/contrib/admin/widgets.py",
+              "django/utils/datastructures.py",
+              "django/contrib/admin/utils.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.2
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/contrib/postgres/forms/jsonb.py",
+              "django/contrib/postgres/fields/jsonb.py",
+              "django/contrib/admin/helpers.py",
+              "django/contrib/admin/options.py",
+              "django/contrib/admin/utils.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.2
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12325",
+        "created_at": "2020-01-15T14:02:25Z",
+        "gold_files": [
+          "django/db/models/base.py",
+          "django/db/models/options.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/db/models/fields/reverse_related.py",
+              "django/db/models/base.py",
+              "django/db/models/fields/related_descriptors.py",
+              "django/db/models/__init__.py",
+              "django/db/models/deletion.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.5
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/db/models/fields/reverse_related.py",
+              "django/db/models/base.py",
+              "django/db/models/fields/related_descriptors.py",
+              "django/db/models/__init__.py",
+              "django/db/models/deletion.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.5
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/related.py",
+              "django/db/models/fields/__init__.py",
+              "django/forms/fields.py",
+              "django/db/models/base.py",
+              "django/contrib/admin/options.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.25
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/base.py",
+              "django/db/models/fields/related.py",
+              "django/db/models/deletion.py",
+              "django/db/models/fields/reverse_related.py",
+              "django/db/models/options.py"
+            ],
+            "recall@1": 0.5,
+            "recall@3": 0.5,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12406",
+        "created_at": "2020-02-02T16:34:05Z",
+        "gold_files": [
+          "django/db/models/fields/related.py",
+          "django/forms/models.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/forms/boundfield.py",
+              "django/forms/models.py",
+              "django/forms/widgets.py",
+              "django/contrib/flatpages/models.py",
+              "django/contrib/admin/options.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.5
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/forms/boundfield.py",
+              "django/forms/models.py",
+              "django/forms/widgets.py",
+              "django/contrib/flatpages/models.py",
+              "django/contrib/admin/options.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.5
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/forms/widgets.py",
+              "django/forms/models.py",
+              "django/contrib/admin/options.py",
+              "django/db/models/fields/related.py",
+              "django/contrib/admin/widgets.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.5,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/forms/widgets.py",
+              "django/forms/models.py",
+              "django/contrib/admin/options.py",
+              "django/contrib/admin/widgets.py",
+              "django/contrib/admin/checks.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.5
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12708",
+        "created_at": "2020-04-12T22:20:59Z",
+        "gold_files": [
+          "django/db/backends/base/schema.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/db/backends/sqlite3/schema.py",
+              "django/db/models/options.py",
+              "django/db/migrations/__init__.py",
+              "django/db/backends/base/schema.py",
+              "django/db/backends/base/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/db/backends/sqlite3/schema.py",
+              "django/db/models/options.py",
+              "django/db/migrations/__init__.py",
+              "django/db/backends/base/schema.py",
+              "django/db/backends/base/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/backends/base/schema.py",
+              "django/db/models/options.py",
+              "django/db/migrations/autodetector.py",
+              "django/db/models/base.py",
+              "django/contrib/admin/options.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/options.py",
+              "django/db/backends/base/schema.py",
+              "django/db/migrations/operations/models.py",
+              "django/db/migrations/recorder.py",
+              "django/db/backends/mysql/schema.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12713",
+        "created_at": "2020-04-13T23:57:12Z",
+        "gold_files": [
+          "django/contrib/admin/options.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/contrib/admin/options.py",
+              "django/contrib/gis/forms/fields.py",
+              "django/utils/inspect.py",
+              "django/forms/boundfield.py",
+              "django/contrib/auth/admin.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/contrib/admin/options.py",
+              "django/contrib/gis/forms/fields.py",
+              "django/utils/inspect.py",
+              "django/forms/boundfield.py",
+              "django/contrib/auth/admin.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/contrib/admin/options.py",
+              "django/contrib/admin/widgets.py",
+              "django/db/models/query.py",
+              "django/contrib/contenttypes/fields.py",
+              "django/core/cache/backends/base.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/contrib/admin/options.py",
+              "django/contrib/admin/widgets.py",
+              "django/forms/widgets.py",
+              "django/contrib/auth/admin.py",
+              "django/forms/boundfield.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "django__django-12774",
+        "created_at": "2020-04-22T11:02:30Z",
+        "gold_files": [
+          "django/db/models/query.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "django/db/models/constraints.py",
+              "django/views/generic/detail.py",
+              "django/contrib/sites/managers.py",
+              "django/contrib/gis/views.py",
+              "django/db/models/manager.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "django/db/models/constraints.py",
+              "django/views/generic/detail.py",
+              "django/contrib/sites/managers.py",
+              "django/contrib/gis/views.py",
+              "django/db/models/manager.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/contrib/admin/options.py",
+              "django/db/models/fields/related.py",
+              "django/db/models/base.py",
+              "django/forms/fields.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "django/db/models/fields/__init__.py",
+              "django/db/models/manager.py",
+              "django/db/models/base.py",
+              "django/db/models/fields/related.py",
+              "django/db/models/options.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      }
+    ]
+  },
+  "sphinx": {
+    "repo": "sphinx-doc/sphinx",
+    "total_tasks": 25,
+    "aggregated_metrics": {
+      "B_Snapshot_BM25": {
+        "recall@1": 0.24,
+        "recall@1_ci95": [
+          0.115,
+          0.4343
+        ],
+        "recall@3": 0.36,
+        "recall@5": 0.4,
+        "recall@5_ci95": [
+          0.234,
+          0.5926
+        ],
+        "mrr": 0.3033,
+        "raw_hits_r1": 6,
+        "raw_hits_r5": 10,
+        "mrrs_raw": [
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.25,
+          0.5,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "total_tasks": 25
+      },
+      "C_Naive_Combo": {
+        "recall@1": 0.24,
+        "recall@1_ci95": [
+          0.115,
+          0.4343
+        ],
+        "recall@3": 0.36,
+        "recall@5": 0.4,
+        "recall@5_ci95": [
+          0.234,
+          0.5926
+        ],
+        "mrr": 0.3033,
+        "raw_hits_r1": 6,
+        "raw_hits_r5": 10,
+        "mrrs_raw": [
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.25,
+          0.5,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "total_tasks": 25
+      },
+      "D_Ablation_Pure_AST": {
+        "recall@1": 0.0,
+        "recall@1_ci95": [
+          0.0,
+          0.1332
+        ],
+        "recall@3": 0.08,
+        "recall@5": 0.16,
+        "recall@5_ci95": [
+          0.064,
+          0.3465
+        ],
+        "mrr": 0.06,
+        "raw_hits_r1": 0,
+        "raw_hits_r5": 4,
+        "mrrs_raw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          0.25,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.5,
+          0.25,
+          0.0,
+          0.0
+        ],
+        "total_tasks": 25
+      },
+      "D_Full_Hybrid_RRF": {
+        "recall@1": 0.16,
+        "recall@1_ci95": [
+          0.064,
+          0.3465
+        ],
+        "recall@3": 0.28,
+        "recall@5": 0.44,
+        "recall@5_ci95": [
+          0.2667,
+          0.6293
+        ],
+        "mrr": 0.2447,
+        "raw_hits_r1": 4,
+        "raw_hits_r5": 11,
+        "mrrs_raw": [
+          0.25,
+          0.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          1.0,
+          0.0,
+          0.25,
+          0.5,
+          0.2,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          0.25,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "total_tasks": 25
+      }
+    },
+    "per_task_results": [
+      {
+        "instance_id": "sphinx-doc__sphinx-7590",
+        "created_at": "2020-05-01T18:29:11Z",
+        "gold_files": [
+          "sphinx/domains/c.py",
+          "sphinx/domains/cpp.py",
+          "sphinx/util/cfamily.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/ext/__init__.py",
+              "sphinx/util/cfamily.py",
+              "sphinx/domains/cpp/_ids.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_directive_options.py",
+              "sphinx/domains/cpp/_parser.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "reciprocal_rank": 0.5
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/ext/__init__.py",
+              "sphinx/util/cfamily.py",
+              "sphinx/domains/cpp/_ids.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_directive_options.py",
+              "sphinx/domains/cpp/_parser.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "reciprocal_rank": 0.5
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/domains/cpp/__init__.py",
+              "sphinx/registry.py",
+              "sphinx/errors.py",
+              "sphinx/builders/gettext.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/domains/cpp/__init__.py",
+              "sphinx/errors.py",
+              "sphinx/application.py",
+              "sphinx/util/cfamily.py",
+              "sphinx/writers/latex.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.3333333333333333,
+            "reciprocal_rank": 0.25
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-7748",
+        "created_at": "2020-05-30T06:41:07Z",
+        "gold_files": [
+          "sphinx/ext/autodoc/__init__.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/ext/autodoc/_dynamic/_signatures.py",
+              "doc/usage/extensions/example_google.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/ext/autodoc/_shared.py",
+              "sphinx/pycode/parser.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/ext/autodoc/_dynamic/_signatures.py",
+              "doc/usage/extensions/example_google.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/ext/autodoc/_shared.py",
+              "sphinx/pycode/parser.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/writers/text.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/addnodes.py",
+              "sphinx/ext/autodoc/_event_listeners.py",
+              "sphinx/writers/latex.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/autodoc/_dynamic/_signatures.py",
+              "sphinx/addnodes.py",
+              "doc/usage/extensions/example_google.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/ext/autodoc/_event_listeners.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-7757",
+        "created_at": "2020-05-30T14:46:01Z",
+        "gold_files": [
+          "sphinx/util/inspect.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/util/nodes.py",
+              "sphinx/ext/graphviz.py",
+              "sphinx/builders/texinfo.py",
+              "sphinx/builders/changes.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/util/nodes.py",
+              "sphinx/ext/graphviz.py",
+              "sphinx/builders/texinfo.py",
+              "sphinx/builders/changes.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/writers/latex.py",
+              "sphinx/application.py",
+              "utils/bump_version.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/util/docutils.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/util/nodes.py",
+              "sphinx/environment/__init__.py",
+              "sphinx/cmd/build.py",
+              "sphinx/errors.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-7985",
+        "created_at": "2020-07-19T10:09:07Z",
+        "gold_files": [
+          "sphinx/builders/linkcheck.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/builders/__init__.py",
+              "sphinx/application.py",
+              "sphinx/cmd/make_mode.py",
+              "sphinx/ext/intersphinx/_load.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/builders/__init__.py",
+              "sphinx/application.py",
+              "sphinx/cmd/make_mode.py",
+              "sphinx/ext/intersphinx/_load.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/writers/text.py",
+              "sphinx/writers/latex.py",
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/writers/texinfo.py",
+              "sphinx/domains/cpp/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/builders/__init__.py",
+              "sphinx/builders/linkcheck.py",
+              "sphinx/environment/__init__.py",
+              "sphinx/cmd/make_mode.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8035",
+        "created_at": "2020-08-01T16:28:05Z",
+        "gold_files": [
+          "sphinx/ext/autodoc/__init__.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/ext/autodoc/_legacy_class_based/_directive_options.py",
+              "sphinx/ext/autodoc/directive.py",
+              "sphinx/ext/autodoc/_directive_options.py",
+              "sphinx/search/_stopwords/en.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_sentinels.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/ext/autodoc/_legacy_class_based/_directive_options.py",
+              "sphinx/ext/autodoc/directive.py",
+              "sphinx/ext/autodoc/_directive_options.py",
+              "sphinx/search/_stopwords/en.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_sentinels.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/writers/text.py",
+              "sphinx/writers/texinfo.py",
+              "sphinx/writers/latex.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/ext/autodoc/_directive_options.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/autodoc/_legacy_class_based/_directive_options.py",
+              "sphinx/ext/autodoc/_directive_options.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/ext/autodoc/_dynamic/_member_finder.py",
+              "sphinx/ext/autosummary/generate.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8056",
+        "created_at": "2020-08-05T17:18:58Z",
+        "gold_files": [
+          "sphinx/ext/napoleon/docstring.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/ext/napoleon/__init__.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/cmd/quickstart.py",
+              "doc/usage/extensions/example_google.py",
+              "doc/conf.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/ext/napoleon/__init__.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/cmd/quickstart.py",
+              "doc/usage/extensions/example_google.py",
+              "doc/conf.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/builders/html/__init__.py",
+              "sphinx/util/logging.py",
+              "sphinx/errors.py",
+              "sphinx/writers/latex.py",
+              "sphinx/util/docutils.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/napoleon/docstring.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/application.py",
+              "doc/usage/extensions/example_numpy.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8265",
+        "created_at": "2020-10-03T03:06:00Z",
+        "gold_files": [
+          "sphinx/pycode/ast.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "utils/bump_docker.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/ext/napoleon/__init__.py",
+              "doc/conf.py",
+              "sphinx/builders/html/_build_info.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "utils/bump_docker.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/ext/napoleon/__init__.py",
+              "doc/conf.py",
+              "sphinx/builders/html/_build_info.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/registry.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/environment/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/environment/__init__.py",
+              "sphinx/application.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/builders/_epub_base.py",
+              "sphinx/cmd/make_mode.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8269",
+        "created_at": "2020-10-03T11:08:37Z",
+        "gold_files": [
+          "sphinx/builders/linkcheck.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/testing/__init__.py",
+              "doc/conf.py",
+              "sphinx/builders/linkcheck.py",
+              "utils/generate_snowball.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/testing/__init__.py",
+              "doc/conf.py",
+              "sphinx/builders/linkcheck.py",
+              "utils/generate_snowball.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/builders/html/__init__.py",
+              "sphinx/errors.py",
+              "utils/bump_version.py",
+              "sphinx/util/cfamily.py",
+              "sphinx/testing/fixtures.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/doctest.py",
+              "sphinx/application.py",
+              "sphinx/testing/fixtures.py",
+              "sphinx/builders/linkcheck.py",
+              "sphinx/testing/util.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8475",
+        "created_at": "2020-11-22T16:54:19Z",
+        "gold_files": [
+          "sphinx/builders/linkcheck.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/util/requests.py",
+              "sphinx/builders/linkcheck.py",
+              "doc/conf.py",
+              "utils/generate_snowball.py",
+              "sphinx/ext/autodoc/importer.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/util/requests.py",
+              "sphinx/builders/linkcheck.py",
+              "doc/conf.py",
+              "utils/generate_snowball.py",
+              "sphinx/ext/autodoc/importer.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/util/requests.py",
+              "sphinx/util/logging.py",
+              "sphinx/application.py",
+              "sphinx/transforms/post_transforms/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/util/requests.py",
+              "sphinx/builders/linkcheck.py",
+              "sphinx/transforms/post_transforms/__init__.py",
+              "sphinx/transforms/post_transforms/images.py",
+              "sphinx/writers/html5.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8548",
+        "created_at": "2020-12-17T13:46:32Z",
+        "gold_files": [
+          "sphinx/ext/autodoc/__init__.py",
+          "sphinx/ext/autodoc/importer.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/ext/autodoc/importer.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_directive_options.py",
+              "sphinx/ext/autodoc/_directive_options.py",
+              "sphinx/ext/autodoc/_dynamic/_docstrings.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_sentinels.py"
+            ],
+            "recall@1": 0.5,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/ext/autodoc/importer.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_directive_options.py",
+              "sphinx/ext/autodoc/_directive_options.py",
+              "sphinx/ext/autodoc/_dynamic/_docstrings.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_sentinels.py"
+            ],
+            "recall@1": 0.5,
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/builders/linkcheck.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/ext/autodoc/_event_listeners.py",
+              "sphinx/util/docutils.py",
+              "sphinx/ext/autodoc/_directive_options.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/autodoc/_directive_options.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_directive_options.py",
+              "sphinx/ext/autodoc/_dynamic/_member_finder.py",
+              "sphinx/ext/autosummary/generate.py",
+              "sphinx/ext/autodoc/importer.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.5,
+            "reciprocal_rank": 0.2
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8551",
+        "created_at": "2020-12-19T09:34:31Z",
+        "gold_files": [
+          "sphinx/domains/python.py",
+          "sphinx/util/docfields.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/ext/autodoc/typehints.py",
+              "sphinx/domains/__init__.py",
+              "sphinx/deprecation.py",
+              "sphinx/util/__init__.py",
+              "sphinx/ext/autodoc/_dynamic/_type_comments.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/ext/autodoc/typehints.py",
+              "sphinx/domains/__init__.py",
+              "sphinx/deprecation.py",
+              "sphinx/util/__init__.py",
+              "sphinx/ext/autodoc/_dynamic/_type_comments.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/domains/std/__init__.py",
+              "sphinx/domains/python/__init__.py",
+              "sphinx/writers/texinfo.py",
+              "sphinx/writers/latex.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/domains/javascript.py",
+              "sphinx/domains/std/__init__.py",
+              "sphinx/domains/__init__.py",
+              "sphinx/application.py",
+              "sphinx/ext/intersphinx/_resolve.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8638",
+        "created_at": "2021-01-01T13:54:38Z",
+        "gold_files": [
+          "sphinx/domains/python.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "doc/usage/extensions/example_google.py",
+              "doc/conf.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/ext/napoleon/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "doc/usage/extensions/example_google.py",
+              "doc/conf.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/ext/napoleon/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/domains/c/_ast.py",
+              "sphinx/writers/texinfo.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "doc/usage/extensions/example_google.py",
+              "sphinx/application.py",
+              "sphinx/util/nodes.py",
+              "sphinx/builders/_epub_base.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8721",
+        "created_at": "2021-01-21T15:36:24Z",
+        "gold_files": [
+          "sphinx/ext/viewcode.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/ext/viewcode.py",
+              "sphinx/builders/epub3.py",
+              "sphinx/builders/dirhtml.py",
+              "sphinx/cmd/make_mode.py",
+              "doc/conf.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/ext/viewcode.py",
+              "sphinx/builders/epub3.py",
+              "sphinx/builders/dirhtml.py",
+              "sphinx/cmd/make_mode.py",
+              "doc/conf.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/builders/html/__init__.py",
+              "sphinx/ext/viewcode.py",
+              "sphinx/domains/python/__init__.py",
+              "sphinx/application.py",
+              "utils/bump_version.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/viewcode.py",
+              "sphinx/application.py",
+              "sphinx/builders/_epub_base.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/cmd/make_mode.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-9229",
+        "created_at": "2021-05-15T07:21:49Z",
+        "gold_files": [
+          "sphinx/ext/autodoc/__init__.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/ext/apidoc/_cli.py",
+              "sphinx/ext/napoleon/__init__.py",
+              "sphinx/environment/__init__.py",
+              "doc/usage/extensions/example_google.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/ext/apidoc/_cli.py",
+              "sphinx/ext/napoleon/__init__.py",
+              "sphinx/environment/__init__.py",
+              "doc/usage/extensions/example_google.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/builders/html/__init__.py",
+              "sphinx/writers/text.py",
+              "sphinx/application.py",
+              "sphinx/writers/latex.py",
+              "sphinx/writers/texinfo.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/addnodes.py",
+              "sphinx/util/osutil.py",
+              "sphinx/environment/__init__.py",
+              "sphinx/directives/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-9230",
+        "created_at": "2021-05-15T11:33:05Z",
+        "gold_files": [
+          "sphinx/util/docfields.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/ext/napoleon/__init__.py",
+              "sphinx/cmd/quickstart.py",
+              "doc/conf.py",
+              "sphinx/ext/graphviz.py",
+              "sphinx/util/nodes.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/ext/napoleon/__init__.py",
+              "sphinx/cmd/quickstart.py",
+              "doc/conf.py",
+              "sphinx/ext/graphviz.py",
+              "sphinx/util/nodes.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/builders/html/__init__.py",
+              "sphinx/writers/latex.py",
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/ext/doctest.py",
+              "sphinx/writers/text.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/autosummary/generate.py",
+              "sphinx/ext/autosummary/__init__.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/application.py",
+              "sphinx/environment/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-9281",
+        "created_at": "2021-05-29T17:16:30Z",
+        "gold_files": [
+          "sphinx/util/inspect.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "utils/bump_docker.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/ext/napoleon/__init__.py",
+              "sphinx/ext/autodoc/preserve_defaults.py",
+              "sphinx/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "utils/bump_docker.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/ext/napoleon/__init__.py",
+              "sphinx/ext/autodoc/preserve_defaults.py",
+              "sphinx/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/util/inspect.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/config.py",
+              "sphinx/addnodes.py",
+              "utils/bump_docker.py",
+              "sphinx/builders/html/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-9320",
+        "created_at": "2021-06-11T13:29:04Z",
+        "gold_files": [
+          "sphinx/cmd/quickstart.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/search/_stopwords/en.py",
+              "doc/conf.py",
+              "sphinx/ext/apidoc/_cli.py",
+              "sphinx/ext/napoleon/__init__.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/cmd/quickstart.py",
+              "sphinx/search/_stopwords/en.py",
+              "doc/conf.py",
+              "sphinx/ext/apidoc/_cli.py",
+              "sphinx/ext/napoleon/__init__.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/ext/napoleon/docstring.py",
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/errors.py",
+              "sphinx/application.py",
+              "sphinx/builders/html/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/errors.py",
+              "sphinx/application.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/environment/__init__.py",
+              "sphinx/builders/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.3333
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-9367",
+        "created_at": "2021-06-20T17:49:40Z",
+        "gold_files": [
+          "sphinx/pycode/ast.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/addnodes.py",
+              "sphinx/util/nodes.py",
+              "sphinx/writers/html5.py",
+              "sphinx/domains/cpp/_ids.py",
+              "sphinx/util/inventory.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/addnodes.py",
+              "sphinx/util/nodes.py",
+              "sphinx/writers/html5.py",
+              "sphinx/domains/cpp/_ids.py",
+              "sphinx/util/inventory.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/domains/c/_ast.py",
+              "sphinx/application.py",
+              "sphinx/registry.py",
+              "sphinx/ext/doctest.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/doctest.py",
+              "sphinx/util/docutils.py",
+              "sphinx/writers/html5.py",
+              "sphinx/domains/cpp/__init__.py",
+              "sphinx/testing/util.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-9461",
+        "created_at": "2021-07-17T06:31:58Z",
+        "gold_files": [
+          "sphinx/domains/python.py",
+          "sphinx/ext/autodoc/__init__.py",
+          "sphinx/util/inspect.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "doc/usage/extensions/example_google.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/util/inspect.py",
+              "sphinx/ext/autodoc/_property_types.py",
+              "sphinx/cmd/quickstart.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "reciprocal_rank": 0.3333
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "doc/usage/extensions/example_google.py",
+              "doc/usage/extensions/example_numpy.py",
+              "sphinx/util/inspect.py",
+              "sphinx/ext/autodoc/_property_types.py",
+              "sphinx/cmd/quickstart.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "reciprocal_rank": 0.3333
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/domains/cpp/_ast.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/domains/cpp/__init__.py",
+              "sphinx/domains/c/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py",
+              "sphinx/ext/autodoc/_property_types.py",
+              "sphinx/ext/autosummary/generate.py",
+              "sphinx/util/inspect.py",
+              "sphinx/domains/python/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.3333333333333333,
+            "reciprocal_rank": 0.25
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-9698",
+        "created_at": "2021-10-03T04:04:04Z",
+        "gold_files": [
+          "sphinx/domains/python.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/domains/_index.py",
+              "sphinx/domains/javascript.py",
+              "sphinx/util/index_entries.py",
+              "sphinx/environment/__init__.py",
+              "sphinx/registry.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/domains/_index.py",
+              "sphinx/domains/javascript.py",
+              "sphinx/util/index_entries.py",
+              "sphinx/environment/__init__.py",
+              "sphinx/registry.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/util/docutils.py",
+              "sphinx/writers/latex.py",
+              "sphinx/domains/python/__init__.py",
+              "sphinx/writers/text.py",
+              "sphinx/writers/texinfo.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/domains/rst.py",
+              "sphinx/writers/text.py",
+              "sphinx/domains/_index.py",
+              "sphinx/domains/index.py",
+              "sphinx/ext/autodoc/_legacy_class_based/_documenters.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-10323",
+        "created_at": "2022-04-02T14:42:24Z",
+        "gold_files": [
+          "sphinx/directives/code.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/directives/code.py",
+              "sphinx/util/nodes.py",
+              "sphinx/cmd/quickstart.py",
+              "doc/conf.py",
+              "doc/usage/extensions/example_google.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/directives/code.py",
+              "sphinx/util/nodes.py",
+              "sphinx/cmd/quickstart.py",
+              "doc/conf.py",
+              "doc/usage/extensions/example_google.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/util/docutils.py",
+              "sphinx/application.py",
+              "sphinx/util/logging.py",
+              "sphinx/addnodes.py",
+              "sphinx/ext/doctest.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/ext/doctest.py",
+              "sphinx/util/nodes.py",
+              "sphinx/addnodes.py",
+              "sphinx/util/logging.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-10435",
+        "created_at": "2022-05-08T09:37:06Z",
+        "gold_files": [
+          "sphinx/writers/latex.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/highlighting.py",
+              "sphinx/addnodes.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/builders/latex/__init__.py",
+              "sphinx/directives/patches.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/highlighting.py",
+              "sphinx/addnodes.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/builders/latex/__init__.py",
+              "sphinx/directives/patches.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/util/docutils.py",
+              "sphinx/writers/latex.py",
+              "sphinx/writers/text.py",
+              "sphinx/writers/texinfo.py",
+              "sphinx/application.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.5
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/addnodes.py",
+              "sphinx/writers/manpage.py",
+              "sphinx/application.py",
+              "sphinx/writers/texinfo.py",
+              "sphinx/writers/text.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-10466",
+        "created_at": "2022-05-22T16:46:53Z",
+        "gold_files": [
+          "sphinx/builders/gettext.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/builders/gettext.py",
+              "doc/conf.py",
+              "utils/babel_runner.py",
+              "sphinx/locale/__init__.py",
+              "sphinx/ext/intersphinx/_shared.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/builders/gettext.py",
+              "doc/conf.py",
+              "utils/babel_runner.py",
+              "sphinx/locale/__init__.py",
+              "sphinx/ext/intersphinx/_shared.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/writers/latex.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/writers/text.py",
+              "sphinx/builders/gettext.py",
+              "sphinx/domains/cpp/_ast.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 0.25
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/builders/gettext.py",
+              "sphinx/application.py",
+              "sphinx/builders/__init__.py",
+              "sphinx/addnodes.py",
+              "sphinx/writers/latex.py"
+            ],
+            "recall@1": 1.0,
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-10673",
+        "created_at": "2022-07-16T19:29:29Z",
+        "gold_files": [
+          "sphinx/directives/other.py",
+          "sphinx/environment/adapters/toctree.py",
+          "sphinx/environment/collectors/toctree.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "sphinx/environment/adapters/toctree.py",
+              "sphinx/domains/_index.py",
+              "sphinx/directives/other.py",
+              "sphinx/builders/_epub_base.py",
+              "sphinx/builders/singlehtml.py"
+            ],
+            "recall@1": 0.3333333333333333,
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "reciprocal_rank": 1.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "sphinx/environment/adapters/toctree.py",
+              "sphinx/domains/_index.py",
+              "sphinx/directives/other.py",
+              "sphinx/builders/_epub_base.py",
+              "sphinx/builders/singlehtml.py"
+            ],
+            "recall@1": 0.3333333333333333,
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "reciprocal_rank": 1.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/registry.py",
+              "sphinx/writers/texinfo.py",
+              "sphinx/util/docutils.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/environment/adapters/toctree.py",
+              "sphinx/builders/html/__init__.py",
+              "sphinx/builders/_epub_base.py",
+              "sphinx/addnodes.py",
+              "sphinx/writers/texinfo.py"
+            ],
+            "recall@1": 0.3333333333333333,
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "reciprocal_rank": 1.0
+          }
+        }
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-11510",
+        "created_at": "2023-07-24T22:46:12Z",
+        "gold_files": [
+          "sphinx/directives/other.py"
+        ],
+        "variants": {
+          "B_Snapshot_BM25": {
+            "retrieved": [
+              "doc/conf.py",
+              "utils/bump_docker.py",
+              "sphinx/testing/__init__.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/ext/napoleon/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "C_Naive_Combo": {
+            "retrieved": [
+              "doc/conf.py",
+              "utils/bump_docker.py",
+              "sphinx/testing/__init__.py",
+              "sphinx/cmd/quickstart.py",
+              "sphinx/ext/napoleon/__init__.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Ablation_Pure_AST": {
+            "retrieved": [
+              "sphinx/builders/html/__init__.py",
+              "sphinx/builders/__init__.py",
+              "sphinx/application.py",
+              "sphinx/transforms/__init__.py",
+              "sphinx/ext/napoleon/docstring.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          },
+          "D_Full_Hybrid_RRF": {
+            "retrieved": [
+              "sphinx/application.py",
+              "sphinx/environment/__init__.py",
+              "sphinx/events.py",
+              "sphinx/builders/__init__.py",
+              "sphinx/builders/_epub_base.py"
+            ],
+            "recall@1": 0.0,
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "reciprocal_rank": 0.0
+          }
+        }
+      }
+    ]
+  },
+  "combined_n50": {
+    "combined_metrics": {
+      "B_Snapshot_BM25": {
+        "combined_mrr": 0.335,
+        "combined_hit_at_1_rate": 0.22,
+        "combined_hit_at_1_ci95": [
+          0.1275,
+          0.3524
+        ],
+        "combined_hit_at_5_rate": 0.5,
+        "combined_hit_at_5_ci95": [
+          0.3664,
+          0.6336
+        ],
+        "raw_hits_r1": 11,
+        "raw_hits_r5": 25,
+        "total_tasks": 50,
+        "mrrs": [
+          1.0,
+          0.3333333333333333,
+          0.0,
+          0.3333333333333333,
+          0.25,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.5,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.5,
+          0.5,
+          0.25,
+          1.0,
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.25,
+          0.5,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "C_Naive_Combo": {
+        "combined_mrr": 0.335,
+        "combined_hit_at_1_rate": 0.22,
+        "combined_hit_at_1_ci95": [
+          0.1275,
+          0.3524
+        ],
+        "combined_hit_at_5_rate": 0.5,
+        "combined_hit_at_5_ci95": [
+          0.3664,
+          0.6336
+        ],
+        "raw_hits_r1": 11,
+        "raw_hits_r5": 25,
+        "total_tasks": 50,
+        "mrrs": [
+          1.0,
+          0.3333333333333333,
+          0.0,
+          0.3333333333333333,
+          0.25,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.5,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.5,
+          0.5,
+          0.25,
+          1.0,
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.25,
+          0.5,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "D_Ablation_Pure_AST": {
+        "combined_mrr": 0.2523,
+        "combined_hit_at_1_rate": 0.16,
+        "combined_hit_at_1_ci95": [
+          0.0834,
+          0.2851
+        ],
+        "combined_hit_at_5_rate": 0.42,
+        "combined_hit_at_5_ci95": [
+          0.2937,
+          0.5577
+        ],
+        "raw_hits_r1": 8,
+        "raw_hits_r5": 21,
+        "total_tasks": 50,
+        "mrrs": [
+          1.0,
+          0.3333333333333333,
+          0.0,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.25,
+          0.25,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          1.0,
+          0.2,
+          0.25,
+          0.5,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          0.25,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.5,
+          0.25,
+          0.0,
+          0.0
+        ]
+      },
+      "D_Full_Hybrid_RRF": {
+        "combined_mrr": 0.411,
+        "combined_hit_at_1_rate": 0.3,
+        "combined_hit_at_1_ci95": [
+          0.191,
+          0.4375
+        ],
+        "combined_hit_at_5_rate": 0.62,
+        "combined_hit_at_5_ci95": [
+          0.4815,
+          0.7414
+        ],
+        "raw_hits_r1": 15,
+        "raw_hits_r5": 31,
+        "total_tasks": 50,
+        "mrrs": [
+          1.0,
+          1.0,
+          0.0,
+          0.5,
+          0.5,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          1.0,
+          1.0,
+          0.2,
+          0.2,
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.5,
+          0.2,
+          1.0,
+          0.5,
+          0.5,
+          1.0,
+          0.0,
+          0.25,
+          0.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          1.0,
+          0.0,
+          0.25,
+          0.5,
+          0.2,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.3333333333333333,
+          0.0,
+          0.25,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      }
+    },
+    "wilcoxon_rrf_vs_lexical_n50": {
+      "statistic": 82.0,
+      "two_sided_p": 0.14717014027294617,
+      "greater_p": 0.07358507013647309,
+      "discordant_pairs": 22
+    }
+  }
+}
