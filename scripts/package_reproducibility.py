@@ -78,10 +78,6 @@ def create_reproducibility_package():
             bundle_dir / "logs" / "run_evaluation"
         )
 
-    # Copy top-level eval json reports
-    for j in root.glob("gemini__gemini-3.5-flash-lite.*.json"):
-        shutil.copy2(j, results_dest / j.name)
-
     print("Writing README_REPRODUCIBILITY.md...")
     readme_content = """# Reproducibility Package: Session-Persistent Repository Memory Architecture
 

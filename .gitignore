@@ -32,4 +32,5 @@ gold.*.json
 repos/
 
 # Root-level loose eval json dumps
-*.eval_*.json
+/*.eval_*.json
+/gold.*.json

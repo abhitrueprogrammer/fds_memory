@@ -3,6 +3,7 @@
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import time
 from typing import Any
@@ -207,6 +208,15 @@ def run_condition_sequence(
 
         if not resolved and "Instances resolved: 1" in harness_proc.stdout:
             resolved = True
+
+        # Ensure all evaluation reports are placed in results/eval_reports/ and task_out_dir,
+        # cleaning up the root directory to prevent clutter
+        eval_reports_dir = Path("results/eval_reports")
+        eval_reports_dir.mkdir(parents=True, exist_ok=True)
+        for rep in Path(".").glob(f"*{harness_run_id}*.json"):
+            shutil.copy2(rep, eval_reports_dir / rep.name)
+            shutil.copy2(rep, task_out_dir / rep.name)
+            rep.unlink(missing_ok=True)
 
         elapsed = time.time() - start_time
         print(f"Harness evaluation complete: resolved={resolved} in {elapsed:.1f}s", flush=True)
