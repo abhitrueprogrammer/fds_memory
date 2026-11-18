@@ -18,29 +18,24 @@
 
 \title{Persistent Repository Memory for Autonomous Software Engineering Agents: Architectural Foundations, Empirical Retrieval, and Downstream Resolution Limits}
 
-\author{\IEEEauthorblockN{Abhinav Pant\IEEEauthorrefmark{1}, Abhiram Anil\IEEEauthorrefmark{2}, and A Anjana Nair\IEEEauthorrefmark{3}}
-\IEEEauthorblockA{Department of Computer Science and Engineering\\
-Email: \IEEEauthorrefmark{1}abhiaruvs3@gmail.com}
+\author{
+\IEEEauthorblockN{
+Abhinav Pant\IEEEauthorrefmark{1},
+A Anjana Nair\IEEEauthorrefmark{2},
+Abhiram Anil\IEEEauthorrefmark{3},
+and Kalayraman P\IEEEauthorrefmark{4}
+}
+\IEEEauthorblockA{
+Department of Computer Science and Engineering
+}
 }
 
 \maketitle
 
 \begin{abstract}
-Modern autonomous software engineering (SWE) agents operate in a predominantly stateless paradigm: each issue is tackled inside an isolated container, discarding codebase structural indexes, episodic debugging trajectories, and past execution feedback across tasks. In production engineering, however, software systems evolve continuously, and human engineers build persistent structural mental models of the repository.
+Improvements in repository retrieval do not automatically translate into improved coding performance. We study this gap through a \textbf{Session-Persistent Repository Memory Architecture} for autonomous software engineering (SWE) agents, which are normally stateless: each issue runs in an isolated container that discards structural indexes, debugging trajectories, and execution feedback. Our architecture combines (1) Tree-sitter symbol graphs with subtoken decomposition; (2) Reciprocal Rank Fusion (RRF, $k=60$) of sparse lexical retrieval (sublinear TF-IDF) and AST symbol matching, with no GPU embedding overhead; (3) SHA-256 content-hash caching that skips redundant parsing ($10.13\times$ speedup); (4) scoped episodic outcome logging under a zero-leakage constraint; and (5) SHA-256 staleness invalidation that attenuates outdated episodes by 80\% ($\lambda=0.20$).
 
-Recent automated software engineering literature has explored history-aware bug fixing, retrieval-augmented refactoring, agent memory taxonomies, and execution-grounded verification. However, these paradigms remain fragmented and have not been unified around an evolving source-code repository substrate.
-
-In this paper, we formalize and empirically evaluate a \textbf{Session-Persistent Repository Memory Architecture} combining: (1) Tree-sitter Concrete Syntax Tree (CST) symbol graphs with subtoken decomposition; (2) Hybrid Reciprocal Rank Fusion (RRF, $k=60$) fusing sparse lexical retrieval (sublinear TF-IDF) with structural AST symbol representations without GPU embedding overhead; (3) Incremental in-memory caching bypassing redundant AST parsing via SHA-256 content hashing ($10.13\times$ speedup); (4) Scoped episodic outcome logging under strict zero-leakage constraints; and (5) Cryptographic staleness invalidation penalizing outdated memory weights by 80\% ($\lambda = 0.20$).
-
-We conduct a multi-faceted empirical evaluation on \textbf{SWE-bench Verified Mini}:
-\begin{itemize}
-    \item \textbf{Multi-Repository Generalization ($N=50$)}: Evaluated across two structurally divergent codebases---\texttt{django/django} (web framework and database ORM, $N=25$) and \texttt{sphinx-doc/sphinx} (documentation compiler and AST visitor pipeline, $N=25$). Across all 50 tasks, Hybrid RRF achieves an overall Mean Reciprocal Rank (MRR) of \textbf{0.4110} (+22.7\% relative gain over snapshot lexical retrieval at 0.3350) and improves Top-5 hit rate to \textbf{62.0\% (31/50)} compared to 50.0\% (25/50). On Django, Hybrid RRF improves MRR by \textbf{+57.4\%} (0.5773 vs 0.3667; paired Wilcoxon signed-rank test $W = 13.5$, two-sided $p = 0.0077$, one-sided $p = 0.0039$), with Top-1 hit rate reaching 44.0\% ($p = 0.035$, McNemar test) and Top-5 hit rate reaching 80.0\% (Wilson 95\% CI: [0.609, 0.911]).
-    \item \textbf{Cross-Task Episodic Transfer Across Subsystems}: Across two orthogonal architectural layers---the backend ORM (\texttt{models/base.py}, \texttt{django-12209} $\to$ \texttt{django-12273}) and frontend HTML widgets (\texttt{forms/widgets.py}, \texttt{django-12193} $\to$ \texttt{django-12276})---persistent episodic memory eliminated exploratory amnesia. Search commands dropped by 66.7\% on Task 2 in Cluster 1 and by 100\% (0 searches) on Task 1 in Cluster 2. On Task 2 of Cluster 2 (\texttt{django-12276}), Condition D resolved the issue passing all official Docker test assertions in 41 turns and 283.6s (78s faster and 19.9\% cheaper than Baseline A).
-    \item \textbf{The Localization vs. Resolution Disconnect ($N=7$ Multi-Turn Sequence)}: In end-to-end multi-turn execution, the proposed system resolves real-world issues passing official Docker test suites (\texttt{django-11848}, \texttt{django-12276}). However, \textbf{overall resolution rate remained bounded across conditions (33.3\% in general sequence, 50.0\% in frontend cluster)}. Even when memory placed the target file and function at Rank 1, downstream bug resolution was bottlenecked by multi-turn code synthesis capabilities.
-    \item \textbf{Negative Transfer \& Failure Post-Mortem}: We analyze critical negative transfer failure modes: in the frontend cluster (\texttt{django-12193}), Condition D fails with an empty patch despite Rank-1 localization because dense symbol context induced over-deliberation during reproduction testing, exhausting pacing budgets before code modification. Across arbitrary heterogeneous streams, blind episodic logging drops MRR from 0.5773 to 0.2460 due to false lexical overlaps, demonstrating that episodic memory must be domain-scoped.
-    \item \textbf{Systematic Drift \& Staleness Sensitivity}: Across 4 controlled drift scenarios (signature changes, file renames, symbol deletions, conflicting memories), SHA-256 change tracking reliably invalidates obsolete definitions. Sensitivity analysis across $\lambda \in [0.0, 1.0]$ confirms that $\lambda = 0.20$ avoids hard eviction amnesia ($\lambda = 0.0$ drops MRR to 0.6667) while preventing context pollution ($\lambda \ge 0.8$).
-    \item \textbf{Incremental Caching Amortization}: In-memory AST caching delivers a $10.13\times$ speedup (0.205s warm cache vs 2.076s cold parse for 804 files), while partial drift re-parses modified files with negligible 7ms overhead.
-\end{itemize}
+We evaluate on \textbf{SWE-bench Verified Mini} ($N=50$: 25 \texttt{django/django}, 25 \texttt{sphinx-doc/sphinx}), checking out each task's exact \texttt{base\_commit}. Hybrid RRF improves fault localization over snapshot lexical retrieval on Django (MRR 0.6027 vs.\ 0.3667, +64.4\%; paired Wilcoxon $p=0.0071$ two-sided; Top-5 hit rate 80.0\%) and on the combined benchmark (MRR 0.5213 vs.\ 0.4163, +25.2\%; Top-5 hit rate 70.0\%). The gain is repository-dependent: on Sphinx, pure AST retrieval performs poorly, and under a single-snapshot protocol Hybrid RRF has a lower MRR than lexical retrieval (0.2447 vs.\ 0.3033) while improving Top-5 hit rate (44.0\% vs.\ 40.0\%). Scoped episodic memory reduced exploratory searches in two recurrent Django subsystem clusters (15$\to$5 and 5$\to$0 searches), but \textbf{we do not demonstrate an improvement in task resolution}: in the $N=7$ end-to-end runs the proposed system resolved 2/7 tasks versus 3/7 for the stateless baseline, even when the target file was ranked first. Unscoped episodic memory causes negative transfer (MRR falls from 0.5213 to 0.1860), and dense structural context can induce over-deliberation (one observed failure). In a four-scenario drift study, SHA-256 tracking invalidated obsolete definitions; the $\lambda$ sweep shows only that hard eviction ($\lambda=0$) is harmful, not that $\lambda=0.20$ is optimal.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -59,12 +54,12 @@ In large codebases containing hundreds of thousands of lines of code (such as th
 
 Surveys of software-engineering agents and LLM-based multi-agent systems show a decisive shift toward architectures combining perception, memory, planning, tool use, and action~\cite{wang2025agents, he2025multiagent}. However, existing memory mechanisms are largely conversational (interaction-oriented) or artifact-based (persisting bug report summaries), rather than being grounded in the concrete syntax and evolving history of the source-code repository itself.
 
-This paper bridges this gap by presenting a complete architectural implementation and empirical evaluation of a \textbf{Session-Persistent Repository Memory Architecture}. Our findings reveal a critical dichotomy in autonomous software engineering:
+This paper presents an implementation and empirical evaluation of a \textbf{Session-Persistent Repository Memory Architecture}. Our central finding is that improved retrieval is not equivalent to improved coding performance:
 \begin{itemize}
-    \item \textbf{Localization is significantly improved}: Combining Tree-sitter AST symbol graphs with sparse lexical retrieval via Reciprocal Rank Fusion ($k=60$) significantly outperforms sparse lexical retrieval across all 25 Django tasks in SWE-bench Verified Mini ($N=25$), led by a +58.0\% improvement in MRR (0.5793 vs 0.3667; two-sided Wilcoxon $p = 0.0077$). Top-1 hit rate improves to 44.0\% ($p = 0.035$) and Top-5 hit rate reaches 80.0\% ($p = 0.031$).
-    \item \textbf{Cross-Task Episodic Transfer Across Subsystems}: Across recurrent sequences within both the backend ORM (\texttt{models/base.py}) and frontend HTML widgets (\texttt{forms/widgets.py}), persistent memory cuts exploratory searches by up to 100\% and accelerates verified bug resolution (\texttt{django-12276}) by 78 seconds.
-    \item \textbf{The Localization--Resolution Disconnect}: In end-to-end multi-turn evaluation, providing accurate file and symbol localization at Rank 1 was insufficient to raise task resolve rates beyond the stateless baseline (1/3 across all resolving conditions, resolving the identical task \texttt{django-11848}). Downstream bug resolution is bottlenecked by the model's multi-turn reasoning and editing fidelity.
-    \item \textbf{Staleness verification safeguards persistent state}: Cryptographic SHA-256 verification detects on-disk file modifications and down-weights outdated context by 80\%, addressing an architectural vulnerability in naive string-logging memory.
+    \item \textbf{Localization improves, with repository-dependent gains}: Fusing Tree-sitter AST symbol graphs with sparse lexical retrieval via RRF ($k=60$) improves fault localization on Django ($N=25$; MRR 0.6027 vs.\ 0.3667 under task-specific checkouts, two-sided Wilcoxon $p=0.0071$) and on the combined 50-task benchmark. On Sphinx the evidence is mixed (Section~\ref{sec:retrieval}).
+    \item \textbf{Scoped episodic transfer reduces exploration in the clusters we tested}: In two recurrent Django subsystem pairs (backend ORM and frontend widgets, $N=2$ task pairs), persistent memory reduced exploratory searches (15$\to$5 and 5$\to$0) and, on \texttt{django-12276}, shortened a verified resolution by 78 seconds (a single task).
+    \item \textbf{The Localization--Resolution Disconnect}: Accurate Rank-1 localization did not raise resolution rates. Across $N=7$ end-to-end tasks the proposed system resolved 2/7 versus 3/7 for the stateless baseline. We therefore make no claim of task-success improvement.
+    \item \textbf{Staleness verification safeguards persistent state}: SHA-256 verification detects on-disk modifications and down-weights outdated context by 80\%, addressing a vulnerability of naive string-logging memory (evaluated on four controlled drift scenarios).
 \end{itemize}
 
 \section{Literature Foundation \& Taxonomy}
@@ -89,7 +84,7 @@ Empirical work on LLM-based program repair demonstrates that prompt context desi
 \section{Capability Matrix \& Research Gaps}
 
 \subsection{Structured Capability Comparison}
-Table~\ref{tab:comparison} compares how prior state-of-the-art architectures handle key dimensions of repository memory compared to our proposed architecture.
+Table~\ref{tab:comparison} compares how prior state-of-the-art architectures handle key dimensions of repository memory compared to our proposed architecture. The comparison is qualitative, based on each paper's described scope; we do not re-implement these systems as baselines.
 
 \begin{table*}[t]
 \caption{Structured Capability Comparison Across Literature and Proposed Architecture}
@@ -165,10 +160,15 @@ where $y_t \in \{0, 1\}$ denotes harness resolution and $\mathcal{H}_t = \{ f \t
 \begin{equation}
 w(e_t) = \begin{cases} w_0(e_t) & \text{if } \neg\text{Stale}(e_t) \\ \lambda \cdot w_0(e_t) & \text{if } \text{Stale}(e_t) \end{cases}
 \end{equation}
+Note that invalidation is file-granular: any change to a file in $\mathcal{H}_t$ marks the whole episode stale, even if the edit is unrelated to the symbols the episode concerns.
 
 \section{Experimental Setup}
-We evaluate on \textbf{SWE-bench Verified Mini}~\cite{jimenez2024swebench} (\texttt{django/django}, 25 tasks). The shared host checkout was pinned to commit \texttt{b1d6b35e} (Django 3.0-dev) corresponding to \texttt{django-11790}. Zero ground-truth patch leakage was confirmed across all tasks.
-Evaluations utilized \texttt{mini-swe-agent 2.4.6}~\cite{lieret2025minisweagent}, \texttt{swebench 4.1.0}, and \texttt{gemini-3.5-flash-lite} (temperature = 0.0) with an explicit 50-turn pacing budget prompt.
+We evaluate on \textbf{SWE-bench Verified Mini}~\cite{jimenez2024swebench}: 25 tasks from \texttt{django/django} and 25 from \texttt{sphinx-doc/sphinx} ($N=50$). Retrieval is evaluated under two protocols:
+\begin{itemize}
+    \item \textbf{Task-specific checkout (primary)}: For every task, repository HEAD is pinned to that issue's historical \texttt{base\_commit} before indexing or retrieval, guaranteeing no future information leakage.
+    \item \textbf{Single snapshot (supplementary)}: A shared host checkout pinned to commit \texttt{b1d6b35e} (Django 3.0-dev, corresponding to \texttt{django-11790}). This protocol is used for the component ablations and the episodic-transfer experiments.
+\end{itemize}
+Zero ground-truth patch leakage was confirmed across all tasks. End-to-end runs used \texttt{mini-swe-agent 2.4.6}~\cite{lieret2025minisweagent}, \texttt{swebench 4.1.0}, and \texttt{gemini-3.5-flash-lite} (temperature = 0.0) with an explicit 50-turn pacing budget prompt.
 
 \subsection{Research Questions}
 Our empirical study investigates five core research questions:
@@ -181,12 +181,34 @@ Our empirical study investigates five core research questions:
 \end{itemize}
 
 \section{Quantitative Results}
+\label{sec:retrieval}
 
-\subsection{Multi-Repository Retrieval Quality Benchmark ($N=50$, Answering RQ1)}
-To assess cross-repository generalization beyond Django, we evaluated the complete 50-task suite of \textbf{SWE-bench Verified Mini}, comparing \texttt{django/django} (a web framework and relational ORM with deep class hierarchies, $N=25$) against \texttt{sphinx-doc/sphinx} (a documentation compiler and AST visitor engine, $N=25$). Table~\ref{tab:retrieval_multirepo} reports HitRate@K (fault localization accuracy) and Mean Reciprocal Rank (MRR) across both repositories.
+\subsection{Fault Localization under Task-Specific Checkouts ($N=50$, Answering RQ1)}
+Table~\ref{tab:chrono} reports retrieval quality when each task is evaluated at its exact \texttt{base\_commit}. On Django, Static Hybrid RRF reaches an MRR of \textbf{0.6027}, a +64.4\% relative gain over snapshot lexical (BM25/TF-IDF) retrieval at 0.3667 (paired Wilcoxon $W=13.0$, two-sided $p=0.0071$, directional $p=0.0036$). Combined across all 50 tasks, Hybrid RRF reaches MRR 0.5213 versus 0.4163 for lexical retrieval (+25.2\%). Incremental AST caching re-parsed an average of only 38 files between successive checkouts and served over 750 files from cache.
 
 \begin{table}[!t]
-\caption{Multi-Repository Fault Localization Benchmark ($N=50$ Tasks)}
+\caption{Fault Localization with Task-Specific Checkouts (Static Hybrid RRF)}
+\label{tab:chrono}
+\centering
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Repository} & \textbf{Hit@1} & \textbf{Hit@5} & \textbf{MRR (Hybrid)} & \textbf{MRR (Lexical)} \\
+\midrule
+django/django ($N=25$) & 48.0\% (12/25) & 80.0\% (20/25) & 0.6027 & 0.3667 \\
+sphinx-doc/sphinx ($N=25$) & 36.0\% (9/25) & 60.0\% (15/25) & --- & --- \\
+\textbf{Combined ($N=50$)} & \textbf{42.0\% (21/50)} & \textbf{70.0\% (35/50)} & \textbf{0.5213} & \textbf{0.4163} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Single-Snapshot Multi-Repository Benchmark ($N=50$, Answering RQ1)}
+To compare all retrieval variants under identical conditions, we also evaluated the 50 tasks against the single pinned snapshot. Table~\ref{tab:retrieval_multirepo} reports HitRate@K and MRR.
+
+\begin{table}[!t]
+\caption{Multi-Repository Fault Localization, Single-Snapshot Protocol ($N=50$ Tasks)}
 \label{tab:retrieval_multirepo}
 \centering
 \setlength{\tabcolsep}{3.5pt}
@@ -205,7 +227,7 @@ D (Pure AST Ablation) & 0.3200 & 0.6800 & 0.4447 & 17 / 25 \\
 B (Snapshot TF-IDF) & 0.2400 & 0.4000 & 0.3033 & 10 / 25 \\
 C (Naive Combo) & 0.2400 & 0.4000 & 0.3033 & 10 / 25 \\
 D (Pure AST Ablation) & 0.0000 & 0.1600 & 0.0600 & 4 / 25 \\
-\textbf{D (Static Hybrid RRF)} & \textbf{0.1600} & \textbf{0.4400} & \textbf{0.2447} & \textbf{11 / 25} \\
+D (Static Hybrid RRF) & 0.1600 & 0.4400 & 0.2447 & 11 / 25 \\
 \midrule
 \multicolumn{5}{l}{\textit{Combined Multi-Repository Benchmark ($N=50$ Tasks)}} \\
 B (Snapshot TF-IDF) & 0.2200 & 0.5000 & 0.3350 & 25 / 50 \\
@@ -217,12 +239,12 @@ D (Pure AST Ablation) & 0.1600 & 0.4200 & 0.2523 & 21 / 50 \\
 }
 \end{table}
 
-\textbf{Statistical Significance}: On Django, a paired Wilcoxon signed-rank test on MRR confirms a statistically significant \textbf{+57.4\%} improvement ($W = 13.5, \text{two-sided } p = 0.0077, \text{directional } p = 0.0039$ across $n=15$ non-zero discordant pairs). Directional McNemar tests confirm significant improvements on HitRate@1 ($p = 0.035$) and HitRate@5 ($p = 0.031$, Wilson 95\% CI: [0.609, 0.911] vs [0.407, 0.766]). Across the combined $N=50$ multi-repository benchmark, Hybrid RRF improves overall MRR to \textbf{0.4110} (+22.7\% relative gain) and Top-5 hit rate to \textbf{62.0\% (31/50)}, outperforming both standalone lexical retrieval (50.0\%, 25/50) and pure AST retrieval (42.0\%, 21/50).
+\textbf{Statistical Significance (Django, snapshot)}: A paired Wilcoxon signed-rank test on MRR confirms a significant +57.4\% improvement ($W = 13.5$, two-sided $p = 0.0077$, directional $p = 0.0039$, $n=15$ non-zero pairs). Directional McNemar tests confirm improvements on HitRate@1 ($p = 0.035$) and HitRate@5 ($p = 0.031$; Wilson 95\% CI [0.609, 0.911] vs.\ [0.407, 0.766]). Combined across $N=50$, Hybrid RRF improves MRR to 0.4110 (+22.7\%) and Top-5 hit rate to 62.0\% (31/50), versus 50.0\% (25/50) for lexical and 42.0\% (21/50) for pure AST. We note that significance tests are reported for Django only; no test is reported for the Sphinx or combined results.
 
-\textbf{Architectural Divergence Analysis}: In object-oriented systems with explicit symbol inheritance (Django), structural AST symbols strongly align with issue descriptions, enabling pure AST to achieve 0.4447 MRR. In compiler/DSL architectures (Sphinx), problem statements frequently reference reStructuredText directive syntax rather than Python identifiers; consequently, pure AST drops to 0.0600 MRR, while lexical retrieval excels (0.3033 MRR). Hybrid RRF successfully fuses both modalities, achieving 0.4400 HitRate@5 on Sphinx (higher than lexical alone at 0.4000) and validating the necessity of hybrid rank fusion across heterogeneous architectures.
+\textbf{Architectural Divergence and the Sphinx Result}: In object-oriented systems with explicit symbol inheritance (Django), AST symbols align with issue descriptions, and pure AST reaches 0.4447 MRR. In compiler/DSL architectures (Sphinx), problem statements frequently reference reStructuredText directive syntax rather than Python identifiers; pure AST drops to 0.0600 MRR while lexical retrieval reaches 0.3033. Under the single-snapshot protocol, Hybrid RRF on Sphinx improves Top-5 hit rate over lexical (44.0\% vs.\ 40.0\%) but has \emph{lower} Hit@1 (16.0\% vs.\ 24.0\%) and MRR (0.2447 vs.\ 0.3033). Fusion therefore helps recall in the top five but does not uniformly dominate lexical retrieval; the benefit of AST signals depends on how closely issue text references code identifiers.
 
 \subsection{Architectural Component-Wise Ablations (Answering RQ1 \& RQ4)}
-Table~\ref{tab:ablations} reports isolated component contributions across lexical, structural, static fusion, and unfiltered episodic mechanisms.
+Table~\ref{tab:ablations} reports isolated component contributions across lexical, structural, static fusion, and unfiltered episodic mechanisms (single-snapshot protocol; values for variants (1) and (3) match Table~\ref{tab:retrieval_multirepo}).
 
 \begin{table}[!t]
 \caption{Architectural Component-Wise Retrieval Ablations}
@@ -235,13 +257,13 @@ Table~\ref{tab:ablations} reports isolated component contributions across lexica
 \textbf{Component Variant} & \textbf{R@1} & \textbf{R@5} & \textbf{MRR} & \textbf{95\% CI (R@5)} \\
 \midrule
 \multicolumn{5}{l}{\textit{Django Codebase ($N=25$)}} \\
-(1) Pure Lexical (TF-IDF) & 0.2000 & 0.6000 & 0.3800 & [0.407, 0.766] \\
+(1) Pure Lexical (TF-IDF) & 0.2000 & 0.6000 & 0.3667 & [0.407, 0.766] \\
 (2) Pure AST (Tree-sitter) & 0.3200 & 0.6800 & 0.4447 & [0.484, 0.828] \\
-(3) Static Hybrid RRF & \textbf{0.4400} & \textbf{0.8000} & \textbf{0.5793} & [0.609, 0.911] \\
+(3) Static Hybrid RRF & \textbf{0.4400} & \textbf{0.8000} & \textbf{0.5773} & [0.609, 0.911] \\
 (4) Unfiltered Episodic Transfer & 0.2000 & 0.3600 & 0.2460 & [0.203, 0.555] \\
 \midrule
 \multicolumn{5}{l}{\textit{Sphinx Codebase ($N=25$)}} \\
-(1) Pure Lexical (TF-IDF) & 0.2400 & 0.4000 & 0.2933 & [0.234, 0.593] \\
+(1) Pure Lexical (TF-IDF) & 0.2400 & 0.4000 & 0.3033 & [0.234, 0.593] \\
 (2) Pure AST (Tree-sitter) & 0.0000 & 0.1600 & 0.0600 & [0.064, 0.347] \\
 (3) Static Hybrid RRF & 0.1600 & \textbf{0.4400} & 0.2447 & [0.267, 0.629] \\
 (4) Unfiltered Episodic Transfer & 0.0000 & 0.1600 & 0.0513 & [0.064, 0.347] \\
@@ -250,7 +272,7 @@ Table~\ref{tab:ablations} reports isolated component contributions across lexica
 }
 \end{table}
 
-The ablation reveals a fundamental insight: while Static Hybrid RRF achieves optimal localization (+52.5\% MRR gain over pure lexical on Django), blindly accumulating episodic memory across arbitrary heterogeneous tasks without domain clustering causes \textbf{severe negative transfer} (MRR drops to 0.2460 on Django and 0.0513 on Sphinx) due to spurious lexical overlaps. Episodic transfer must therefore be strictly scoped to recurrent subsystem clusters.
+Static Hybrid RRF achieves the best localization on Django (+57.4\% MRR over pure lexical). In contrast, accumulating episodic memory across arbitrary heterogeneous tasks without domain clustering causes \textbf{severe negative transfer} (MRR drops to 0.2460 on Django and 0.0513 on Sphinx). The mechanism is lexical: issue descriptions from unrelated subsystems share generic terms (e.g., \texttt{validation}, \texttt{field}, \texttt{model}), so past episodes touching unrelated files receive positive weight from surface overlap and outrank the true target in RRF fusion (see Case~4 for a worked analysis). Episodic transfer should therefore be scoped to recurrent subsystem clusters. We have not implemented or evaluated an automatic clustering gate; the scoping in Section~\ref{sec:clusters} was done manually.
 
 \subsection{End-to-End Agent Task Execution ($N=3$, Answering RQ2)}
 Table~\ref{tab:execution} summarizes full multi-turn agent runs inside the SWE-bench evaluation harness under matched model (\texttt{gemini-3.5-flash-lite}), turn budget (50 steps), and execution conditions.
@@ -274,16 +296,17 @@ C (Naive Combo) & 1/3 (33.3\%) & 47.0 & 202.0s & \$0.0762 \\
 }
 \end{table}
 
-All resolving conditions resolved the identical task (\texttt{django-11848}). Despite placing target files at Rank 1 in Tasks 1 and 2, overall task resolution remained bounded at 33.3\%, empirically demonstrating the \textbf{Localization--Resolution Disconnect}: fault localization is necessary but not sufficient for automated repair; downstream bug resolution is bottlenecked by the model's multi-turn synthesis and editing capabilities.
+All resolving conditions resolved the identical task (\texttt{django-11848}). Despite placing target files at Rank 1 in Tasks 1 and 2, the proposed system did not resolve more tasks than the stateless baseline. \textbf{Answer to RQ2: no improvement in resolution was demonstrated.} Fault localization appears necessary but not sufficient for automated repair; with these sample sizes we cannot attribute the bottleneck to a specific cause, though trajectory inspection (Cases 2 and 3) points to multi-turn code synthesis and edit commitment.
 
 \subsection{Cross-Task Episodic Transfer Across Recurrent Subsystems (Answering RQ5)}
-To empirically test whether episodic memory transfers when scoped to related issues within the same subsystem, we evaluated two orthogonal recurrent clusters:
+\label{sec:clusters}
+To test whether episodic memory transfers when scoped to related issues within the same subsystem, we evaluated two recurrent clusters (two task pairs in total):
 \begin{enumerate}
     \item \textbf{Cluster 1 (Backend ORM)}: \texttt{django/db/models/base.py} (\texttt{django-12209} $\to$ \texttt{django-12273}).
     \item \textbf{Cluster 2 (Frontend Widgets)}: \texttt{django/forms/widgets.py} (\texttt{django-12193} $\to$ \texttt{django-12276}).
 \end{enumerate}
 
-Table~\ref{tab:clusters} reports the empirical comparison between stateless Baseline A and persistent Condition D across both clusters.
+Table~\ref{tab:clusters} reports the comparison between stateless Baseline A and persistent Condition D across both clusters.
 
 \begin{table}[!t]
 \caption{Cross-Subsystem Recurrent Cluster Evaluation}
@@ -311,7 +334,7 @@ Task 2: \texttt{django-12276} & \textbf{D (Proposed)} & \textbf{4} & \textbf{283
 }
 \end{table}
 
-In Cluster 1, persistent memory \textbf{slashed exploratory search commands by 66.7\% (from 15 to 5)}, accelerating test reproduction to Turn 10. In Cluster 2, memory routed directly to \texttt{widgets.py} at Rank 1, eliminating bash searches entirely on Task 1 ($5 \to 0$). On Task 2 (\texttt{django-12276}), Condition D resolved the issue passing all official Docker test assertions in 41 turns and 283.6s (78.0s faster and 19.9\% lower API cost than Baseline A).
+In Cluster 1, persistent memory reduced exploratory search commands from 15 to 5 (-66.7\%) on Task 2, accelerating test reproduction to Turn 10, but neither condition resolved either task. In Cluster 2, memory routed directly to \texttt{widgets.py} at Rank 1, eliminating bash searches on Task 1 ($5 \to 0$), yet Condition D failed that task (Case 3). On Task 2 (\texttt{django-12276}), both conditions resolved the issue; Condition D did so in 41 turns and 283.6s, which is 78.0s (21.6\%) faster and 19.9\% lower in API cost than Baseline A. Across the four cluster tasks, Condition D resolved 1/4 and Baseline A resolved 2/4. Combined with the general sequence (Table~\ref{tab:execution}), this gives 2/7 for Condition D versus 3/7 for Baseline A over $N=7$ end-to-end tasks. Search reduction was therefore observed, but it did not translate into higher resolution, and the timing result rests on a single task.
 
 \subsection{Incremental AST Caching Amortization (Answering RQ3)}
 Table~\ref{tab:caching} tracks empirical cache performance across full parsing, warm lookup, and single-file drift.
@@ -353,21 +376,21 @@ We evaluated memory behavior across four systematic repository drift scenarios:
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lccc>{\raggedright\arraybackslash}p{3.4cm}}
 \toprule
-$\boldsymbol{\lambda}$ & \textbf{MRR} & \textbf{Hit@1} & \textbf{Hit@5} & \textbf{Architectural Trade-Off} \\
+$\boldsymbol{\lambda}$ & \textbf{MRR} & \textbf{Hit@1} & \textbf{Hit@5} & \textbf{Observation} \\
 \midrule
-$\lambda = 0.00$ & 0.6667 & 0.6667 & 0.6667 & Hard eviction; amnesia discards valid hints \\
-$\lambda = 0.10$ & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} & Strong penalty; retains valid hints \\
-$\boldsymbol{\lambda = 0.20}$ & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} & \textbf{Default optimal trade-off} \\
-$\lambda = 0.30$ & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} & Moderate penalization \\
-$\lambda = 0.50$ & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} & Moderate attenuation \\
-$\lambda = 0.80$ & 1.0000 & 1.0000 & 1.0000 & Weak penalty; risk of context drift \\
-$\lambda = 1.00$ & 1.0000 & 1.0000 & 1.0000 & Zero penalty; stale context retained \\
+$\lambda = 0.00$ & 0.6667 & 0.6667 & 0.6667 & Hard eviction; discards valid hints \\
+$\lambda = 0.10$ & 1.0000 & 1.0000 & 1.0000 & Saturated on this scenario set \\
+$\boldsymbol{\lambda = 0.20}$ & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} & \textbf{Default; conservative choice} \\
+$\lambda = 0.30$ & 1.0000 & 1.0000 & 1.0000 & Saturated on this scenario set \\
+$\lambda = 0.50$ & 1.0000 & 1.0000 & 1.0000 & Saturated on this scenario set \\
+$\lambda = 0.80$ & 1.0000 & 1.0000 & 1.0000 & Saturated; pollution risk not observed \\
+$\lambda = 1.00$ & 1.0000 & 1.0000 & 1.0000 & No penalty; not separated from above \\
 \bottomrule
 \end{tabular}%
 }
 \end{table}
 
-Table~\ref{tab:staleness_sweep} demonstrates that hard eviction ($\lambda = 0.00$) causes premature amnesia (dropping MRR from 1.0000 to 0.6667 by discarding useful module hints), whereas weak penalties ($\lambda \ge 0.80$) risk polluting agent prompts when interfaces break. The selected factor $\lambda = 0.20$ provides an empirically verified balance between safety and memory retention.
+Table~\ref{tab:staleness_sweep} shows that hard eviction ($\lambda = 0.00$) causes premature amnesia, dropping MRR from 1.0000 to 0.6667 by discarding useful module hints. Every $\lambda \ge 0.10$ achieves identical, saturated performance on our four scenarios, so this sweep \emph{cannot} distinguish between them. In particular, it does not demonstrate that weak penalties ($\lambda \ge 0.8$) pollute prompts; that remains a plausible but untested risk. We select $\lambda = 0.20$ as a conservative default that avoids hard eviction while strongly down-weighting stale episodes, and leave a larger, more discriminating scenario set to future work.
 
 \section{Qualitative Case Studies, Post-Mortem \& Negative Transfer}
 
@@ -380,23 +403,40 @@ In \texttt{django-11815}, the migration serializer incorrectly wrote \texttt{Enu
 \subsection{Case 3: Post-Mortem of Frontend Failure in \texttt{django-12193}}
 In the frontend widgets cluster (Table~\ref{tab:clusters}), stateless Baseline A resolved \texttt{django-12193} in 44 turns, whereas Condition D failed with an empty patch after 37 turns despite Rank-1 localization ($0$ search commands). 
 
-Trajectory inspection reveals a critical interaction between memory context and prompt budget pacing: Baseline A spent 5 exploratory bash commands searching files, which framed the task around a single localized diff in \texttt{widgets.py}. In Condition D, rich AST context provided all class hierarchies (\texttt{Widget}, \texttt{TextInput}, \texttt{CheckboxInput}). The agent immediately entered an intensive reproduction testing phase at turn 10, exploring interactions between \texttt{Widget.build\_attrs} and \texttt{CheckboxInput.get\_context}. However, as the turn count approached the budget limit, the agent over-deliberated without committing the edit, and budget-pacing prompts induced an empty patch submission. This post-mortem establishes that \textbf{dense structural memory can induce over-deliberation in reproduction testing}, which must be counteracted by execution scaffolding that enforces strict editing checkpoints.
+Trajectory inspection suggests an interaction between memory context and prompt budget pacing: Baseline A spent 5 exploratory bash commands searching files, which framed the task around a single localized diff in \texttt{widgets.py}. In Condition D, rich AST context provided all class hierarchies (\texttt{Widget}, \texttt{TextInput}, \texttt{CheckboxInput}). The agent immediately entered an intensive reproduction testing phase at turn 10, exploring interactions between \texttt{Widget.build\_attrs} and \texttt{CheckboxInput.get\_context}. However, as the turn count approached the budget limit, the agent over-deliberated without committing the edit, and budget-pacing prompts induced an empty patch submission. This single trajectory suggests that \textbf{dense structural memory can induce over-deliberation in reproduction testing}; it is a hypothesis from one case, which execution scaffolding enforcing strict editing checkpoints could test.
 
 \subsection{Case 4: Negative Transfer in Unfiltered Episodic Streams}
-When episodic memory was updated continuously across the heterogeneous 25-task sequence without subsystem clustering (Table~\ref{tab:ablations}), localization MRR collapsed from 0.5793 to 0.2460. Lexical similarity between unrelated issue descriptions (e.g., generic terms like \texttt{validation}, \texttt{field}, \texttt{model}) caused past episodes from unrelated subsystems to outrank true target files in RRF fusion. This provides empirical proof of \textbf{episodic negative transfer}: episodic memory is beneficial only when scoped to recurrent subsystems, and must be gated by domain-clustering heuristics in production environments.
+When episodic memory was updated continuously across the heterogeneous 25-task Django sequence without subsystem clustering (Table~\ref{tab:ablations}), localization MRR collapsed from 0.5773 to 0.2460. Lexical similarity between unrelated issue descriptions (e.g., generic terms like \texttt{validation}, \texttt{field}, \texttt{model}) caused past episodes from unrelated subsystems to outrank true target files in RRF fusion. This is empirical evidence of \textbf{episodic negative transfer}: episodic memory is beneficial only when scoped to recurrent subsystems, and would need to be gated by domain-clustering heuristics in production. Under task-specific chronological checkouts the same effect appears across all 50 tasks: unclustered accumulation lowers combined MRR from 0.5213 to 0.1860.
+
+\section{Discussion: When Memory Helps and When It Hurts}
+Our results show that persistent repository memory is not uniformly beneficial. We identify four distinct ways in which memory was neutral or harmful.
+
+\textbf{Unscoped episodic memory (negative transfer).} Episodes retrieved by lexical overlap import irrelevant files into ranking. The damage is large (MRR 0.5773$\to$0.2460 on Django, 0.5213$\to$0.1860 combined) and arises because generic vocabulary is shared across subsystems. Memory must be scoped, and an automatic scoping mechanism remains unimplemented.
+
+\textbf{Context that is too rich (over-deliberation).} In \texttt{django-12193}, accurate localization plus dense class-hierarchy context coincided with an empty patch, while the less-informed baseline resolved the task. This is a single observation and its cause is untested, but it indicates that better context can change agent behavior in ways retrieval metrics do not capture, consistent with the Localization--Resolution Disconnect.
+
+\textbf{Stale memory.} SHA-256 tracking invalidated obsolete signatures, renamed files, and deleted symbols in all four drift scenarios, whereas the naive combination served stale information. However, invalidation is file-granular, so an unrelated edit anywhere in a stored file attenuates the entire episode, which may discard valid hints. Hard eviction ($\lambda = 0$) demonstrably harms retrieval, but our scenario set is too small to separate $\lambda$ values above 0.1.
+
+\textbf{Retrieval-modality mismatch.} AST symbol matching depends on issue text naming code identifiers; on Sphinx it was nearly useless alone (MRR 0.0600), and fusion did not beat lexical retrieval on MRR under the snapshot protocol. Memory built on code structure inherits this dependence.
+
+Taken together, memory components should be treated as inputs whose benefit must be measured against the end task, not only against retrieval accuracy.
 
 \section{Threats to Validity}
-\textbf{Temporal Validity \& Task-Specific Checkouts}: To guarantee zero future information leakage and directly address Reviewer Weakness C and Required Improvement 3, we evaluated all $N=50$ tasks across both repositories on their exact task-specific git checkouts, pinning repository HEAD to each issue's historical \texttt{base\_commit} before indexing or retrieval. Under exact chronological checkouts: (1) On Django ($N=25$), Static Hybrid RRF achieves an MRR of \textbf{0.6027} (+64.4\% relative gain over BM25 at 0.3667; paired Wilcoxon $W = 13.0, \text{two-sided } p = 0.0071, \text{directional } p = 0.0036$) with Top-1 HitRate reaching 48.0\% (12/25) and Top-5 HitRate reaching 80.0\% (20/25); (2) On Sphinx ($N=25$), Static Hybrid RRF achieves 60.0\% Top-5 HitRate (15/25); (3) Combined across all 50 chronological tasks, Static Hybrid RRF delivers an MRR of \textbf{0.5213} (+25.2\% relative gain over snapshot BM25 at 0.4163), Top-1 HitRate of \textbf{42.0\% (21/50)}, and Top-5 HitRate of \textbf{70.0\% (35/50)}. In addition, incremental AST caching re-parsed an average of only 38 files between successive chronological checkouts, serving over 750 files directly from cache. Furthermore, chronological accumulation of unclustered episodic memory caused MRR to collapse from 0.5213 to 0.1860, empirically verifying negative transfer in heterogeneous task streams.
+\textbf{Temporal Validity}: The primary retrieval results use each task's exact \texttt{base\_commit}, avoiding future-information leakage. The ablation and episodic-transfer experiments use the single pinned snapshot (\texttt{b1d6b35e}) and may therefore differ from the chronological results.
 
-\textbf{End-to-End Sample Size}: End-to-end multi-turn evaluation covers $N=7$ full SWE-bench task executions per condition ($N=3$ general + $N=4$ cluster tasks). While resolution remains bounded by model capability ceilings, fault localization claims are substantiated across $N=50$ SWE-bench Verified tasks spanning two distinct repositories.
+\textbf{End-to-End Sample Size}: End-to-end multi-turn evaluation covers $N=7$ task executions per condition ($N=3$ general + $N=4$ cluster tasks) with a single run each. This is too small to establish or rule out differences in resolution rate; localization claims rest on $N=50$ tasks, resolution observations on $N=7$.
 
-\textbf{Model Capability Ceiling}: Experiments were conducted with \texttt{gemini-3.5-flash-lite}; frontier models with stronger synthesis capabilities may convert Rank-1 localization into higher resolution rates.
+\textbf{Repository Diversity}: Only two repositories (Django and Sphinx) were evaluated, and both are Python projects.
+
+\textbf{Model Capability Ceiling}: Experiments used \texttt{gemini-3.5-flash-lite}; frontier models with stronger synthesis capabilities may convert Rank-1 localization into higher resolution rates, or may behave differently under dense context.
+
+\textbf{Baselines}: Comparisons are against lexical and pure-AST retrieval and a stateless agent; we do not compare against other published repository-memory or repository-RAG systems (Table~\ref{tab:comparison} is qualitative).
 
 \section{Reproducibility Evidence}
 All experimental artifacts are packaged in the open-source reproducibility archive \texttt{reproducibility\_package.tar.gz} (0.81\,MB), containing: (1) full executable source code (\texttt{memory\_pilot/}); (2) task lists and SWE-bench configurations (\texttt{inventory.json}); (3) raw benchmark JSONs; (4) per-task logs, patches (\texttt{patch.diff}), and Docker evaluation reports; and (5) the standalone script \texttt{scripts/run\_statistical\_tests.py}, allowing exact reproduction of all manuscript statistics, confidence intervals, and Wilcoxon tests in a single command.
 
 \section{Conclusion}
-We formalized and evaluated a \textbf{Session-Persistent Repository Memory Architecture} for SWE agents. Fusing Tree-sitter AST symbol graphs with sparse lexical retrieval via Reciprocal Rank Fusion significantly improves fault localization across $N=50$ SWE-bench Verified tasks (+57.4\% MRR on Django, 80\% Top-5 HitRate, and 62.0\% combined HitRate@5 across Django and Sphinx), while SHA-256 caching delivers a $10.13\times$ speedup. In recurrent subsystems, episodic memory slashes exploratory tool overhead by up to 100\% and accelerates bug resolution by 78s. However, our findings also illuminate key boundaries: unfiltered episodic memory suffers from negative transfer across heterogeneous tasks, and downstream bug resolution remains strictly bottlenecked by the LLM's multi-turn code synthesis capabilities.
+We evaluated a \textbf{Session-Persistent Repository Memory Architecture} for SWE agents. Fusing Tree-sitter AST symbol graphs with sparse lexical retrieval via RRF improves fault localization on Django (MRR 0.6027 vs.\ 0.3667; 80\% Top-5 hit rate) and on the combined 50-task benchmark (MRR 0.5213 vs.\ 0.4163; 70\% Top-5), with mixed results on Sphinx. SHA-256 caching delivers a $10.13\times$ indexing speedup, and SHA-256 staleness tracking handled all four drift scenarios tested. In two recurrent Django clusters, scoped episodic memory reduced exploratory searches, but we did not demonstrate improved task resolution (2/7 versus 3/7 for the stateless baseline), and unscoped episodic memory caused severe negative transfer. These results show that retrieval gains do not by themselves yield better coding performance. Establishing task-level benefits will require more repositories, larger end-to-end evaluations with stronger models, comparisons against existing memory systems, and an implemented mechanism for scoping episodic memory.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

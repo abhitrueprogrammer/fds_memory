@@ -6,9 +6,101 @@
 [![Environment](https://img.shields.io/badge/OS-Linux_x86__64_Fedora-red.svg)](https://getfedora.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Authors**: Abhinav Pant, Abhiram Anil, A Anjana Nair  
+**Authors**: Abhinav Pant, A Anjana Nair, Abhiram Anil, Kalayraman P  
 
-> 📄 **Academic Research Paper**: The complete, submission-ready academic paper manuscript is available in [`RESEARCH_PAPER.md`](RESEARCH_PAPER.md).
+> 📄 **Academic Manuscript**: 
+> - **Conference PDF**: [`fds_paper.pdf`](fds_paper.pdf)
+> - **LaTeX Source**: [`paper.tex`](paper.tex) (`IEEEtran.cls` format)
+> - **Base Paper**: [`base_paper.pdf`](base_paper.pdf) (*HAFix: History-Augmented Large Language Models for Bug Fixing*, Springer EMSE 2026)
+> - **Project & Dataset Links**: [`PROJECT_LINKS.md`](PROJECT_LINKS.md)
+> - **Reproducibility Package**: [`reproducibility_package.tar.gz`](reproducibility_package.tar.gz)
+> - **Interactive Demo**: [`demo.py`](demo.py)
+
+---
+
+## Repository Directory Structure
+
+```
+fds_memory/
+├── fds_paper.pdf                      # Final conference manuscript PDF
+├── paper.tex                          # Complete IEEE conference LaTeX manuscript
+├── references.bib                     # Complete BibTeX bibliography
+├── IEEEtran.cls                       # Official IEEE conference LaTeX template
+├── base_paper.pdf                     # Foundational literature paper (HAFix - Springer EMSE 2026)
+├── PROJECT_LINKS.md                   # External repository, dataset, and DOI references
+├── requirements.txt                   # Complete Python environment dependencies
+├── demo.py                            # Interactive CLI showcase and evaluation demo
+├── collate_results.py                 # Multi-condition summary collator
+├── inventory.json                     # SWE-bench Verified Mini task metadata & commits (N=50)
+├── swebench.yaml                      # SWE-bench environment & Docker harness config
+├── reproducibility_package.tar.gz     # Self-contained reproducibility bundle (0.83 MB)
+│
+├── memory_pilot/                      # Core Persistent Memory Framework
+│   ├── interface.py                   # BaseMemory abstraction & schemas
+│   ├── condition_a.py                 # Condition A: Stateless baseline agent
+│   ├── condition_b.py                 # Condition B: Pure snapshot lexical retrieval (BM25)
+│   ├── condition_c.py                 # Condition C: Naive lexical + flat trajectory concatenation
+│   ├── condition_d.py                 # Condition D: AST symbol graphs + Hybrid RRF + Staleness
+│   ├── eval_retrieval.py              # Fault localization evaluation engine
+│   ├── runner.py                      # Multi-turn SWE-bench task runner
+│   ├── staleness_check.py             # SHA-256 drift detection & weight attenuation
+│   ├── run_recurrent_experiment.py    # Recurrent ORM cluster runner
+│   └── run_widgets_cluster_experiment.py # Frontend widgets cluster runner
+│
+├── scripts/                           # Reproducibility & Benchmark Automation
+│   ├── run_statistical_tests.py       # 1-command statistical test reproduction (Wilcoxon, McNemar)
+│   ├── run_multi_repo_benchmark.py    # Multi-repo benchmark runner (Django + Sphinx, N=50)
+│   ├── eval_chronological_retrieval.py# Chronological task-specific base_commit checkouts
+│   ├── eval_component_ablations.py    # Architectural component-wise ablation benchmarks
+│   ├── eval_drift_and_staleness.py    # 4 repository drift scenarios & lambda sweep
+│   ├── package_reproducibility.py     # Standalone reproducibility archive packager
+│   └── pull_django_images.sh          # Pre-cache Docker images for offline evaluation
+│
+├── results/                           # Raw Machine-Readable Experimental Benchmarks
+│   ├── multi_repo_n50_benchmark.json  # Multi-repository N=50 benchmark outputs
+│   ├── chronological_n50_benchmark.json # Chronological base_commit checkout outputs
+│   ├── component_wise_ablations.json  # Component ablation and cache profiling outputs
+│   ├── systematic_drift_and_staleness_study.json # 4 drift scenarios & lambda sweep data
+│   ├── eval_reports/                  # SWE-bench Docker harness evaluation reports
+│   └── recurrent_cluster_experiment/  # Trajectory logs, patches, and turn records
+│
+├── EXPERIMENT_RESULTS.md              # Exhaustive benchmark records & raw telemetry
+├── REBUTTAL_AND_IMPROVEMENTS.md       # Peer review response & improvements report
+├── RESEARCH_PAPER.md                  # Comprehensive markdown manuscript draft
+└── ULTRA_RESEARCH_PAPER.md            # Extended architectural report
+```
+
+---
+
+## Quickstart & Interactive Demo
+
+### 1. Installation
+```bash
+git clone https://github.com/abhitrueprogrammer/fds_memory.git
+cd fds_memory
+
+# Install dependencies (Python 3.11 recommended)
+pip install -r requirements.txt
+```
+
+### 2. Interactive Showcase CLI
+Run the rich interactive CLI to explore live AST parsing, Hybrid RRF retrieval, staleness attenuation, and benchmark statistics:
+```bash
+# Run all showcases sequentially
+python demo.py --all
+
+# Or run specific modules:
+python demo.py --live        # Live Tree-sitter AST & RRF retrieval demo
+python demo.py --compare     # 4-way condition comparison (A vs B vs C vs D)
+python demo.py --staleness   # Cryptographic SHA-256 staleness trial
+python demo.py --stats       # Reproduce all manuscript statistical tests
+```
+
+### 3. Fast 1-Command Statistical Verification
+To instantly verify all manuscript statistics, confidence intervals, and Wilcoxon signed-rank tests in under 3 seconds:
+```bash
+python scripts/run_statistical_tests.py
+```
 
 ---
 

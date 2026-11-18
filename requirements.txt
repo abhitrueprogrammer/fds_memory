@@ -1,0 +1,15 @@
+# Core dependencies for Persistent Repository Memory (FDS Memory)
+tree-sitter>=0.26.0
+tree-sitter-python>=0.25.0
+scikit-learn>=1.9.1
+scipy>=1.17.1
+numpy>=2.4.6
+datasets>=5.1.0
+unidiff>=1.0.1
+rich>=15.0.0
+pyyaml>=6.0.3
+python-dotenv>=1.2.4
+
+# Agent scaffolding & evaluation harness
+mini-swe-agent>=2.4.6
+swebench>=4.1.0

@@ -177,6 +177,9 @@ pip install -r requirements.txt
     with tarfile.open(tar_path, "w:gz") as tar:
         tar.add(bundle_dir, arcname="reproducibility_package")
 
+    # Clean up staging directory
+    shutil.rmtree(bundle_dir)
+
     print(f"Archive successfully generated at {tar_path} ({tar_path.stat().st_size / (1024*1024):.2f} MB)")
 
 
