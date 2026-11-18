@@ -1,5 +1,0 @@
-dataset:  https://huggingface.co/datasets/MariusHobbhahn/swe-bench-verified-mini
-
-repo: https://github.com/abhitrueprogrammer/fds_memory
-
-base paper link: https://link.springer.com/article/10.1007/s10664-026-10833-3

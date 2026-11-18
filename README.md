@@ -64,10 +64,7 @@ fds_memory/
 │   ├── eval_reports/                  # SWE-bench Docker harness evaluation reports
 │   └── recurrent_cluster_experiment/  # Trajectory logs, patches, and turn records
 │
-├── EXPERIMENT_RESULTS.md              # Exhaustive benchmark records & raw telemetry
-├── REBUTTAL_AND_IMPROVEMENTS.md       # Peer review response & improvements report
-├── RESEARCH_PAPER.md                  # Comprehensive markdown manuscript draft
-└── ULTRA_RESEARCH_PAPER.md            # Extended architectural report
+└── EXPERIMENT_RESULTS.md              # Exhaustive benchmark records & raw telemetry
 ```
 
 ---
